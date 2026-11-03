@@ -29,7 +29,7 @@ export function ModeToggle() {
             aria-pressed={isActive}
             onClick={() => setMode(value)}
             className={cn(
-              'flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors',
+              'flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors',
               isActive ? 'bg-accent text-accent-contrast' : 'text-ink-muted hover:text-ink',
             )}
           >
