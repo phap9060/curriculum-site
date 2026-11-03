@@ -92,7 +92,6 @@ substituir esse arquivo.
 
 ### Pendências conhecidas
 
-- [ ] Confirmar a URL do GitHub em `profile.social.github` (inferida do LinkedIn)
 - [ ] Substituir o projeto placeholder ("Seu próximo projeto aqui") por projetos reais
 
 ## Estrutura do projeto
