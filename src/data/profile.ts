@@ -102,7 +102,7 @@ export const profile = {
   role: 'Desenvolvedor Frontend | React | TypeScript | Next.js',
   location: 'Teresina, PI — Brasil',
   /** O CV em PDF está em `public/cv.pdf` */
-  cvUrl: '/cv.pdf',
+  cvUrl: `${import.meta.env.BASE_URL}cv.pdf`,
   social: {
     email: 'phap9060@gmail.com',
     linkedin: 'https://linkedin.com/in/phap9060',

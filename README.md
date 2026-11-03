@@ -8,6 +8,9 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)](https://vite.dev)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+[![Deploy](https://github.com/phap9060/curriculum-site/actions/workflows/deploy.yml/badge.svg)](https://github.com/phap9060/curriculum-site/actions/workflows/deploy.yml)
+
+**[Acessar o site publicado](https://phap9060.github.io/curriculum-site/)**
 
 [Preview](#preview) · [Stack](#stack) · [Rodando localmente](#rodando-localmente) · [Conteúdo](#editando-o-conteúdo) · [Estrutura](#estrutura-do-projeto)
 
@@ -140,9 +143,16 @@ ativo — só qual modo (`useMode()`).
 
 ## Build e deploy
 
-O resultado de `npm run build` é um site estático na pasta `dist/`, pronto para
-qualquer hospedagem estática (Vercel, Netlify, GitHub Pages, S3 etc.), sem necessidade
-de servidor.
+O deploy é automático: cada push na branch `main` dispara o workflow
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), que roda o build e
+publica o resultado no **GitHub Pages**.
+
+- **Site:** https://phap9060.github.io/curriculum-site/
+- **Actions:** https://github.com/phap9060/curriculum-site/actions
+
+O resultado de `npm run build` também é um site estático na pasta `dist/`, pronto
+para qualquer hospedagem estática (Vercel, Netlify, S3 etc.), sem necessidade de
+servidor.
 
 ---
 
