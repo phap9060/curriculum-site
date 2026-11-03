@@ -16,7 +16,7 @@ export function Experience() {
       <ol className="relative space-y-12 border-l border-border pl-8">
         {profile.experience.map((item) => (
           <li key={`${item.company}-${item.period}`} className="relative animate-fade-up">
-            <span className="absolute -left-[37px] top-1 flex size-4 items-center justify-center rounded-full border-2 border-accent bg-surface" />
+            <span className="absolute -left-10 top-1.5 flex size-4 items-center justify-center rounded-full border-2 border-accent bg-surface" />
 
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <h3 className="text-xl font-semibold">
