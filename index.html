@@ -8,11 +8,11 @@
       ;(() => {
         try {
           const stored = localStorage.getItem('portfolio-mode')
-          const mode = stored === 'recruiter' ? 'recruiter' : 'dev'
+          const mode = stored === 'dev' ? 'dev' : 'recruiter'
           document.documentElement.classList.toggle('dark', mode === 'dev')
           document.documentElement.dataset.mode = mode
         } catch {
-          document.documentElement.classList.add('dark')
+          document.documentElement.classList.remove('dark')
         }
       })()
     </script>

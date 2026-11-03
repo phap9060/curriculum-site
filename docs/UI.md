@@ -9,13 +9,13 @@ modos de exibição (recruiter e dev) e devem ser seguidas em qualquer component
 
 O site tem duas personalidades visuais, controladas pelo `ModeProvider`:
 
-| | **Dev** (padrão) | **Recruiter** |
+| | **Recruiter** (padrão) | **Dev** |
 |---|---|---|
-| Tema | Dark (classe `.dark` no `<html>`) | Light |
-| Personalidade | Terminal, mono, técnico | Limpo, executivo, direto |
-| Accent | Esmeralda `#34d399` | Índigo `#4f46e5` |
-| Títulos de seção | Prefixo `##` em mono | Texto puro |
-| Rótulos/categorias | Prefixo `//` em mono | Texto puro |
+| Tema | Light | Dark (classe `.dark` no `<html>`) |
+| Personalidade | Limpo, executivo, direto | Terminal, mono, técnico |
+| Accent | Índigo `#4f46e5` | Esmeralda `#34d399` |
+| Títulos de seção | Texto puro | Prefixo `##` em mono |
+| Rótulos/categorias | Texto puro | Prefixo `//` em mono |
 
 Nunca crie um componente que exista só para um modo sem motivo. O padrão é:
 **mesma estrutura, conteúdo e tema diferentes por modo.**

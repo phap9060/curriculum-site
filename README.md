@@ -26,8 +26,8 @@ mesmo perfil, alternáveis por um toggle no topo.
 
 | Modo | Tema | O que mostra |
 |---|---|---|
-| **Dev** (padrão) | Escuro, accent esmeralda | Stack, arquitetura, decisões técnicas e um terminal no hero |
-| **Recruiter** | Claro, accent índigo | Impacto, resultados, métricas e download do CV em PDF |
+| **Recruiter** (padrão) | Claro, accent índigo | Impacto, resultados, métricas e download do CV em PDF |
+| **Dev** | Escuro, accent esmeralda | Stack, arquitetura, decisões técnicas e um terminal no hero |
 
 O modo escolhido fica salvo em `localStorage`, então a preferência persiste entre
 visitas. A troca não muda só as cores: **o conteúdo, a organização e a linguagem de
