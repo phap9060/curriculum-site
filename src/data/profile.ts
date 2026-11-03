@@ -67,7 +67,7 @@ export interface EducationItem {
 const projects: Project[] = [
   {
     name: 'Site Currículo — este site',
-    repoUrl: 'https://github.com/phap9060/curriculum',
+    repoUrl: 'https://github.com/phap9060/curriculum-site',
     recruiter: {
       tagline: 'Portfólio pessoal com experiência adaptada para recruiters e devs.',
       impact: [
