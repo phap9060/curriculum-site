@@ -14,6 +14,7 @@ export interface SocialLinks {
   email: string
   linkedin: string
   github: string
+  whatsapp: string
 }
 
 export interface Stat {
@@ -134,6 +135,7 @@ export const profile = {
     email: 'phap9060@gmail.com',
     linkedin: 'https://linkedin.com/in/phap9060',
     github: 'https://github.com/phap9060',
+    whatsapp: 'https://wa.me/5586994633113',
   } satisfies SocialLinks,
 
   hero: {
@@ -328,7 +330,7 @@ export const profile = {
   contact: {
     recruiter: {
       title: 'Vamos conversar?',
-      subtitle: 'Estou aberto a novas oportunidades. Respondo em até 24h úteis.',
+      subtitle: 'Estou aberto a novas oportunidades. Respondo em até 24h.',
     },
     dev: {
       title: '$ ping pedro',

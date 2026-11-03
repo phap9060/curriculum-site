@@ -4,7 +4,7 @@ import { profile } from '../data/profile'
 import { Section } from '../components/ui/Section'
 import { Card } from '../components/ui/Card'
 import { ButtonLink } from '../components/ui/ButtonLink'
-import { GithubIcon, LinkedinIcon } from '../components/ui/icons'
+import { GithubIcon, LinkedinIcon, WhatsappIcon } from '../components/ui/icons'
 
 /** CTA final de contato, com título e subtítulo específicos por modo. */
 export function Contact() {
@@ -23,6 +23,10 @@ export function Contact() {
           <ButtonLink href={`mailto:${profile.social.email}`}>
             <Mail size={16} aria-hidden />
             {profile.social.email}
+          </ButtonLink>
+          <ButtonLink variant="outline" href={profile.social.whatsapp} target="_blank" rel="noopener noreferrer">
+            <WhatsappIcon size={16} />
+            WhatsApp
           </ButtonLink>
           <ButtonLink variant="outline" href={profile.social.linkedin} target="_blank" rel="noopener noreferrer">
             <LinkedinIcon size={16} />
