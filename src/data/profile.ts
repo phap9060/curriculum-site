@@ -21,11 +21,12 @@ export interface Stat {
   label: string
 }
 
-export interface ExperienceItem {
-  company: string
-  role: string
-  period: string
-  location: string
+export interface ExperienceRole {
+  title: string
+  /** Cliente/produto dentro do grupo (ex.: Zelo, Mlearn, Tele-Sena) */
+  client?: string
+  /** Período específico do cargo; omitido quando a empresa tem um único cargo */
+  period?: string
   recruiter: {
     /** Frase-resumo da contribuição, focada em negócio */
     summary: string
@@ -37,6 +38,19 @@ export interface ExperienceItem {
     /** Decisões técnicas, arquitetura, desafios de engenharia */
     details: string[]
   }
+}
+
+export interface ExperienceItem {
+  company: string
+  /** Período total na empresa/grupo */
+  period: string
+  location: string
+  /** Contexto do período, exibido antes dos cargos */
+  summary?: {
+    recruiter: string
+    dev: string
+  }
+  roles: ExperienceRole[]
 }
 
 export interface Project {
@@ -112,7 +126,7 @@ const projects: Project[] = [
 export const profile = {
   name: 'Pedro Henrique',
   fullName: 'Pedro Henrique Assunção Pereira',
-  role: 'Desenvolvedor Frontend | React | TypeScript | Next.js',
+  role: 'Full Stack Engineer com foco em frontend | React | TypeScript | Node.js',
   location: 'Teresina, PI — Brasil',
   /** O CV em PDF está em `public/cv.pdf` */
   cvUrl: `${import.meta.env.BASE_URL}cv.pdf`,
@@ -124,20 +138,22 @@ export const profile = {
 
   hero: {
     recruiter: {
-      headline: 'Desenvolvedor Frontend especialista em React, com experiência em produtos de larga escala.',
-      pitch: 'Experiência contínua em React desde 2021, com atuação em aplicações web em produção, Next.js, TypeScript, APIs REST, micro frontends e arquitetura de sistemas. Atualmente trabalho em produto internacional da indústria siderúrgica que processa milhões de pontos de dados, com foco em performance, confiabilidade e escalabilidade.',
+      headline: 'Desenvolvedor Full Stack com foco em frontend, especialista em React e produtos de larga escala.',
+      pitch: 'Full stack com foco em frontend e 5+ anos de React em produção. Atuo em produto internacional da indústria siderúrgica que processa milhões de pontos de dados, com Next.js, TypeScript, Node.js, micro frontends e arquitetura de sistemas — sempre com testes automatizados e foco em performance, confiabilidade e escalabilidade.',
       stats: [
         { value: '5+', label: 'anos com React em produção' },
-        { value: '4', label: 'empresas' },
+        { value: '3', label: 'empresas' },
         { value: '1M+', label: 'pontos de dados processados' },
       ] satisfies Stat[],
     },
     dev: {
       headline: '$ whoami',
-      pitch: 'Frontend engineer com 5+ anos de React em produção. Micro frontends, serverless na AWS e performance em produto que processa milhões de pontos de dados simultâneos.',
+      pitch: 'Full stack engineer com foco em frontend e 5+ anos de React em produção. Micro frontends, serverless na AWS, testes automatizados e performance em produto que processa milhões de pontos de dados simultâneos.',
       terminalLines: [
-        { command: 'whoami', output: 'pedro — frontend engineer' },
+        { command: 'whoami', output: 'pedro — full stack engineer · frontend focus' },
         { command: 'cat stack.txt', output: 'react · next.js · typescript · node · aws' },
+        { command: 'cat testing.txt', output: 'jest · testing library · vitest · cypress · playwright' },
+        { command: 'cat languages.txt', output: 'pt-BR nativo · inglês avançado' },
         { command: 'uptime', output: '5+ anos em produção, de Teresina a produto internacional' },
       ],
     },
@@ -146,127 +162,151 @@ export const profile = {
   experience: [
     {
       company: 'Vetta',
-      role: 'Full Stack Engineer',
       period: 'Fev 2025 — atual',
       location: 'Belo Horizonte, Brasil',
-      recruiter: {
-        summary: 'Engenharia em produto internacional da indústria siderúrgica usado em larga escala.',
-        highlights: [
-          'Atuo em produto que processa milhões de pontos de dados simultâneos, com foco em performance de frontend e backend',
-          'Contribuo para sistemas em produção com foco em confiabilidade, escalabilidade e eficiência',
-          'Uso de IA, Harness e Tool Calling nos workflows de engenharia, acelerando a entrega do time',
-        ],
-      },
-      dev: {
-        stack: ['JavaScript', 'React', 'Node.js', 'Micro Frontends', 'Microsserviços', 'Harness'],
-        details: [
-          'Arquitetura baseada em micro frontends e microsserviços com princípios de system design',
-          'Otimização de performance full stack para processamento de milhões de pontos de dados',
-          'CI/CD com Harness e uso de IA/Tool Calling no fluxo de engenharia',
-        ],
-      },
+      roles: [
+        {
+          title: 'Full Stack Engineer',
+          recruiter: {
+            summary: 'Engenharia em produto internacional da indústria siderúrgica usado em larga escala.',
+            highlights: [
+              'Atuo em produto que processa milhões de pontos de dados simultâneos, com foco em performance de frontend e backend',
+              'Contribuo para sistemas em produção com foco em confiabilidade, escalabilidade e eficiência',
+              'Uso de IA, Harness e Tool Calling nos workflows de engenharia, acelerando a entrega do time',
+            ],
+          },
+          dev: {
+            stack: ['JavaScript', 'React', 'Node.js', 'Micro Frontends', 'Microsserviços', 'Harness'],
+            details: [
+              'Arquitetura baseada em micro frontends e microsserviços com princípios de system design',
+              'Otimização de performance full stack para processamento de milhões de pontos de dados',
+              'CI/CD com Harness e uso de IA/Tool Calling no fluxo de engenharia',
+            ],
+          },
+        },
+      ],
     },
     {
-      company: 'Raro : Tele-Sena',
-      role: 'Desenvolvedor Full-Stack',
-      period: 'Mai 2022 — Dez 2023',
+      company: 'Raro Labs',
+      period: 'Mai 2022 — Jan 2025',
       location: 'Brasil',
-      recruiter: {
-        summary: 'Plataforma web interna em React integrada a backend de microsserviços.',
-        highlights: [
-          'Desenvolvi plataforma web interna em ReactJS integrada a backend baseado em microsserviços',
-          'Documentei APIs com Swagger, facilitando integração e onboarding de novos desenvolvedores',
-        ],
+      summary: {
+        recruiter:
+          'Quase 3 anos no mesmo grupo, em produtos para clientes diferentes — de plataformas internas a apps mobile e educação.',
+        dev: 'Quase 3 anos no grupo Raro Labs, passando por squads de clientes distintos com React, Node.js, AWS e mobile.',
       },
-      dev: {
-        stack: ['React', 'TypeScript', 'React Query', 'Styled Components', 'NestJS', 'SQL Server', 'AWS'],
-        details: [
-          'Formulários complexos com Formik + Yup e cache de servidor com React Query',
-          'Serviços com Express/TypeORM e integração com endpoints síncronos e assíncronos',
-          'APIs documentadas com Swagger em arquitetura de microsserviços',
-        ],
-      },
-    },
-    {
-      company: 'Raro : Mlearn',
-      role: 'Desenvolvedor Frontend e Mobile',
-      period: 'Jan 2024 — Ago 2024',
-      location: 'Brasil',
-      recruiter: {
-        summary: 'Interfaces web e apps mobile com foco na experiência do usuário.',
-        highlights: [
-          'Construí interfaces web modernas em React com foco em UX',
-          'Desenvolvi aplicações eficientes e responsivas em React Native',
-          'Participei de ponta a ponta: planejamento, design, implementação e manutenção, em equipes multidisciplinares',
-        ],
-      },
-      dev: {
-        stack: ['React', 'React Native', 'TypeScript'],
-        details: [
-          'Componentização e gerenciamento de estado em apps React Native',
-          'Colaboração com equipes multidisciplinares do design à entrega',
-        ],
-      },
-    },
-    {
-      company: 'Raro : Zelo',
-      role: 'Desenvolvedor Full-Stack',
-      period: 'Set 2024 — Jan 2025',
-      location: 'Brasil',
-      recruiter: {
-        summary: 'Aplicações server e serverless, do frontend à nuvem.',
-        highlights: [
-          'Desenvolvi aplicações server e serverless com Node.js, React/Next.js e Flutter',
-          'Contribuí para arquiteturas de micro frontends e integração entre camadas frontend e backend',
-        ],
-      },
-      dev: {
-        stack: ['Node.js', 'Next.js', 'Flutter', 'AWS Lambda', 'EC2'],
-        details: [
-          'Aplicações serverless com AWS Lambda e workloads em EC2',
-          'Integração ponta a ponta entre frontend e backend em soluções full-stack',
-        ],
-      },
-    },
-    {
-      company: 'Raro Academy',
-      role: 'Instrutor Frontend',
-      period: 'Jun 2023 — Set 2023',
-      location: 'Brasil',
-      recruiter: {
-        summary: 'Instrutor de React em curso técnico de desenvolvimento web.',
-        highlights: [
-          'Ensinei React em curso técnico, oferecendo suporte individualizado aos alunos',
-          'Adaptei explicações para diferentes níveis de conhecimento',
-        ],
-      },
-      dev: {
-        stack: ['React', 'JavaScript', 'Didática'],
-        details: [
-          'Preparação de material e exercícios práticos de React',
-          'Mentoria individual para alunos em diferentes níveis de conhecimento',
-        ],
-      },
+      roles: [
+        {
+          title: 'Desenvolvedor Full-Stack',
+          client: 'Zelo',
+          period: 'Set 2024 — Jan 2025',
+          recruiter: {
+            summary: 'Aplicações server e serverless, do frontend à nuvem.',
+            highlights: [
+              'Desenvolvi aplicações server e serverless com Node.js, React/Next.js e Flutter',
+              'Contribuí para arquiteturas de micro frontends e integração entre camadas frontend e backend',
+            ],
+          },
+          dev: {
+            stack: ['Node.js', 'Next.js', 'Flutter', 'AWS Lambda', 'EC2'],
+            details: [
+              'Aplicações serverless com AWS Lambda e workloads em EC2',
+              'Integração ponta a ponta entre frontend e backend em soluções full-stack',
+            ],
+          },
+        },
+        {
+          title: 'Desenvolvedor Frontend e Mobile',
+          client: 'Mlearn',
+          period: 'Jan 2024 — Ago 2024',
+          recruiter: {
+            summary: 'Interfaces web e apps mobile com foco na experiência do usuário.',
+            highlights: [
+              'Construí interfaces web modernas em React com foco em UX',
+              'Desenvolvi aplicações eficientes e responsivas em React Native',
+              'Participei de ponta a ponta: planejamento, design, implementação e manutenção, em equipes multidisciplinares',
+            ],
+          },
+          dev: {
+            stack: ['React', 'React Native', 'TypeScript'],
+            details: [
+              'Componentização e gerenciamento de estado em apps React Native',
+              'Colaboração com equipes multidisciplinares do design à entrega',
+            ],
+          },
+        },
+        {
+          title: 'Desenvolvedor Full-Stack',
+          client: 'Tele-Sena',
+          period: 'Mai 2022 — Dez 2023',
+          recruiter: {
+            summary: 'Plataforma web interna em React integrada a backend de microsserviços.',
+            highlights: [
+              'Desenvolvi plataforma web interna em ReactJS integrada a backend baseado em microsserviços',
+              'Documentei APIs com Swagger, facilitando integração e onboarding de novos desenvolvedores',
+            ],
+          },
+          dev: {
+            stack: [
+              'React',
+              'TypeScript',
+              'React Query',
+              'Styled Components',
+              'NestJS',
+              'SQL Server',
+              'AWS',
+            ],
+            details: [
+              'Formulários complexos com Formik + Yup e cache de servidor com React Query',
+              'Serviços com Express/TypeORM e integração com endpoints síncronos e assíncronos',
+              'APIs documentadas com Swagger em arquitetura de microsserviços',
+            ],
+          },
+        },
+        {
+          title: 'Instrutor Frontend',
+          client: 'Raro Academy',
+          period: 'Jun 2023 — Set 2023',
+          recruiter: {
+            summary: 'Instrutor de React em curso técnico de desenvolvimento web.',
+            highlights: [
+              'Ensinei React em curso técnico, oferecendo suporte individualizado aos alunos',
+              'Adaptei explicações para diferentes níveis de conhecimento',
+            ],
+          },
+          dev: {
+            stack: ['React', 'JavaScript', 'Didática'],
+            details: [
+              'Preparação de material e exercícios práticos de React',
+              'Mentoria individual para alunos em diferentes níveis de conhecimento',
+            ],
+          },
+        },
+      ],
     },
     {
       company: 'ConsuTI',
-      role: 'Desenvolvedor Frontend e Mobile',
       period: 'Jan 2021 — Mar 2022',
       location: 'Teresina, Brasil',
-      recruiter: {
-        summary: 'Primeira posição profissional: plataforma React e soluções mobile.',
-        highlights: [
-          'Desenvolvi plataforma baseada em React e contribuí para soluções frontend e mobile',
-          'Otimizei performance e gerenciei estado complexo com requisitos dinâmicos',
-        ],
-      },
-      dev: {
-        stack: ['React', 'React Native', 'JavaScript'],
-        details: [
-          'Gerenciamento de estado complexo e integração de módulos',
-          'Otimização de performance em colaboração com múltiplas áreas',
-        ],
-      },
+      roles: [
+        {
+          title: 'Desenvolvedor Frontend e Mobile',
+          recruiter: {
+            summary: 'Primeira posição profissional: plataforma React e soluções mobile.',
+            highlights: [
+              'Desenvolvi plataforma baseada em React e contribuí para soluções frontend e mobile',
+              'Otimizei performance e gerenciei estado complexo com requisitos dinâmicos',
+            ],
+          },
+          dev: {
+            stack: ['React', 'React Native', 'JavaScript'],
+            details: [
+              'Gerenciamento de estado complexo e integração de módulos',
+              'Otimização de performance em colaboração com múltiplas áreas',
+            ],
+          },
+        },
+      ],
     },
   ] satisfies ExperienceItem[],
 
@@ -294,6 +334,8 @@ export const profile = {
     recruiter: [
       { category: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'React Native'] },
       { category: 'Backend & Cloud', items: ['Node.js', 'NestJS', 'AWS', 'Serverless'] },
+      { category: 'Qualidade', items: ['Testes unitários e de componentes', 'Jest', 'Testing Library', 'Cypress', 'Playwright'] },
+      { category: 'Idiomas', items: ['Português nativo', 'Inglês avançado'] },
       { category: 'Colaboração', items: ['Instrutor de React', 'Documentação de APIs', 'Times multidisciplinares', 'Ciclo completo de desenvolvimento'] },
     ] satisfies SkillGroup[],
     dev: [
@@ -302,6 +344,8 @@ export const profile = {
       { category: 'Backend', items: ['Node.js', 'NestJS', 'Express', 'TypeORM', 'Swagger', 'APIs REST'] },
       { category: 'Arquitetura & Cloud', items: ['Micro Frontends', 'System Design', 'AWS Lambda', 'EC2', 'Serverless'] },
       { category: 'Dados', items: ['PostgreSQL', 'SQL Server'] },
+      { category: 'Testes', items: ['Jest', 'Vitest', 'Testing Library', 'Cypress', 'Playwright'] },
+      { category: 'Idiomas', items: ['pt-BR nativo', 'inglês avançado'] },
     ] satisfies SkillGroup[],
   },
 

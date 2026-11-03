@@ -17,27 +17,33 @@ export function Hero() {
       {isDev ? <DevHero /> : <RecruiterHero />}
 
       <div className="mt-10 flex flex-wrap items-center gap-3">
+        <ButtonLink href={profile.cvUrl} download>
+          <Download size={16} aria-hidden />
+          Baixar CV (PDF)
+        </ButtonLink>
+        <ButtonLink
+          variant="outline"
+          href={profile.social.github}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <GithubIcon size={16} />
+          GitHub
+        </ButtonLink>
         {isDev ? (
-          <>
-            <ButtonLink href={profile.social.github} target="_blank" rel="noopener noreferrer">
-              <GithubIcon size={16} />
-              GitHub
-            </ButtonLink>
-            <ButtonLink variant="outline" href="#projetos">
-              ver projetos
-            </ButtonLink>
-          </>
+          <ButtonLink variant="outline" href="#projetos">
+            ver projetos
+          </ButtonLink>
         ) : (
-          <>
-            <ButtonLink href={profile.cvUrl} download>
-              <Download size={16} aria-hidden />
-              Baixar CV (PDF)
-            </ButtonLink>
-            <ButtonLink variant="outline" href={profile.social.linkedin} target="_blank" rel="noopener noreferrer">
-              <LinkedinIcon size={16} />
-              LinkedIn
-            </ButtonLink>
-          </>
+          <ButtonLink
+            variant="outline"
+            href={profile.social.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <LinkedinIcon size={16} />
+            LinkedIn
+          </ButtonLink>
         )}
       </div>
 
