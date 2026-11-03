@@ -7,14 +7,14 @@ const STORAGE_KEY = 'portfolio-mode'
 
 function getInitialMode(): Mode {
   const stored = localStorage.getItem(STORAGE_KEY)
-  return stored === 'dev' ? 'dev' : 'recruiter'
+  return stored === 'recruiter' ? 'recruiter' : 'dev'
 }
 
 export function ModeProvider({ children }: { children: ReactNode }) {
   const [mode, setMode] = useState<Mode>(getInitialMode)
 
   useEffect(() => {
-    // Modo dev usa o tema dark; modo recruiter usa o tema light (padrão).
+    // Modo dev usa o tema dark (padrão); modo recruiter usa o tema light.
     document.documentElement.classList.toggle('dark', mode === 'dev')
     document.documentElement.dataset.mode = mode
     localStorage.setItem(STORAGE_KEY, mode)

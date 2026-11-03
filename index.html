@@ -4,6 +4,18 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      ;(() => {
+        try {
+          const stored = localStorage.getItem('portfolio-mode')
+          const mode = stored === 'recruiter' ? 'recruiter' : 'dev'
+          document.documentElement.classList.toggle('dark', mode === 'dev')
+          document.documentElement.dataset.mode = mode
+        } catch {
+          document.documentElement.classList.add('dark')
+        }
+      })()
+    </script>
     <meta
       name="description"
       content="Portfólio de Pedro Henrique Assunção Pereira — Desenvolvedor Frontend especialista em React, TypeScript e Next.js, com experiência em produtos de larga escala."

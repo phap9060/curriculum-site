@@ -26,8 +26,8 @@ mesmo perfil, alternáveis por um toggle no topo.
 
 | Modo | Tema | O que mostra |
 |---|---|---|
-| **Recruiter** (padrão) | Claro, accent índigo | Impacto, resultados, métricas e download do CV em PDF |
-| **Dev** | Escuro, accent esmeralda | Stack, arquitetura, decisões técnicas e um terminal no hero |
+| **Dev** (padrão) | Escuro, accent esmeralda | Stack, arquitetura, decisões técnicas e um terminal no hero |
+| **Recruiter** | Claro, accent índigo | Impacto, resultados, métricas e download do CV em PDF |
 
 O modo escolhido fica salvo em `localStorage`, então a preferência persiste entre
 visitas. A troca não muda só as cores: **o conteúdo, a organização e a linguagem de
@@ -89,10 +89,6 @@ atualiza. Não há texto de perfil hardcoded nos componentes.
 
 O botão **"Baixar CV (PDF)"** aponta para `public/cv.pdf`. Para atualizar o CV, basta
 substituir esse arquivo.
-
-### Pendências conhecidas
-
-- [ ] Substituir o projeto placeholder ("Seu próximo projeto aqui") por projetos reais
 
 ## Estrutura do projeto
 

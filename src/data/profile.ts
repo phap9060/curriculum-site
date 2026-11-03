@@ -81,17 +81,30 @@ const projects: Project[] = [
         'SPA em React com design tokens semânticos em CSS custom properties. Contexto de modo alterna tema light/dark e o conteúdo de cada seção, com persistência em localStorage.',
     },
   },
-  // TODO: substitua o projeto abaixo por um projeto real seu.
   {
-    name: 'Seu próximo projeto aqui',
-    repoUrl: 'https://github.com/phap9060',
+    name: 'Sua Pelada — gerenciador de peladas',
+    repoUrl: 'https://github.com/phap9060/sua-pelada',
     recruiter: {
-      tagline: 'Descreva o problema que o projeto resolve e para quem.',
-      impact: ['Liste resultados mensuráveis: usuários, tempo economizado, conversão...'],
+      tagline: 'Aplicação para organizar peladas entre amigos, do convite ao campeão.',
+      impact: [
+        'Centraliza confirmação de presença, filas de espera e cotas separadas para linha e goleiros',
+        'Sorteia times equilibrados pelas avaliações dos jogadores e organiza campeonatos com draft, grupos e mata-mata',
+        'Automatiza a abertura e o fechamento das confirmações e mantém histórico de títulos e estatísticas da turma',
+      ],
     },
     dev: {
-      stack: ['Stack', 'Do', 'Projeto'],
-      architecture: 'Descreva a arquitetura, decisões técnicas e trade-offs do projeto.',
+      stack: [
+        'React 19',
+        'TypeScript',
+        'Mantine',
+        'TanStack Query',
+        'Bun',
+        'Elysia',
+        'Drizzle ORM',
+        'PostgreSQL',
+      ],
+      architecture:
+        'Monorepo com SPA em React 19 (Mantine + TanStack Query) e API em Bun/Elysia com autenticação JWT. Drizzle ORM sobre PostgreSQL, scheduler para abrir e fechar confirmações, sorteio balanceado por médias de avaliação e campeonatos com draft serpentina, fase de grupos e mata-mata.',
     },
   },
 ]
