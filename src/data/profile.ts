@@ -139,22 +139,22 @@ export const profile = {
   hero: {
     recruiter: {
       headline: 'Desenvolvedor Full Stack com foco em frontend, especialista em React e produtos de larga escala.',
-      pitch: 'Full stack com foco em frontend e 5+ anos de React em produção. Atuo em produto internacional da indústria siderúrgica que processa milhões de pontos de dados, com Next.js, TypeScript, Node.js, micro frontends e arquitetura de sistemas — sempre com testes automatizados e foco em performance, confiabilidade e escalabilidade.',
+      pitch: 'Full stack com foco em frontend e 4+ anos de React em produção. Atuo em produto internacional da indústria siderúrgica que processa milhões de pontos de dados, com Next.js, TypeScript, Node.js, micro frontends e arquitetura de sistemas — sempre com testes automatizados e foco em performance, confiabilidade e escalabilidade.',
       stats: [
-        { value: '5+', label: 'anos com React em produção' },
-        { value: '3', label: 'empresas' },
+        { value: '4+', label: 'anos com React em produção' },
+        { value: '2', label: 'empresas' },
         { value: '1M+', label: 'pontos de dados processados' },
       ] satisfies Stat[],
     },
     dev: {
       headline: '$ whoami',
-      pitch: 'Full stack engineer com foco em frontend e 5+ anos de React em produção. Micro frontends, serverless na AWS, testes automatizados e performance em produto que processa milhões de pontos de dados simultâneos.',
+      pitch: 'Full stack engineer com foco em frontend e 4+ anos de React em produção. Micro frontends, serverless na AWS, testes automatizados e performance em produto que processa milhões de pontos de dados simultâneos.',
       terminalLines: [
         { command: 'whoami', output: 'pedro — full stack engineer · frontend focus' },
         { command: 'cat stack.txt', output: 'react · next.js · typescript · node · aws' },
         { command: 'cat testing.txt', output: 'jest · testing library · vitest · cypress · playwright' },
         { command: 'cat languages.txt', output: 'pt-BR nativo · inglês avançado' },
-        { command: 'uptime', output: '5+ anos em produção, de Teresina a produto internacional' },
+        { command: 'uptime', output: '4+ anos em produção, de Teresina a produto internacional' },
       ],
     },
   },
@@ -279,30 +279,6 @@ export const profile = {
             details: [
               'Preparação de material e exercícios práticos de React',
               'Mentoria individual para alunos em diferentes níveis de conhecimento',
-            ],
-          },
-        },
-      ],
-    },
-    {
-      company: 'ConsuTI',
-      period: 'Jan 2021 — Mar 2022',
-      location: 'Teresina, Brasil',
-      roles: [
-        {
-          title: 'Desenvolvedor Frontend e Mobile',
-          recruiter: {
-            summary: 'Primeira posição profissional: plataforma React e soluções mobile.',
-            highlights: [
-              'Desenvolvi plataforma baseada em React e contribuí para soluções frontend e mobile',
-              'Otimizei performance e gerenciei estado complexo com requisitos dinâmicos',
-            ],
-          },
-          dev: {
-            stack: ['React', 'React Native', 'JavaScript'],
-            details: [
-              'Gerenciamento de estado complexo e integração de módulos',
-              'Otimização de performance em colaboração com múltiplas áreas',
             ],
           },
         },
