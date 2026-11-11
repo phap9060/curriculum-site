@@ -6,15 +6,15 @@ import type { Lang } from '../data/types'
 
 const STORAGE_KEY = 'portfolio-lang'
 
-/** Idioma salvo; senão, o do navegador (pt-* → português, demais → inglês). */
+/** Idioma salvo pelo visitante; senão, inglês (padrão). */
 function getInitialLang(): Lang {
   try {
     const stored = localStorage.getItem(STORAGE_KEY)
     if (stored === 'pt' || stored === 'en') return stored
   } catch {
-    // localStorage indisponível: cai no idioma do navegador
+    // localStorage indisponível: usa o padrão
   }
-  return navigator.language.toLowerCase().startsWith('pt') ? 'pt' : 'en'
+  return 'en'
 }
 
 export function LangProvider({ children }: { children: ReactNode }) {

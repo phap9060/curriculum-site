@@ -22,6 +22,8 @@ export type ExpertiseIcon = 'chart' | 'gauge' | 'layers' | 'shield' | 'flask' | 
 export interface ExpertiseItem {
   icon: ExpertiseIcon
   title: string
+  /** Nível de 0 a 100 exibido como barra de stat */
+  stat: number
   /** Texto focado em resultado (modo recruiter) */
   recruiter: string
   /** Texto focado em técnica (modo dev) */
@@ -85,6 +87,17 @@ export interface EducationItem {
   period: string
 }
 
+/** Carta do hero ("Quem é esse dev?"). */
+export interface CardInfo {
+  question: string
+  reveal: string
+  hide: string
+  answer: string
+  species: string
+  types: string[]
+  fields: { label: string; value: string }[]
+}
+
 /** Textos fixos da interface (navegação, botões, rótulos de acessibilidade). */
 export interface UiStrings {
   sections: {
@@ -105,6 +118,9 @@ export interface UiStrings {
   langToggle: string
   openDemo: string
   openRepo: string
+  evolution: string
+  stage: string
+  current: string
 }
 
 export interface Profile {
@@ -114,6 +130,7 @@ export interface Profile {
   cvUrl: string
   cvFileName: string
   ui: UiStrings
+  card: CardInfo
   hero: {
     recruiter: { headline: string; pitch: string; stats: Stat[] }
     dev: { pitch: string; terminalLines: TerminalLine[] }

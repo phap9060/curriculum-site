@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script>
       ;(() => {
@@ -15,25 +15,24 @@
           document.documentElement.classList.remove('dark')
         }
         try {
-          const lang = localStorage.getItem('portfolio-lang')
-          const isPt = lang ? lang === 'pt' : navigator.language.toLowerCase().startsWith('pt')
+          const isPt = localStorage.getItem('portfolio-lang') === 'pt'
           document.documentElement.lang = isPt ? 'pt-BR' : 'en'
         } catch {
-          /* mantém pt-BR */
+          /* mantém en */
         }
       })()
     </script>
     <meta
       name="description"
-      content="Portfólio de Pedro Henrique Assunção Pereira — Desenvolvedor Front-end Sênior especialista em React e TypeScript, com foco em performance, arquitetura, visualização de dados e automação de testes."
+      content="Portfolio of Pedro Henrique Assunção Pereira — Senior Front-end Developer specialized in React and TypeScript, focused on performance, architecture, data visualization and test automation."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=VT323&display=swap"
       rel="stylesheet"
     />
-    <title>Pedro Henrique — Desenvolvedor Front-end Sênior React</title>
+    <title>Pedro Henrique — Senior Front-end Developer (React)</title>
   </head>
   <body>
     <div id="root"></div>

@@ -4,13 +4,16 @@ import { cn } from '../../lib/cn'
 interface CardProps {
   children: ReactNode
   className?: string
+  id?: string
 }
 
-export function Card({ children, className }: CardProps) {
+/** Carta com borda grossa e sombra chapada; levanta levemente no hover. */
+export function Card({ children, className, id }: CardProps) {
   return (
     <div
+      id={id}
       className={cn(
-        'rounded-xl border border-border bg-surface-raised p-6 shadow-sm transition-colors hover:border-accent/60',
+        'rounded-2xl border-2 border-border bg-surface-raised p-6 shadow-card transition-transform duration-200 hover:-translate-y-1',
         className,
       )}
     >

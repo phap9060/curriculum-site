@@ -4,6 +4,7 @@ import { useLang } from '../hooks/useLang'
 import { identity } from '../data/profile'
 import { Section } from '../components/ui/Section'
 import { Card } from '../components/ui/Card'
+import { Mascot } from '../components/ui/Mascot'
 import { ButtonLink } from '../components/ui/ButtonLink'
 import { GithubIcon, LinkedinIcon, WhatsappIcon } from '../components/ui/icons'
 
@@ -14,9 +15,10 @@ export function Contact() {
   const content = isDev ? profile.contact.dev : profile.contact.recruiter
 
   return (
-    <Section id="contato" title={profile.ui.sections.contact}>
-      <Card className="animate-fade-up py-10 text-center">
-        <h3 className={`text-2xl font-bold tracking-tight ${isDev ? 'font-mono' : ''}`}>
+    <Section id="contato" index={6} title={profile.ui.sections.contact}>
+      <Card className="animate-fade-up py-10 text-center hover:translate-y-0">
+        <Mascot className="mx-auto mb-4 w-24 -rotate-6" />
+        <h3 className="font-display text-4xl font-extrabold tracking-tight">
           {content.title}
         </h3>
         <p className="mx-auto mt-3 max-w-md text-ink-muted">{content.subtitle}</p>

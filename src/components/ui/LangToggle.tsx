@@ -15,7 +15,7 @@ export function LangToggle() {
     <div
       role="group"
       aria-label={profile.ui.langToggle}
-      className="flex items-center rounded-full border border-border bg-surface-raised p-1"
+      className="flex items-center rounded-full border-2 border-border bg-surface-raised p-0.5 shadow-card-sm"
     >
       {options.map(({ value, label, name }) => {
         const isActive = lang === value

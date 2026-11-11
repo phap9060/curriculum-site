@@ -3,11 +3,10 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /*
- * Design tokens
- * As cores "semânticas" (surface, ink, accent...) apontam para variáveis CSS
- * que mudam conforme o modo ativo:
- *   :root  -> modo recruiter (light)
- *   .dark  -> modo dev (dark)
+ * Design tokens — tema "Quem é esse dev?"
+ * As cores semânticas apontam para variáveis CSS que mudam conforme o modo:
+ *   :root  -> modo recruiter: carta colecionável (papel creme, bordas grossas, sombra chapada)
+ *   .dark  -> modo dev: tela LCD de console portátil (verde monocromático + scanlines)
  * Veja docs/UI.md para as diretrizes completas.
  */
 @theme inline {
@@ -17,7 +16,12 @@
   --color-ink-muted: var(--ink-muted);
   --color-accent: var(--accent);
   --color-accent-contrast: var(--accent-contrast);
+  --color-accent-2: var(--accent-2);
+  --color-accent-2-contrast: var(--accent-2-contrast);
+  --color-accent-3: var(--accent-3);
+  --color-accent-3-contrast: var(--accent-3-contrast);
   --color-border: var(--border);
+  --font-display: var(--display);
 }
 
 @theme {
@@ -25,6 +29,7 @@
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
 
   --animate-fade-up: fade-up 0.6s ease-out both;
+  --animate-pop: pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 
   @keyframes fade-up {
     from {
@@ -36,28 +41,73 @@
       transform: translateY(0);
     }
   }
+
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: scale(0.6) rotate(-6deg);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) rotate(-3deg);
+    }
+  }
 }
 
 :root {
-  /* Modo recruiter: light, limpo, profissional (accent índigo) */
-  --surface: #fafafa;
+  /* Modo recruiter: carta colecionável */
+  --surface: #fff6e5;
   --surface-raised: #ffffff;
-  --ink: #18181b;
-  --ink-muted: #52525b;
-  --accent: #4f46e5;
+  --ink: #1b1830;
+  --ink-muted: #5b5670;
+  --accent: #d9361f;
   --accent-contrast: #ffffff;
-  --border: #e4e4e7;
+  --accent-2: #2f5bff;
+  --accent-2-contrast: #ffffff;
+  --accent-3: #ffc93c;
+  --accent-3-contrast: #1b1830;
+  --border: #1b1830;
+  --shadow: #1b1830;
+  --dots: #e9dcc2;
+  --display: 'Bricolage Grotesque', 'Inter', ui-sans-serif, sans-serif;
+
+  --ray-a: #ffc93c;
+  --ray-b: #ffe49a;
+  --silhouette: brightness(0);
+
+  --mascot-body: #2f5bff;
+  --mascot-belly: #fff6e5;
+  --mascot-line: #1b1830;
+  --mascot-tail: #ff7a59;
+  --mascot-eye: #ffffff;
 }
 
 .dark {
-  /* Modo dev: dark, terminal-inspired (accent esmeralda) */
-  --surface: #09090b;
-  --surface-raised: #18181b;
-  --ink: #f4f4f5;
-  --ink-muted: #a1a1aa;
-  --accent: #34d399;
-  --accent-contrast: #052e22;
-  --border: #27272a;
+  /* Modo dev: tela LCD */
+  --surface: #0c1d11;
+  --surface-raised: #122818;
+  --ink: #c4f58a;
+  --ink-muted: #7fae63;
+  --accent: #d4ff5c;
+  --accent-contrast: #0c1d11;
+  --accent-2: #7ad6ff;
+  --accent-2-contrast: #0c1d11;
+  --accent-3: #ffd35c;
+  --accent-3-contrast: #0c1d11;
+  --border: #3f6e3a;
+  --shadow: #050d07;
+  --dots: #16301d;
+  --display: 'VT323', 'JetBrains Mono', ui-monospace, monospace;
+
+  --ray-a: #b8e64f;
+  --ray-b: #6f9c3a;
+  --silhouette: brightness(0);
+
+  --mascot-body: #5b9a43;
+  --mascot-belly: #c4f58a;
+  --mascot-line: #07130a;
+  --mascot-tail: #d4ff5c;
+  --mascot-eye: #e8ffd0;
 }
 
 @layer base {
@@ -67,9 +117,28 @@
 
   body {
     @apply bg-surface text-ink font-sans antialiased;
+    background-image: radial-gradient(var(--dots) 1.2px, transparent 1.2px);
+    background-size: 22px 22px;
   }
 
-  /* Transição suave ao alternar entre os modos */
+  /* Scanlines no modo dev */
+  .dark body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    background: repeating-linear-gradient(to bottom, transparent 0 2px, rgb(0 0 0 / 0.16) 2px 3px);
+  }
+
+  /* VT323 é estreita e não tem negrito: ajusta tamanho e peso no modo dev */
+  .dark .font-display {
+    font-weight: 400 !important;
+    letter-spacing: 0.01em;
+    font-size-adjust: 0.6;
+    line-height: 1.05;
+  }
+
   *,
   ::before,
   ::after {
@@ -85,7 +154,55 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
+    outline: 3px solid var(--accent-2);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* Sombra chapada de carta/adesivo */
+  .shadow-card {
+    box-shadow: 5px 5px 0 0 var(--shadow);
+  }
+  .shadow-card-sm {
+    box-shadow: 3px 3px 0 0 var(--shadow);
+  }
+
+  /* Raios atrás do mascote no hero */
+  .rays {
+    background: repeating-conic-gradient(from 0deg, var(--ray-a) 0deg 10deg, var(--ray-b) 10deg 20deg);
+    -webkit-mask: radial-gradient(circle, #000 38%, transparent 70%);
+    mask: radial-gradient(circle, #000 38%, transparent 70%);
+    animation: spin 60s linear infinite;
+  }
+
+  .mascot-hidden {
+    filter: var(--silhouette);
+  }
+
+  /* Barra de stat: lisa no recruiter, segmentada no modo dev */
+  .stat-fill {
+    background: var(--accent);
+  }
+  .dark .stat-fill {
+    background: repeating-linear-gradient(to right, var(--accent) 0 8px, transparent 8px 10px);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

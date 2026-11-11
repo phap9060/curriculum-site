@@ -86,8 +86,8 @@ src/data/profile.ts      # nome e links (independem do idioma)
 Nome, contatos, headline, experiências, formação, projetos e skills — cada bloco tem
 uma versão `recruiter` e uma versão `dev`. Os dois arquivos seguem a mesma estrutura
 (`Profile`, em `types.ts`); ao editar um, replique a mudança no outro. O visitante troca
-o idioma pelo seletor **PT / EN** no cabeçalho (a escolha fica salva no navegador; na
-primeira visita vale o idioma do navegador). Não há texto de perfil hardcoded nos componentes.
+o idioma pelo seletor **PT / EN** no cabeçalho (a escolha fica salva no navegador; o
+padrão é inglês). Não há texto de perfil hardcoded nos componentes.
 
 ### Currículo em PDF
 

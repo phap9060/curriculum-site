@@ -36,6 +36,24 @@ export const profileEn: Profile = {
     langToggle: 'Change language',
     openDemo: 'Open demo of',
     openRepo: 'Open repository of',
+    evolution: 'Evolution line',
+    stage: 'Stage',
+    current: 'Current form',
+  },
+
+  card: {
+    question: "Who's that dev?",
+    reveal: 'Reveal',
+    hide: 'Hide again',
+    answer: "It's Pedro Henrique!",
+    species: 'The Senior Front-end Developer',
+    types: ['Front-end', 'Data'],
+    fields: [
+      { label: 'Region', value: 'Teresina, BR' },
+      { label: 'In production since', value: '2021' },
+      { label: 'Languages', value: 'PT · EN' },
+      { label: 'Work mode', value: 'Remote' },
+    ],
   },
 
   hero: {
@@ -67,6 +85,7 @@ export const profileEn: Profile = {
     {
       icon: 'chart',
       title: 'Data visualization',
+      stat: 95,
       recruiter:
         'Interactive charts that make complex datasets readable and usable, even with millions of points on screen.',
       dev: 'Interactive charts rendering millions of data points simultaneously, with attention to rendering performance, responsiveness and readability.',
@@ -74,30 +93,35 @@ export const profileEn: Profile = {
     {
       icon: 'gauge',
       title: 'Performance',
+      stat: 92,
       recruiter: 'Fast, scalable applications: I track Core Web Vitals and go after loading and rendering bottlenecks.',
       dev: 'Code splitting, lazy loading, memoization, Core Web Vitals and the right choice between CSR, SSR and SSG with Next.js.',
     },
     {
       icon: 'layers',
       title: 'Front-end architecture',
+      stat: 88,
       recruiter: 'I define the architecture and evolution plans of highly complex applications, with reusable components.',
       dev: 'Micro frontends, system design, React + TypeScript component libraries, ADRs and SDD.',
     },
     {
       icon: 'flask',
       title: 'Testing & quality',
+      stat: 90,
       recruiter: 'I own test automation, integrated into CI/CD to keep quality consistent on every release.',
       dev: 'Jest, Vitest and React Testing Library for unit/component tests; Cypress and Playwright for E2E; all running in CI/CD pipelines.',
     },
     {
       icon: 'shield',
       title: 'Security',
+      stat: 80,
       recruiter: 'Protection of sensitive flows and user data, compliant with LGPD (Brazilian data protection law).',
       dev: 'OWASP Top 10 (XSS, CSRF, CSP), authentication and authorization, secrets management and LGPD.',
     },
     {
       icon: 'users',
       title: 'Technical leadership',
+      stat: 85,
       recruiter:
         'I lead technical assessments and refactorings, influence decisions with backend, product and business, and mentor junior developers.',
       dev: 'Technical assessments, major refactorings, code reviews, coding standards and mentoring of junior developers.',

@@ -1,126 +1,166 @@
-import { Download, MapPin } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { Download, Eye, EyeOff } from 'lucide-react'
 import { useMode } from '../hooks/useMode'
 import { useLang } from '../hooks/useLang'
 import { identity } from '../data/profile'
+import { cn } from '../lib/cn'
 import { ButtonLink } from '../components/ui/ButtonLink'
+import { Badge } from '../components/ui/Badge'
+import { toneCycle } from '../components/ui/badge-tones'
+import { Mascot } from '../components/ui/Mascot'
 import { GithubIcon, LinkedinIcon } from '../components/ui/icons'
 
+/** Tempo até a revelação automática, para quem não clicar. */
+const AUTO_REVEAL_MS = 1800
+
 /**
- * Hero com duas personalidades:
- * - recruiter: headline de impacto, stats e CTA para baixar o CV
- * - dev: janela de terminal com comandos e saídas vindas do profile.ts
+ * Hero "Quem é esse dev?": o mascote começa como silhueta sobre raios e é
+ * revelado (automaticamente ou com clique). Ao lado, a carta de perfil.
  */
 export function Hero() {
-  const { isDev } = useMode()
   const { profile } = useLang()
+  const { card } = profile
+  const [revealed, setRevealed] = useState(false)
+  const touched = useRef(false)
+
+  useEffect(() => {
+    const id = window.setTimeout(() => {
+      if (!touched.current) setRevealed(true)
+    }, AUTO_REVEAL_MS)
+    return () => window.clearTimeout(id)
+  }, [])
+
+  const toggle = () => {
+    touched.current = true
+    setRevealed((value) => !value)
+  }
 
   return (
-    <section id="top" className="mx-auto w-full max-w-4xl px-6 py-20 sm:py-28">
-      {isDev ? <DevHero /> : <RecruiterHero />}
+    <section
+      id="top"
+      className="mx-auto grid w-full max-w-5xl items-center gap-12 px-4 py-14 sm:px-6 sm:py-20 md:grid-cols-[0.9fr_1.1fr]"
+    >
+      <div className="flex flex-col items-center text-center">
+        <p className="font-display text-4xl leading-none font-extrabold tracking-tight sm:text-5xl">
+          {card.question}
+        </p>
 
-      <div className="mt-10 flex flex-wrap items-center gap-3">
-        <ButtonLink href={profile.cvUrl} download={profile.cvFileName}>
-          <Download size={16} aria-hidden />
-          {profile.ui.downloadCv}
-        </ButtonLink>
-        <ButtonLink
-          variant="outline"
-          href={identity.social.github}
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          type="button"
+          tabIndex={-1}
+          aria-hidden
+          onClick={toggle}
+          className="relative mt-6 grid size-64 cursor-pointer place-items-center sm:size-80"
         >
-          <GithubIcon size={16} />
-          GitHub
-        </ButtonLink>
-        {isDev ? (
-          <ButtonLink variant="outline" href="#projetos">
-            {profile.ui.viewProjects}
-          </ButtonLink>
-        ) : (
-          <ButtonLink
-            variant="outline"
-            href={identity.social.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <LinkedinIcon size={16} />
-            LinkedIn
-          </ButtonLink>
-        )}
+          <span className="rays absolute inset-0 rounded-full" />
+          <Mascot
+            className={cn(
+              'relative w-3/4 drop-shadow-[0_6px_0_rgb(0_0_0_/_0.18)] transition-[filter,transform] duration-700 ease-out',
+              revealed ? 'scale-105' : 'mascot-hidden scale-95',
+            )}
+          />
+        </button>
+
+        <p className="mt-5 h-10 font-display text-3xl font-extrabold text-accent" aria-live="polite">
+          {revealed ? (
+            <span key="answer" className="inline-block animate-pop">
+              {card.answer}
+            </span>
+          ) : (
+            <span className="tracking-[0.3em] text-ink-muted">???</span>
+          )}
+        </p>
+
+        <button
+          type="button"
+          onClick={toggle}
+          aria-pressed={revealed}
+          className="mt-2 inline-flex cursor-pointer items-center gap-1.5 text-xs font-bold tracking-widest text-ink-muted uppercase hover:text-accent"
+        >
+          {revealed ? <EyeOff size={14} aria-hidden /> : <Eye size={14} aria-hidden />}
+          {revealed ? card.hide : card.reveal}
+        </button>
       </div>
 
-      <p className="mt-6 flex items-center gap-1.5 text-sm text-ink-muted">
-        <MapPin size={14} aria-hidden />
-        {profile.location}
-      </p>
+      <ProfileCard revealed={revealed} />
     </section>
   )
 }
 
-function RecruiterHero() {
+function ProfileCard({ revealed }: { revealed: boolean }) {
+  const { isDev } = useMode()
   const { profile } = useLang()
-  const { recruiter } = profile.hero
+  const { card, hero } = profile
 
   return (
-    <div className="animate-fade-up">
-      <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-surface-raised px-3 py-1 text-xs font-medium text-ink-muted">
-        <span className="relative flex size-2">
-          <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-60" />
-          <span className="relative inline-flex size-2 rounded-full bg-accent" />
-        </span>
-        {profile.ui.available}
-      </span>
-
-      <h1 className="max-w-2xl text-4xl font-extrabold tracking-tight sm:text-5xl">
-        {recruiter.headline}
-      </h1>
-      <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-muted">{recruiter.pitch}</p>
-
-      <dl className="mt-10 grid max-w-2xl grid-cols-3 gap-3 sm:gap-4">
-        {recruiter.stats.map((stat) => (
-          <div key={stat.label} className="rounded-xl border border-border bg-surface-raised p-4 text-center">
-            <dt className="order-2 mt-1 block text-xs text-ink-muted">{stat.label}</dt>
-            <dd className="text-2xl font-bold text-accent">{stat.value}</dd>
+    <article className="animate-fade-up rounded-3xl border-2 border-border bg-accent-3 p-2.5 shadow-card">
+      <div className="rounded-2xl border-2 border-border bg-surface-raised p-5 sm:p-6">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <span className="font-mono text-xs font-bold text-ink-muted">Nº 2021</span>
+          <div className="flex gap-1.5">
+            {card.types.map((type, index) => (
+              <Badge key={type} tone={toneCycle[index]} className="tracking-wide uppercase">
+                {type}
+              </Badge>
+            ))}
           </div>
-        ))}
-      </dl>
-    </div>
-  )
-}
-
-function DevHero() {
-  const { profile } = useLang()
-  const { dev } = profile.hero
-
-  return (
-    <div className="animate-fade-up">
-      <div className="overflow-hidden rounded-xl border border-border bg-surface-raised shadow-lg">
-        <div className="flex items-center gap-1.5 border-b border-border px-4 py-3">
-          <span className="size-3 rounded-full bg-red-500/80" />
-          <span className="size-3 rounded-full bg-yellow-500/80" />
-          <span className="size-3 rounded-full bg-green-500/80" />
-          <span className="ml-3 font-mono text-xs text-ink-muted">pedro@portfolio ~</span>
         </div>
 
-        <div className="space-y-3 p-5 font-mono text-sm">
-          {dev.terminalLines.map((line) => (
-            <div key={line.command}>
-              <p>
-                <span className="text-accent">$</span> <span className="text-ink">{line.command}</span>
-              </p>
-              <p className="text-ink-muted">{line.output}</p>
+        <h1 className="mt-3 font-display text-4xl leading-none font-extrabold tracking-tight sm:text-5xl">
+          <span className="sr-only">{identity.fullName}</span>
+          <span aria-hidden>{revealed ? identity.name : '? ? ? ? ?'}</span>
+        </h1>
+        <p className="mt-2 text-sm font-semibold text-accent italic">{card.species}</p>
+
+        {isDev ? (
+          <div className="mt-5 space-y-2 rounded-xl border-2 border-border bg-surface p-4 font-mono text-xs sm:text-sm">
+            {hero.dev.terminalLines.map((line) => (
+              <div key={line.command}>
+                <p>
+                  <span className="text-accent">$</span> {line.command}
+                </p>
+                <p className="text-ink-muted">{line.output}</p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <>
+            <p className="mt-5 text-lg leading-snug font-bold">{hero.recruiter.headline}</p>
+            <p className="mt-3 text-sm leading-relaxed text-ink-muted">{hero.recruiter.pitch}</p>
+          </>
+        )}
+
+        <dl className="mt-5 grid grid-cols-2 gap-x-4 gap-y-2 border-t-2 border-dashed border-border pt-4 text-sm">
+          {card.fields.map((field) => (
+            <div key={field.label}>
+              <dt className="text-[11px] font-bold tracking-wider text-ink-muted uppercase">{field.label}</dt>
+              <dd className="font-semibold">{field.value}</dd>
             </div>
           ))}
-          <p>
-            <span className="text-accent">$</span>{' '}
-            <span className="ml-1 inline-block h-4 w-2 animate-pulse bg-accent align-middle" aria-hidden />
-          </p>
+        </dl>
+
+        <dl className="mt-5 grid grid-cols-3 gap-2">
+          {hero.recruiter.stats.map((stat) => (
+            <div key={stat.label} className="flex flex-col-reverse rounded-xl border-2 border-border bg-surface p-2.5 text-center">
+              <dt className="mt-1 text-[11px] leading-tight break-words hyphens-auto text-ink-muted">{stat.label}</dt>
+              <dd className="font-display text-2xl font-extrabold text-accent">{stat.value}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <div className="mt-6 flex flex-wrap gap-3">
+          <ButtonLink href={profile.cvUrl} download={profile.cvFileName}>
+            <Download size={16} aria-hidden />
+            {profile.ui.downloadCv}
+          </ButtonLink>
+          <ButtonLink variant="outline" href={identity.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <LinkedinIcon size={16} />
+          </ButtonLink>
+          <ButtonLink variant="outline" href={identity.social.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <GithubIcon size={16} />
+          </ButtonLink>
         </div>
       </div>
-
-      <p className="mt-6 max-w-2xl leading-relaxed text-ink-muted">
-        <span className="font-mono text-accent">{'//'}</span> {dev.pitch}
-      </p>
-    </div>
+    </article>
   )
 }

@@ -36,6 +36,24 @@ export const profilePt: Profile = {
     langToggle: 'Alterar idioma',
     openDemo: 'Abrir demo de',
     openRepo: 'Abrir repositório de',
+    evolution: 'Linha evolutiva',
+    stage: 'Estágio',
+    current: 'Forma atual',
+  },
+
+  card: {
+    question: 'Quem é esse dev?',
+    reveal: 'Revelar',
+    hide: 'Esconder de novo',
+    answer: 'É o Pedro Henrique!',
+    species: 'O Desenvolvedor Front-end Sênior',
+    types: ['Front-end', 'Dados'],
+    fields: [
+      { label: 'Região', value: 'Teresina, BR' },
+      { label: 'Em produção desde', value: '2021' },
+      { label: 'Idiomas', value: 'PT · EN' },
+      { label: 'Modelo', value: 'Remoto' },
+    ],
   },
 
   hero: {
@@ -67,6 +85,7 @@ export const profilePt: Profile = {
     {
       icon: 'chart',
       title: 'Visualização de dados',
+      stat: 95,
       recruiter:
         'Gráficos interativos que tornam conjuntos de dados complexos legíveis e utilizáveis, mesmo com milhões de pontos na tela.',
       dev: 'Charts interativos renderizando milhões de pontos simultâneos, com atenção a performance de renderização, responsividade e legibilidade.',
@@ -74,6 +93,7 @@ export const profilePt: Profile = {
     {
       icon: 'gauge',
       title: 'Performance',
+      stat: 92,
       recruiter:
         'Aplicações rápidas e escaláveis: acompanho Core Web Vitals e ataco gargalos de carregamento e renderização.',
       dev: 'Code splitting, lazy loading, memoization, Core Web Vitals e a estratégia certa entre CSR, SSR e SSG com Next.js.',
@@ -81,6 +101,7 @@ export const profilePt: Profile = {
     {
       icon: 'layers',
       title: 'Arquitetura front-end',
+      stat: 88,
       recruiter:
         'Defino a arquitetura e os planos de evolução de aplicações de alta complexidade, com componentes reutilizáveis.',
       dev: 'Micro frontends, system design, bibliotecas de componentes em React + TypeScript, ADRs e SDD.',
@@ -88,6 +109,7 @@ export const profilePt: Profile = {
     {
       icon: 'flask',
       title: 'Testes e qualidade',
+      stat: 90,
       recruiter:
         'Responsável pela automação de testes, integrada ao CI/CD para manter a qualidade consistente a cada entrega.',
       dev: 'Jest, Vitest e React Testing Library para unidade/componente; Cypress e Playwright para E2E; tudo rodando em pipelines de CI/CD.',
@@ -95,12 +117,14 @@ export const profilePt: Profile = {
     {
       icon: 'shield',
       title: 'Segurança',
+      stat: 80,
       recruiter: 'Proteção de fluxos sensíveis e dados de usuários, em conformidade com a LGPD.',
       dev: 'OWASP Top 10 (XSS, CSRF, CSP), autenticação e autorização, gestão de segredos e LGPD.',
     },
     {
       icon: 'users',
       title: 'Liderança técnica',
+      stat: 85,
       recruiter:
         'Conduzo diagnósticos e refatorações, influencio decisões com backend, produto e negócio e oriento devs mais juniores.',
       dev: 'Diagnósticos técnicos, refatorações relevantes, code reviews, padrões de código e mentoria de devs juniores.',

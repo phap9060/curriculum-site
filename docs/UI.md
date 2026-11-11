@@ -9,13 +9,16 @@ modos de exibição (recruiter e dev) e devem ser seguidas em qualquer component
 
 O site tem duas personalidades visuais, controladas pelo `ModeProvider`:
 
+Tema geral: **"Quem é esse dev?"** — o hero mostra um mascote original em silhueta
+que é revelado, ao lado de uma carta de perfil (tipos, campos, stats). A carreira
+aparece como "linha evolutiva". Não use nomes, personagens ou arte de franquias reais.
+
 | | **Recruiter** (padrão) | **Dev** |
 |---|---|---|
-| Tema | Light | Dark (classe `.dark` no `<html>`) |
-| Personalidade | Limpo, executivo, direto | Terminal, mono, técnico |
-| Accent | Índigo `#4f46e5` | Esmeralda `#34d399` |
-| Títulos de seção | Texto puro | Prefixo `##` em mono |
-| Rótulos/categorias | Texto puro | Prefixo `//` em mono |
+| Tema | Carta colecionável: papel creme, bordas grossas, sombra chapada | Tela LCD verde de console portátil, com scanlines |
+| Fonte display | Bricolage Grotesque | VT323 |
+| Accent | Coral `#d9361f` (+ azul `accent-2`, amarelo `accent-3`) | Lima `#d4ff5c` (+ ciano, amarelo) |
+| Títulos de seção | `Nº01` + título + régua | `>01` + título + régua |
 
 Nunca crie um componente que exista só para um modo sem motivo. O padrão é:
 **mesma estrutura, conteúdo e tema diferentes por modo.**

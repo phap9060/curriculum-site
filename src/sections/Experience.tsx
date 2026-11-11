@@ -1,35 +1,69 @@
-import { Briefcase } from 'lucide-react'
+import { Fragment } from 'react'
+import { ChevronRight, Sparkles, Star } from 'lucide-react'
 import { useMode } from '../hooks/useMode'
 import { useLang } from '../hooks/useLang'
 import type { ExperienceRole } from '../data/profile'
 import { Section } from '../components/ui/Section'
+import { Card } from '../components/ui/Card'
 import { Badge } from '../components/ui/Badge'
 
+const slug = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+const startYear = (period: string) => period.match(/\d{4}/)?.[0] ?? ''
+
 /**
- * Timeline vertical agrupada por empresa. A Raro Labs aparece como um único
- * período com cada cliente como sub-item. Recruiter vê impacto; dev vê stack.
+ * Carreira como "linha evolutiva" (do primeiro emprego à forma atual) e,
+ * abaixo, uma carta por empresa. Recruiter vê impacto; dev vê stack.
  */
 export function Experience() {
   const { isDev } = useMode()
   const { profile } = useLang()
+  const { ui } = profile
+  const stages = [...profile.experience].reverse()
 
   return (
-    <Section id="experiencia" title={profile.ui.sections.experience}>
-      <ol className="relative space-y-12 border-l border-border pl-8">
+    <Section id="experiencia" index={2} title={ui.sections.experience}>
+      <p className="mb-3 text-xs font-bold tracking-widest text-ink-muted uppercase">{ui.evolution}</p>
+      <ol className="mb-12 flex flex-col items-start gap-1 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
+        {stages.map((item, index) => {
+          const isCurrent = index === stages.length - 1
+          return (
+            <Fragment key={item.company}>
+              <li>
+                <a
+                  href={`#exp-${slug(item.company)}`}
+                  className={`block rounded-xl border-2 border-border px-3 py-2 shadow-card-sm transition-transform hover:-translate-y-0.5 ${
+                    isCurrent ? 'bg-accent text-accent-contrast' : 'bg-surface-raised'
+                  }`}
+                >
+                  <span className="flex items-center gap-1 font-mono text-[10px] font-bold tracking-wider uppercase opacity-80">
+                    {isCurrent && <Star size={10} aria-hidden />}
+                    {isCurrent ? ui.current : `${ui.stage} ${index + 1}`} · Lv.{startYear(item.period)}
+                  </span>
+                  <span className="font-display text-lg leading-tight font-bold">{item.company}</span>
+                </a>
+              </li>
+              {!isCurrent && (
+                <li aria-hidden className="pl-4 text-accent sm:pl-0">
+                  <ChevronRight size={22} strokeWidth={3} className="rotate-90 sm:rotate-0" />
+                </li>
+              )}
+            </Fragment>
+          )
+        })}
+      </ol>
+
+      <div className="space-y-8">
         {profile.experience.map((item) => {
           const isGroup = item.roles.length > 1
 
           return (
-            <li key={item.company} className="relative animate-fade-up">
-              <span className="absolute -left-10 top-1.5 flex size-4 items-center justify-center rounded-full border-2 border-accent bg-surface" />
-
+            <Card key={item.company} id={`exp-${slug(item.company)}`} className="animate-fade-up scroll-mt-24">
               <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <h3 className="text-xl font-semibold">{item.company}</h3>
-                <Badge mono className="shrink-0">
+                <h3 className="font-display text-2xl font-extrabold">{item.company}</h3>
+                <Badge mono tone="accent3" className="shrink-0">
                   {item.period}
                 </Badge>
               </div>
-
               <p className="mt-1 text-sm text-ink-muted">{item.location}</p>
 
               {item.summary && (
@@ -39,15 +73,15 @@ export function Experience() {
                 </p>
               )}
 
-              <div className={isGroup ? 'mt-6 space-y-8 border-l border-border pl-6' : 'mt-4'}>
+              <div className={isGroup ? 'mt-6 space-y-8 border-l-2 border-dashed border-border pl-6' : 'mt-4'}>
                 {item.roles.map((role) => (
                   <div key={`${role.title}-${role.client ?? item.company}`} className="relative">
                     {isGroup && (
-                      <span className="absolute -left-[29px] top-2 size-2 rounded-full bg-accent/70" />
+                      <span className="absolute top-1.5 -left-[33px] size-4 rounded-full border-2 border-border bg-accent-2" />
                     )}
 
                     <div className="flex flex-wrap items-baseline justify-between gap-2">
-                      <h4 className="text-base font-semibold">
+                      <h4 className="text-base font-bold">
                         {role.title}
                         {role.client && <span className="text-accent"> @ {role.client}</span>}
                       </h4>
@@ -62,22 +96,22 @@ export function Experience() {
                   </div>
                 ))}
               </div>
-            </li>
+            </Card>
           )
         })}
-      </ol>
+      </div>
     </Section>
   )
 }
 
 function RoleRecruiter({ role }: { role: ExperienceRole }) {
   return (
-    <div className="mt-4">
-      <p className="text-sm font-medium text-ink">{role.recruiter.summary}</p>
+    <div className="mt-3">
+      <p className="text-sm font-semibold text-ink">{role.recruiter.summary}</p>
       <ul className="mt-3 space-y-2">
         {role.recruiter.highlights.map((highlight) => (
           <li key={highlight} className="flex gap-2 text-sm leading-relaxed text-ink-muted">
-            <Briefcase size={14} className="mt-0.5 shrink-0 text-accent" aria-hidden />
+            <Sparkles size={14} className="mt-0.5 shrink-0 text-accent" aria-hidden />
             {highlight}
           </li>
         ))}
@@ -88,7 +122,7 @@ function RoleRecruiter({ role }: { role: ExperienceRole }) {
 
 function RoleDev({ role }: { role: ExperienceRole }) {
   return (
-    <div className="mt-4">
+    <div className="mt-3">
       <div className="flex flex-wrap gap-2">
         {role.dev.stack.map((tech) => (
           <Badge key={tech} mono>

@@ -20,7 +20,7 @@ export function ModeToggle() {
     <div
       role="group"
       aria-label={profile.ui.modeToggle}
-      className="flex items-center rounded-full border border-border bg-surface-raised p-1"
+      className="flex items-center rounded-full border-2 border-border bg-surface-raised p-0.5 shadow-card-sm"
     >
       {options.map(({ value, label, icon: Icon }) => {
         const isActive = mode === value

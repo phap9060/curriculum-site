@@ -16,7 +16,7 @@ const icons: Record<ExpertiseIcon, LucideIcon> = {
 }
 
 /**
- * Áreas de especialidade (dataviz, performance, arquitetura, testes...).
+ * Especialidades como "atributos" da carta, cada uma com barra de stat.
  * Recruiter vê o resultado entregue; dev vê as técnicas e ferramentas.
  */
 export function Expertise() {
@@ -24,19 +24,27 @@ export function Expertise() {
   const { profile } = useLang()
 
   return (
-    <Section id="especialidades" title={profile.ui.sections.expertise}>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <Section id="especialidades" index={1} title={profile.ui.sections.expertise}>
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {profile.expertise.map((item) => {
           const Icon = icons[item.icon]
           return (
-            <Card key={item.icon} className="animate-fade-up p-5">
-              <span className="flex size-9 items-center justify-center rounded-lg bg-accent/10 text-accent">
-                <Icon size={18} aria-hidden />
-              </span>
-              <h3 className={`mt-4 font-semibold ${isDev ? 'font-mono text-sm' : ''}`}>{item.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-                {isDev ? item.dev : item.recruiter}
-              </p>
+            <Card key={item.icon} className="flex animate-fade-up flex-col p-5">
+              <div className="flex items-center gap-3">
+                <span className="flex size-10 shrink-0 items-center justify-center rounded-xl border-2 border-border bg-accent-3 text-accent-3-contrast">
+                  <Icon size={18} aria-hidden />
+                </span>
+                <h3 className="font-display text-xl leading-tight font-bold">{item.title}</h3>
+              </div>
+
+              <div className="mt-4 flex items-center gap-3" aria-label={`${item.title}: ${item.stat}/100`}>
+                <div className="h-3 flex-1 overflow-hidden rounded-full border-2 border-border bg-surface">
+                  <div className="stat-fill h-full" style={{ width: `${item.stat}%` }} />
+                </div>
+                <span className="w-7 text-right font-mono text-xs font-bold">{item.stat}</span>
+              </div>
+
+              <p className="mt-4 text-sm leading-relaxed text-ink-muted">{isDev ? item.dev : item.recruiter}</p>
             </Card>
           )
         })}

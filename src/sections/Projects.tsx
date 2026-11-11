@@ -15,13 +15,13 @@ export function Projects() {
   const { profile } = useLang()
 
   return (
-    <Section id="projetos" title={profile.ui.sections.projects}>
+    <Section id="projetos" index={4} title={profile.ui.sections.projects}>
       <div className="grid gap-6 sm:grid-cols-2">
         {profile.projects.map((project) => (
           <Card key={project.name} className="flex animate-fade-up flex-col">
             <div className="flex items-start justify-between gap-3">
-              <h3 className="flex items-center gap-2 text-lg font-semibold">
-                <FolderGit2 size={18} className="text-accent" aria-hidden />
+              <h3 className="flex items-center gap-2 font-display text-xl leading-tight font-bold">
+                <FolderGit2 size={18} className="shrink-0 text-accent" aria-hidden />
                 {project.name}
               </h3>
               <div className="flex shrink-0 items-center gap-2">

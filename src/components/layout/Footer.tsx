@@ -7,8 +7,8 @@ export function Footer() {
   const { profile } = useLang()
 
   return (
-    <footer className="border-t border-border">
-      <div className="mx-auto flex w-full max-w-4xl flex-col items-center justify-between gap-4 px-6 py-8 sm:flex-row">
+    <footer className="border-t-2 border-border bg-surface-raised">
+      <div className="mx-auto flex w-full max-w-5xl flex-col items-center justify-between gap-4 px-6 py-8 sm:flex-row">
         <p className="text-sm text-ink-muted">
           © {year} {identity.name} · {profile.ui.madeWith}
         </p>
