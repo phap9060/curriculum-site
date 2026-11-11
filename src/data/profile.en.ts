@@ -19,6 +19,7 @@ export const profileEn: Profile = {
 
   ui: {
     sections: {
+      now: 'Now',
       expertise: 'Expertise',
       experience: 'Experience',
       education: 'Education',
@@ -27,6 +28,8 @@ export const profileEn: Profile = {
       contact: 'Contact',
     },
     available: 'Open to opportunities',
+    sayHi: 'say hi',
+    stack: 'Stack',
     downloadCv: 'Download résumé (PDF)',
     viewProjects: 'view projects',
     madeWith: 'Built with React, TypeScript and Tailwind CSS',
@@ -39,6 +42,12 @@ export const profileEn: Profile = {
     evolution: 'Evolution line',
     stage: 'Stage',
     current: 'Current form',
+  },
+
+  minimal: {
+    intro:
+      'I build products end to end: distributed back-end systems with Node.js and messaging, and fast, data-heavy interfaces with React and TypeScript.',
+    now: 'Currently a Full Stack Engineer at Vetta, on an international steel industry product that handles millions of data points.',
   },
 
   card: {

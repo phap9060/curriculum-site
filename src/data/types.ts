@@ -105,6 +105,7 @@ export interface CardInfo {
 /** Textos fixos da interface (navegação, botões, rótulos de acessibilidade). */
 export interface UiStrings {
   sections: {
+    now: string
     expertise: string
     experience: string
     education: string
@@ -113,6 +114,9 @@ export interface UiStrings {
     contact: string
   }
   available: string
+  /** Link de e-mail no rodapé minimalista ("say hi") */
+  sayHi: string
+  stack: string
   downloadCv: string
   viewProjects: string
   madeWith: string
@@ -134,6 +138,13 @@ export interface Profile {
   cvUrl: string
   cvFileName: string
   ui: UiStrings
+  /** Página minimalista do modo recruiter */
+  minimal: {
+    /** Apresentação curta (1–2 frases) */
+    intro: string
+    /** O que estou fazendo agora */
+    now: string
+  }
   card: CardInfo
   hero: {
     recruiter: { headline: string; pitch: string; stats: Stat[] }

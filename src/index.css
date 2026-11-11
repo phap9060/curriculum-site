@@ -55,18 +55,18 @@
 }
 
 :root {
-  /* Modo recruiter: enxuto, quase um currículo (branco, bordas finas, sem sombra chapada) */
-  --surface: #f8fafc;
+  /* Modo recruiter: minimalista, só texto (branco, cinzas e preto) */
+  --surface: #fafafa;
   --surface-raised: #ffffff;
-  --ink: #0f172a;
-  --ink-muted: #475569;
-  --accent: #1d4ed8;
+  --ink: #1a1a1a;
+  --ink-muted: #6b6b6b;
+  --accent: #111111;
   --accent-contrast: #ffffff;
-  --accent-2: #e0e7ff;
-  --accent-2-contrast: #1e3a8a;
-  --accent-3: #f1f5f9;
-  --accent-3-contrast: #334155;
-  --border: #e2e8f0;
+  --accent-2: #f2f2f2;
+  --accent-2-contrast: #111111;
+  --accent-3: #f2f2f2;
+  --accent-3-contrast: #111111;
+  --border: #d4d4d4;
   --shadow: transparent;
   --card-shadow: 0 1px 2px rgb(15 23 42 / 0.05);
   --card-shadow-sm: none;

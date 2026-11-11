@@ -19,28 +19,47 @@ export function Header() {
     { href: '#contato', label: sections.contact },
   ]
 
+  // Recruiter: nada de barra — só os seletores de idioma/modo, discretos no canto.
+  if (!isDev) {
+    return (
+      <div className="absolute top-4 right-4 z-50 flex items-center gap-2 sm:top-5 sm:right-6">
+        <LangToggle />
+        <ModeToggle />
+      </div>
+    )
+  }
+
   return (
-    <header className="sticky top-0 z-50 border-b-2 border-border bg-surface/90 backdrop-blur-md">
-      <div className="mx-auto flex h-16 w-full max-w-5xl items-center justify-between gap-3 px-4 sm:px-6">
-        <a href="#top" className="flex min-w-0 items-center gap-2 font-display text-lg font-extrabold tracking-tight">
+    <header
+      className={isDev ? 'sticky top-0 z-50 border-b-2 border-border bg-surface/90 backdrop-blur-md' : 'bg-surface'}
+    >
+      <div
+        className={`mx-auto flex h-16 w-full items-center justify-between gap-3 ${isDev ? 'max-w-5xl px-4 sm:px-6' : 'max-w-2xl px-5'}`}
+      >
+        <a
+          href="#top"
+          className={`flex min-w-0 items-center gap-2 ${isDev ? 'font-display text-lg font-extrabold tracking-tight' : 'text-sm font-medium text-ink-muted'}`}
+        >
           {isDev && <Mascot className="w-8 shrink-0" />}
           <span className="hidden truncate min-[480px]:inline">
             {identity.name}
-            <span className="text-accent">.</span>
+            {isDev && <span className="text-accent">.</span>}
           </span>
         </a>
 
-        <nav className="hidden items-center gap-4 lg:flex" aria-label={profile.ui.mainNav}>
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm font-semibold text-ink-muted transition-colors hover:text-accent"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
+        {isDev && (
+          <nav className="hidden items-center gap-4 lg:flex" aria-label={profile.ui.mainNav}>
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm font-semibold text-ink-muted transition-colors hover:text-accent"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        )}
 
         <div className="flex shrink-0 items-center gap-2">
           <LangToggle />

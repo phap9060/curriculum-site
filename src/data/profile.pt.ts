@@ -19,6 +19,7 @@ export const profilePt: Profile = {
 
   ui: {
     sections: {
+      now: 'Agora',
       expertise: 'Especialidades',
       experience: 'Experiência',
       education: 'Formação',
@@ -27,6 +28,8 @@ export const profilePt: Profile = {
       contact: 'Contato',
     },
     available: 'Disponível para oportunidades',
+    sayHi: 'diga oi',
+    stack: 'Stack',
     downloadCv: 'Baixar CV (PDF)',
     viewProjects: 'ver projetos',
     madeWith: 'Feito com React, TypeScript e Tailwind CSS',
@@ -39,6 +42,12 @@ export const profilePt: Profile = {
     evolution: 'Linha evolutiva',
     stage: 'Estágio',
     current: 'Forma atual',
+  },
+
+  minimal: {
+    intro:
+      'Construo produtos de ponta a ponta: sistemas distribuídos no back-end com Node.js e mensageria, e interfaces rápidas e ricas em dados com React e TypeScript.',
+    now: 'Atualmente Full Stack Engineer na Vetta, em um produto internacional da indústria siderúrgica que lida com milhões de pontos de dados.',
   },
 
   card: {

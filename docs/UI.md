@@ -11,9 +11,10 @@ O site tem duas personalidades visuais, controladas pelo `ModeProvider`:
 
 Os dois modos agora têm públicos bem diferentes:
 
-- **Recruiter** (padrão): enxuto, quase um currículo. Cabeçalho de CV (foto, nome,
-  cargo, contatos, resumo), títulos de seção discretos, bordas finas de 1px, sem
-  sombras chapadas, sem barras de stat e sem "linha evolutiva".
+- **Recruiter** (padrão): página minimalista própria (`sections/RecruiterPage.tsx`),
+  uma coluna estreita só de texto — foto, nome, intro, o que estou fazendo agora e
+  listas de uma linha (experiência, projetos, formação, stack), com rodapé de links.
+  Sem cabeçalho/menu (só os seletores no canto), cards, ícones ou números.
 - **Dev**: o tema lúdico **"Quem é esse dev?"** — a foto aparece em silhueta sobre
   raios e é revelada; ao lado fica o aparelho **DEV-DEX** vermelho (design original,
   inspirado em enciclopédias de criaturas, com uma janela do mascote no lugar de lente),
@@ -22,10 +23,10 @@ Os dois modos agora têm públicos bem diferentes:
 
 | | **Recruiter** (padrão) | **Dev** |
 |---|---|---|
-| Tema | Branco, bordas finas, sóbrio | Colorido: papel creme, bordas grossas e sombra chapada |
-| Fonte display | Inter | Bricolage Grotesque |
-| Accent | Azul `#1d4ed8` | Vermelho `#d62d0b` (+ azul `accent-2`, amarelo `accent-3`) |
-| Títulos de seção | Caixa alta pequena + linha fina | `Nº01` + título + régua |
+| Tema | Minimalista: fundo `#fafafa`, texto cinza, links sublinhados | Colorido: papel creme, bordas grossas e sombra chapada |
+| Fonte display | Inter (sem fonte display) | Bricolage Grotesque |
+| Accent | Preto `#1a1a1a` | Vermelho `#d62d0b` (+ azul `accent-2`, amarelo `accent-3`) |
+| Títulos de seção | Caixa alta pequena e espaçada, sem linha | `Nº01` + título + régua |
 
 As bordas `border-2` dos componentes viram 1px no recruiter por uma regra em
 `index.css` (fora de `@layer`), então use `border-2` normalmente.

@@ -1,14 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import type { KeyboardEvent } from 'react'
-import { ChevronLeft, ChevronRight, Download, Eye, EyeOff, Mail, MapPin } from 'lucide-react'
-import { useMode } from '../hooks/useMode'
+import { ChevronLeft, ChevronRight, Eye, EyeOff } from 'lucide-react'
 import { useLang } from '../hooks/useLang'
 import { identity } from '../data/profile'
 import { cn } from '../lib/cn'
-import { ButtonLink } from '../components/ui/ButtonLink'
 import { Badge } from '../components/ui/Badge'
 import { toneCycle } from '../components/ui/badge-tones'
-import { GithubIcon, LinkedinIcon } from '../components/ui/icons'
 import { Mascot } from '../components/ui/Mascot'
 import photo from '../assets/pedro.webp'
 
@@ -16,106 +13,11 @@ import photo from '../assets/pedro.webp'
 const AUTO_REVEAL_MS = 1800
 
 /**
- * Hero com duas personalidades:
- * - recruiter: cabeçalho enxuto de currículo (foto, cargo, contatos, resumo)
- * - dev: "Quem é esse dev?" — silhueta revelada + aparelho de enciclopédia
+ * Hero do modo dev: "Quem é esse dev?" — a foto começa em silhueta e é
+ * revelada, ao lado do aparelho DEV-DEX. (O modo recruiter usa RecruiterPage.)
  */
 export function Hero() {
-  const { isDev } = useMode()
-  return isDev ? <DevHero /> : <RecruiterHero />
-}
-
-/* ------------------------------------------------------------------------ */
-/* Recruiter                                                                 */
-/* ------------------------------------------------------------------------ */
-
-function RecruiterHero() {
-  const { profile } = useLang()
-  const { hero, card } = profile
-
-  return (
-    <section id="top" className="mx-auto w-full max-w-5xl px-4 pt-12 pb-4 sm:px-6 sm:pt-16">
-      <div className="flex animate-fade-up flex-col gap-6 sm:flex-row sm:items-center">
-        <div className="size-28 shrink-0 overflow-hidden rounded-full border border-border bg-accent-2 sm:size-32">
-          <img
-            src={photo}
-            alt={identity.fullName}
-            width={640}
-            height={640}
-            fetchPriority="high"
-            className="size-full origin-[47%_6%] scale-[1.9] object-cover object-top"
-          />
-        </div>
-
-        <div className="min-w-0">
-          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{identity.fullName}</h1>
-          <p className="mt-1 text-lg font-semibold text-accent">{card.species}</p>
-          <ul className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm text-ink-muted">
-            <li className="flex items-center gap-1.5">
-              <MapPin size={14} aria-hidden />
-              {profile.location}
-            </li>
-            <li>
-              <a className="flex items-center gap-1.5 hover:text-accent" href={`mailto:${identity.social.email}`}>
-                <Mail size={14} aria-hidden />
-                {identity.social.email}
-              </a>
-            </li>
-            <li>
-              <a
-                className="flex items-center gap-1.5 hover:text-accent"
-                href={identity.social.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <LinkedinIcon size={14} />
-                LinkedIn
-              </a>
-            </li>
-            <li>
-              <a
-                className="flex items-center gap-1.5 hover:text-accent"
-                href={identity.social.github}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <GithubIcon size={14} />
-                GitHub
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <p className="mt-8 leading-relaxed text-ink-muted">{hero.recruiter.pitch}</p>
-
-      <div className="mt-5 flex flex-wrap gap-1.5">
-        {card.types.map((type) => (
-          <Badge key={type}>{type}</Badge>
-        ))}
-      </div>
-
-      <dl className="mt-8 grid grid-cols-3 divide-x divide-border border-y border-border py-4">
-        {hero.recruiter.stats.map((stat) => (
-          <div key={stat.label} className="flex flex-col-reverse px-3 first:pl-0">
-            <dt className="mt-0.5 text-xs leading-snug text-ink-muted">{stat.label}</dt>
-            <dd className="text-2xl font-bold text-ink">{stat.value}</dd>
-          </div>
-        ))}
-      </dl>
-
-      <div className="mt-8 flex flex-wrap gap-3">
-        <ButtonLink href={profile.cvUrl} download={profile.cvFileName}>
-          <Download size={16} aria-hidden />
-          {profile.ui.downloadCv}
-        </ButtonLink>
-        <ButtonLink variant="outline" href="#contato">
-          <Mail size={16} aria-hidden />
-          {profile.ui.sections.contact}
-        </ButtonLink>
-      </div>
-    </section>
-  )
+  return <DevHero />
 }
 
 /* ------------------------------------------------------------------------ */
