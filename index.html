@@ -14,11 +14,18 @@
         } catch {
           document.documentElement.classList.remove('dark')
         }
+        try {
+          const lang = localStorage.getItem('portfolio-lang')
+          const isPt = lang ? lang === 'pt' : navigator.language.toLowerCase().startsWith('pt')
+          document.documentElement.lang = isPt ? 'pt-BR' : 'en'
+        } catch {
+          /* mantém pt-BR */
+        }
       })()
     </script>
     <meta
       name="description"
-      content="Portfólio de Pedro Henrique Assunção Pereira — Desenvolvedor Full Stack com foco em frontend, especialista em React, TypeScript e Node.js, com experiência em produtos de larga escala."
+      content="Portfólio de Pedro Henrique Assunção Pereira — Desenvolvedor Front-end Sênior especialista em React e TypeScript, com foco em performance, arquitetura, visualização de dados e automação de testes."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,7 +33,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <title>Pedro Henrique — Desenvolvedor Full Stack</title>
+    <title>Pedro Henrique — Desenvolvedor Front-end Sênior React</title>
   </head>
   <body>
     <div id="root"></div>

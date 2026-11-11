@@ -1,5 +1,6 @@
 import { Briefcase, Terminal } from 'lucide-react'
 import { useMode } from '../../hooks/useMode'
+import { useLang } from '../../hooks/useLang'
 import { cn } from '../../lib/cn'
 
 /**
@@ -8,6 +9,7 @@ import { cn } from '../../lib/cn'
  */
 export function ModeToggle() {
   const { mode, setMode } = useMode()
+  const { profile } = useLang()
 
   const options = [
     { value: 'recruiter' as const, label: 'Recruiter', icon: Briefcase },
@@ -17,7 +19,7 @@ export function ModeToggle() {
   return (
     <div
       role="group"
-      aria-label="Alternar modo de exibição"
+      aria-label={profile.ui.modeToggle}
       className="flex items-center rounded-full border border-border bg-surface-raised p-1"
     >
       {options.map(({ value, label, icon: Icon }) => {
@@ -27,6 +29,7 @@ export function ModeToggle() {
             key={value}
             type="button"
             aria-pressed={isActive}
+            aria-label={label}
             onClick={() => setMode(value)}
             className={cn(
               'flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors',
@@ -34,7 +37,7 @@ export function ModeToggle() {
             )}
           >
             <Icon size={14} aria-hidden />
-            {label}
+            <span className="hidden sm:inline">{label}</span>
           </button>
         )
       })}

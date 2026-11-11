@@ -1,12 +1,14 @@
 import { GraduationCap } from 'lucide-react'
-import { profile } from '../data/profile'
+import { useLang } from '../hooks/useLang'
 import { Section } from '../components/ui/Section'
 import { Badge } from '../components/ui/Badge'
 
 /** Formação acadêmica — mesma para os dois modos. */
 export function Education() {
+  const { profile } = useLang()
+
   return (
-    <Section id="formacao" title="Formação">
+    <Section id="formacao" title={profile.ui.sections.education}>
       <ol className="space-y-6">
         {profile.education.map((item) => (
           <li key={item.title} className="flex animate-fade-up items-start justify-between gap-4">

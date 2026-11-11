@@ -75,20 +75,24 @@ npm run lint     # roda o ESLint
 
 ## Editando o conteúdo
 
-Todo o conteúdo do site vive em um **único arquivo**:
+Todo o conteúdo do site vive em `src/data/`, com um arquivo por idioma:
 
 ```
-src/data/profile.ts
+src/data/profile.pt.ts   # português
+src/data/profile.en.ts   # inglês
+src/data/profile.ts      # nome e links (independem do idioma)
 ```
 
 Nome, contatos, headline, experiências, formação, projetos e skills — cada bloco tem
-uma versão `recruiter` e uma versão `dev`. Edite só esse arquivo e o site inteiro se
-atualiza. Não há texto de perfil hardcoded nos componentes.
+uma versão `recruiter` e uma versão `dev`. Os dois arquivos seguem a mesma estrutura
+(`Profile`, em `types.ts`); ao editar um, replique a mudança no outro. O visitante troca
+o idioma pelo seletor **PT / EN** no cabeçalho (a escolha fica salva no navegador; na
+primeira visita vale o idioma do navegador). Não há texto de perfil hardcoded nos componentes.
 
 ### Currículo em PDF
 
-O botão **"Baixar CV (PDF)"** aponta para `public/cv.pdf`. Para atualizar o CV, basta
-substituir esse arquivo.
+O botão **"Baixar CV (PDF)"** baixa `public/cv-pt.pdf` ou `public/cv-en.pdf`, conforme o
+idioma ativo. Para atualizar o CV, basta substituir esses arquivos.
 
 ## Estrutura do projeto
 
@@ -97,21 +101,28 @@ substituir esse arquivo.
 │   ├── UI.md                     # Diretrizes de UI (design system)
 │   └── screenshots/              # Capturas usadas neste README
 ├── public/
-│   ├── cv.pdf                    # CV baixável pelo botão do hero
+│   ├── cv-pt.pdf                 # CV em português (botão do hero)
+│   ├── cv-en.pdf                 # CV em inglês
 │   ├── favicon.svg
 │   └── icons.svg
 └── src/
     ├── components/
     │   ├── layout/               # Header, Footer
-    │   └── ui/                   # Section, Card, Badge, ButtonLink, ModeToggle, icons
+    │   └── ui/                   # Section, Card, Badge, ButtonLink, ModeToggle, LangToggle, icons
     ├── context/
     │   ├── mode-context.ts       # createContext + tipo Mode
-    │   └── ModeProvider.tsx      # estado do modo, tema dark, localStorage
+    │   ├── ModeProvider.tsx      # estado do modo, tema dark, localStorage
+    │   ├── lang-context.ts       # createContext do idioma
+    │   └── LangProvider.tsx      # idioma ativo (pt/en), localStorage
     ├── hooks/
-    │   └── useMode.ts            # acesso ao contexto de modo
+    │   ├── useMode.ts            # acesso ao contexto de modo
+    │   └── useLang.ts            # idioma ativo + conteúdo traduzido
     ├── data/
-    │   └── profile.ts            # ★ única fonte de verdade do conteúdo
-    ├── sections/                 # Hero, Experience, Education, Projects, Skills, Contact
+    │   ├── profile.pt.ts         # ★ conteúdo em português
+    │   ├── profile.en.ts         # ★ conteúdo em inglês
+    │   ├── profile.ts            # identidade + mapa de idiomas
+    │   └── types.ts              # tipos do conteúdo
+    ├── sections/                 # Hero, Expertise, Experience, Education, Projects, Skills, Contact
     ├── lib/
     │   └── cn.ts                 # helper de classes condicionais
     ├── App.tsx                   # composição das seções
@@ -123,8 +134,8 @@ substituir esse arquivo.
 
 - **Componentes de UI** (`components/ui`) são genéricos e não conhecem o conteúdo do
   perfil.
-- **Seções** (`sections`) compõem os componentes de UI com os dados de `profile.ts` e
-  decidem o que mostrar em cada modo via `useMode()`.
+- **Seções** (`sections`) compõem os componentes de UI com os dados do idioma ativo
+  (`useLang()`) e decidem o que mostrar em cada modo via `useMode()`.
 - **Cores nunca são fixas**: use os tokens semânticos (`bg-surface`, `text-ink`,
   `text-accent`...). As diretrizes completas estão em [docs/UI.md](docs/UI.md).
 

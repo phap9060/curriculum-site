@@ -1,6 +1,6 @@
 import { ExternalLink, FolderGit2, TrendingUp } from 'lucide-react'
 import { useMode } from '../hooks/useMode'
-import { profile } from '../data/profile'
+import { useLang } from '../hooks/useLang'
 import { Section } from '../components/ui/Section'
 import { Card } from '../components/ui/Card'
 import { Badge } from '../components/ui/Badge'
@@ -12,9 +12,10 @@ import { GithubIcon } from '../components/ui/icons'
  */
 export function Projects() {
   const { isDev } = useMode()
+  const { profile } = useLang()
 
   return (
-    <Section id="projetos" title="Projetos">
+    <Section id="projetos" title={profile.ui.sections.projects}>
       <div className="grid gap-6 sm:grid-cols-2">
         {profile.projects.map((project) => (
           <Card key={project.name} className="flex animate-fade-up flex-col">
@@ -29,7 +30,7 @@ export function Projects() {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`Abrir demo de ${project.name}`}
+                    aria-label={`${profile.ui.openDemo} ${project.name}`}
                     className="text-ink-muted transition-colors hover:text-accent"
                   >
                     <ExternalLink size={18} aria-hidden />
@@ -40,7 +41,7 @@ export function Projects() {
                     href={project.repoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`Abrir repositório de ${project.name}`}
+                    aria-label={`${profile.ui.openRepo} ${project.name}`}
                     className="text-ink-muted transition-colors hover:text-accent"
                   >
                     <GithubIcon size={18} />

@@ -1,5 +1,5 @@
 import { useMode } from '../hooks/useMode'
-import { profile } from '../data/profile'
+import { useLang } from '../hooks/useLang'
 import { Section } from '../components/ui/Section'
 import { Badge } from '../components/ui/Badge'
 
@@ -9,10 +9,11 @@ import { Badge } from '../components/ui/Badge'
  */
 export function Skills() {
   const { isDev } = useMode()
+  const { profile } = useLang()
   const groups = isDev ? profile.skills.dev : profile.skills.recruiter
 
   return (
-    <Section id="skills" title="Skills">
+    <Section id="skills" title={profile.ui.sections.skills}>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {groups.map((group) => (
           <div

@@ -1,6 +1,6 @@
 import { Briefcase } from 'lucide-react'
 import { useMode } from '../hooks/useMode'
-import { profile } from '../data/profile'
+import { useLang } from '../hooks/useLang'
 import type { ExperienceRole } from '../data/profile'
 import { Section } from '../components/ui/Section'
 import { Badge } from '../components/ui/Badge'
@@ -11,9 +11,10 @@ import { Badge } from '../components/ui/Badge'
  */
 export function Experience() {
   const { isDev } = useMode()
+  const { profile } = useLang()
 
   return (
-    <Section id="experiencia" title="Experiência">
+    <Section id="experiencia" title={profile.ui.sections.experience}>
       <ol className="relative space-y-12 border-l border-border pl-8">
         {profile.experience.map((item) => {
           const isGroup = item.roles.length > 1

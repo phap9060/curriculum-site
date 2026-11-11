@@ -1,6 +1,7 @@
 import { Download, MapPin } from 'lucide-react'
 import { useMode } from '../hooks/useMode'
-import { profile } from '../data/profile'
+import { useLang } from '../hooks/useLang'
+import { identity } from '../data/profile'
 import { ButtonLink } from '../components/ui/ButtonLink'
 import { GithubIcon, LinkedinIcon } from '../components/ui/icons'
 
@@ -11,19 +12,20 @@ import { GithubIcon, LinkedinIcon } from '../components/ui/icons'
  */
 export function Hero() {
   const { isDev } = useMode()
+  const { profile } = useLang()
 
   return (
     <section id="top" className="mx-auto w-full max-w-4xl px-6 py-20 sm:py-28">
       {isDev ? <DevHero /> : <RecruiterHero />}
 
       <div className="mt-10 flex flex-wrap items-center gap-3">
-        <ButtonLink href={profile.cvUrl} download>
+        <ButtonLink href={profile.cvUrl} download={profile.cvFileName}>
           <Download size={16} aria-hidden />
-          Baixar CV (PDF)
+          {profile.ui.downloadCv}
         </ButtonLink>
         <ButtonLink
           variant="outline"
-          href={profile.social.github}
+          href={identity.social.github}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -32,12 +34,12 @@ export function Hero() {
         </ButtonLink>
         {isDev ? (
           <ButtonLink variant="outline" href="#projetos">
-            ver projetos
+            {profile.ui.viewProjects}
           </ButtonLink>
         ) : (
           <ButtonLink
             variant="outline"
-            href={profile.social.linkedin}
+            href={identity.social.linkedin}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -56,6 +58,7 @@ export function Hero() {
 }
 
 function RecruiterHero() {
+  const { profile } = useLang()
   const { recruiter } = profile.hero
 
   return (
@@ -65,7 +68,7 @@ function RecruiterHero() {
           <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-60" />
           <span className="relative inline-flex size-2 rounded-full bg-accent" />
         </span>
-        Disponível para oportunidades
+        {profile.ui.available}
       </span>
 
       <h1 className="max-w-2xl text-4xl font-extrabold tracking-tight sm:text-5xl">
@@ -73,7 +76,7 @@ function RecruiterHero() {
       </h1>
       <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-muted">{recruiter.pitch}</p>
 
-      <dl className="mt-10 grid max-w-xl grid-cols-3 gap-4">
+      <dl className="mt-10 grid max-w-2xl grid-cols-3 gap-3 sm:gap-4">
         {recruiter.stats.map((stat) => (
           <div key={stat.label} className="rounded-xl border border-border bg-surface-raised p-4 text-center">
             <dt className="order-2 mt-1 block text-xs text-ink-muted">{stat.label}</dt>
@@ -86,6 +89,7 @@ function RecruiterHero() {
 }
 
 function DevHero() {
+  const { profile } = useLang()
   const { dev } = profile.hero
 
   return (
