@@ -9,6 +9,7 @@ import { ButtonLink } from '../components/ui/ButtonLink'
 import { Badge } from '../components/ui/Badge'
 import { toneCycle } from '../components/ui/badge-tones'
 import { GithubIcon, LinkedinIcon } from '../components/ui/icons'
+import { Mascot } from '../components/ui/Mascot'
 import photo from '../assets/pedro.webp'
 
 /** Tempo até a revelação automática, para quem não clicar. */
@@ -201,8 +202,8 @@ type Tab = 'info' | 'stats' | 'log'
 const TABS: Tab[] = ['info', 'stats', 'log']
 
 /**
- * Aparelho de enciclopédia portátil (design original): carcaça com lente e
- * LEDs, tela com abas INFO / STATS / LOG, direcional que troca de aba e
+ * Aparelho de enciclopédia portátil (design original): carcaça vermelha com
+ * janela do mascote e LEDs, tela com abas INFO / STATS / LOG, direcional que troca de aba e
  * botões A (baixar CV) e B (GitHub). As setas do teclado também navegam.
  */
 function DexDevice({ revealed }: { revealed: boolean }) {
@@ -224,22 +225,24 @@ function DexDevice({ revealed }: { revealed: boolean }) {
 
   return (
     <article className="dex-shell animate-fade-up rounded-[28px] border-2 border-border p-4 shadow-card sm:p-5">
-      {/* topo: lente, LEDs e modelo */}
+      {/* topo: janela com o mascote, LEDs e modelo */}
       <div className="mb-4 flex items-center gap-3">
         <span
-          className="size-9 rounded-full border-2 border-border bg-accent-2 shadow-[inset_-4px_-4px_0_rgb(0_0_0_/_0.25)]"
+          className="grid size-12 place-items-center overflow-hidden rounded-full border-[3px] border-border bg-surface-raised ring-4 ring-[var(--dex-shell-ink)]"
           aria-hidden
-        />
-        <span className="size-3 rounded-full border border-border bg-[#ff5f56]" aria-hidden />
+        >
+          <Mascot className="w-10 translate-y-1" />
+        </span>
+        <span className="size-3 rounded-full border border-border bg-[#7cc4ff]" aria-hidden />
         <span className="size-3 rounded-full border border-border bg-accent-3" aria-hidden />
-        <span className="size-3 animate-pulse rounded-full border border-border bg-accent" aria-hidden />
-        <span className="ml-auto font-mono text-[10px] font-bold tracking-widest text-ink-muted uppercase">
+        <span className="size-3 animate-pulse rounded-full border border-border bg-[#4ade80]" aria-hidden />
+        <span className="ml-auto font-mono text-[10px] font-bold tracking-widest text-[var(--dex-shell-ink)] uppercase">
           DEV-DEX · v5
         </span>
       </div>
 
       {/* tela */}
-      <div className="rounded-2xl border-2 border-border bg-surface p-4 shadow-[inset_0_0_24px_rgb(0_0_0_/_0.35)] sm:p-5">
+      <div className="rounded-2xl border-2 border-border bg-surface p-4 shadow-[inset_0_0_0_4px_var(--surface-raised),inset_0_0_18px_rgb(0_0_0_/_0.12)] sm:p-5">
         <div className="flex items-start justify-between gap-3">
           <span className="shrink-0 pt-0.5 font-mono text-xs font-bold text-ink-muted">Nº 2021</span>
           <div className="flex flex-wrap justify-end gap-1.5">
@@ -377,10 +380,10 @@ function DexDevice({ revealed }: { revealed: boolean }) {
         <div className="flex flex-col items-center gap-2">
           <span className="flex gap-1" aria-hidden>
             {[0, 1, 2, 3].map((i) => (
-              <span key={i} className="h-5 w-1 rounded-full bg-border" />
+              <span key={i} className="h-5 w-1 rounded-full bg-[rgb(0_0_0_/_0.35)]" />
             ))}
           </span>
-          <span className="hidden text-center font-mono text-[10px] text-ink-muted sm:block">{card.navHint}</span>
+          <span className="hidden text-center font-mono text-[10px] text-[var(--dex-shell-ink)] sm:block">{card.navHint}</span>
         </div>
 
         <div className="flex items-end gap-3 pb-2">
@@ -397,7 +400,7 @@ function DexDevice({ revealed }: { revealed: boolean }) {
             href={profile.cvUrl}
             download={profile.cvFileName}
             aria-label={profile.ui.downloadCv}
-            className="grid size-11 place-items-center rounded-full border-2 border-border bg-accent font-mono text-sm font-bold text-accent-contrast shadow-card-sm"
+            className="grid size-11 place-items-center rounded-full border-2 border-border bg-accent-3 font-mono text-sm font-bold text-accent-3-contrast shadow-card-sm"
           >
             A
           </a>

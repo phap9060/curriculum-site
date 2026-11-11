@@ -6,7 +6,7 @@
  * Design tokens — tema "Quem é esse dev?"
  * As cores semânticas apontam para variáveis CSS que mudam conforme o modo:
  *   :root  -> modo recruiter: carta colecionável (papel creme, bordas grossas, sombra chapada)
- *   .dark  -> modo dev: tela LCD de console portátil (verde monocromático + scanlines)
+ *   .dark  -> modo dev: colorido, carta colecionável + aparelho DEV-DEX vermelho
  * Veja docs/UI.md para as diretrizes completas.
  */
 @theme inline {
@@ -85,34 +85,39 @@
 }
 
 .dark {
-  /* Modo dev: tela LCD */
-  --surface: #0c1d11;
-  --surface-raised: #122818;
-  --ink: #c4f58a;
-  --ink-muted: #7fae63;
-  --accent: #d4ff5c;
-  --accent-contrast: #0c1d11;
-  --accent-2: #7ad6ff;
-  --accent-2-contrast: #0c1d11;
-  --accent-3: #ffd35c;
-  --accent-3-contrast: #0c1d11;
-  --border: #3f6e3a;
-  --shadow: #050d07;
+  /*
+   * Modo dev: colorido, estilo carta colecionável (papel creme, bordas grossas,
+   * sombra chapada em vermelho/azul/amarelo). A classe continua `.dark` só por ser
+   * o marcador do modo dev; o tema em si é claro.
+   */
+  --surface: #fff6e5;
+  --surface-raised: #ffffff;
+  --ink: #1b1830;
+  --ink-muted: #5b5670;
+  --accent: #d62d0b;
+  --accent-contrast: #ffffff;
+  --accent-2: #2f5bff;
+  --accent-2-contrast: #ffffff;
+  --accent-3: #ffc93c;
+  --accent-3-contrast: #1b1830;
+  --border: #1b1830;
+  --shadow: #1b1830;
   --card-shadow: 5px 5px 0 0 var(--shadow);
   --card-shadow-sm: 3px 3px 0 0 var(--shadow);
-  --dex-shell: #1d3a24;
-  --dots: #16301d;
-  --display: 'VT323', 'JetBrains Mono', ui-monospace, monospace;
+  --dex-shell: #e3350d;
+  --dex-shell-ink: #fff3ec;
+  --dots: #ecdcbf;
+  --display: 'Bricolage Grotesque', 'Inter', ui-sans-serif, sans-serif;
 
-  --ray-a: #b8e64f;
-  --ray-b: #6f9c3a;
+  --ray-a: #ffc93c;
+  --ray-b: #ffe49a;
   --silhouette: brightness(0);
 
-  --mascot-body: #5b9a43;
-  --mascot-belly: #c4f58a;
-  --mascot-line: #07130a;
-  --mascot-tail: #d4ff5c;
-  --mascot-eye: #e8ffd0;
+  --mascot-body: #2f5bff;
+  --mascot-belly: #fff6e5;
+  --mascot-line: #1b1830;
+  --mascot-tail: #ff7a59;
+  --mascot-eye: #ffffff;
 }
 
 @layer base {
@@ -124,24 +129,6 @@
     @apply bg-surface text-ink font-sans antialiased;
     background-image: radial-gradient(var(--dots) 1.2px, transparent 1.2px);
     background-size: 22px 22px;
-  }
-
-  /* Scanlines no modo dev */
-  .dark body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: 60;
-    pointer-events: none;
-    background: repeating-linear-gradient(to bottom, transparent 0 2px, rgb(0 0 0 / 0.16) 2px 3px);
-  }
-
-  /* VT323 é estreita e não tem negrito: ajusta tamanho e peso no modo dev */
-  .dark .font-display {
-    font-weight: 400 !important;
-    letter-spacing: 0.01em;
-    font-size-adjust: 0.6;
-    line-height: 1.05;
   }
 
   *,
@@ -176,7 +163,7 @@
   /* Carcaça do aparelho DEV-DEX (modo dev) */
   .dex-shell {
     background:
-      linear-gradient(160deg, rgb(255 255 255 / 0.06), transparent 40%),
+      linear-gradient(160deg, rgb(255 255 255 / 0.18), transparent 45%),
       var(--dex-shell);
   }
 
@@ -194,13 +181,7 @@
     mask: none;
   }
 
-  /* No modo dev, a foto revelada ganha o tom verde da tela LCD */
-  .dark .photo-revealed {
-    filter: grayscale(1) sepia(1) hue-rotate(45deg) saturate(1.8) brightness(0.95);
-  }
-
-  .mascot-hidden,
-  .dark .mascot-hidden {
+  .mascot-hidden {
     filter: var(--silhouette);
   }
 

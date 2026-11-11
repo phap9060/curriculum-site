@@ -15,16 +15,17 @@ Os dois modos agora têm públicos bem diferentes:
   cargo, contatos, resumo), títulos de seção discretos, bordas finas de 1px, sem
   sombras chapadas, sem barras de stat e sem "linha evolutiva".
 - **Dev**: o tema lúdico **"Quem é esse dev?"** — a foto aparece em silhueta sobre
-  raios e é revelada; ao lado fica o aparelho **DEV-DEX** (design original, inspirado
-  em enciclopédias de criaturas), com abas INFO / STATS / LOG, direcional e botões A/B.
+  raios e é revelada; ao lado fica o aparelho **DEV-DEX** vermelho (design original,
+  inspirado em enciclopédias de criaturas, com uma janela do mascote no lugar de lente),
+  com abas INFO / STATS / LOG, direcional e botões A/B.
   Não use nomes, personagens ou arte de franquias reais.
 
 | | **Recruiter** (padrão) | **Dev** |
 |---|---|---|
-| Tema | Branco, bordas finas, sóbrio | Tela LCD verde, scanlines, bordas grossas e sombra chapada |
-| Fonte display | Inter | VT323 |
-| Accent | Azul `#1d4ed8` | Lima `#d4ff5c` (+ ciano, amarelo) |
-| Títulos de seção | Caixa alta pequena + linha fina | `>01` + título + régua |
+| Tema | Branco, bordas finas, sóbrio | Colorido: papel creme, bordas grossas e sombra chapada |
+| Fonte display | Inter | Bricolage Grotesque |
+| Accent | Azul `#1d4ed8` | Vermelho `#d62d0b` (+ azul `accent-2`, amarelo `accent-3`) |
+| Títulos de seção | Caixa alta pequena + linha fina | `Nº01` + título + régua |
 
 As bordas `border-2` dos componentes viram 1px no recruiter por uma regra em
 `index.css` (fora de `@layer`), então use `border-2` normalmente.

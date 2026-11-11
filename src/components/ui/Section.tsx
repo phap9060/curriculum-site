@@ -12,7 +12,7 @@ interface SectionProps {
 /**
  * Wrapper padrão de seção.
  * - recruiter: título discreto em caixa alta com linha fina, como num currículo
- * - dev: número grande (`>01`), título em fonte display e régua
+ * - dev: número grande (`Nº01`), título em fonte display e régua
  */
 export function Section({ id, index, title, children }: SectionProps) {
   const { isDev } = useMode()
@@ -32,7 +32,7 @@ export function Section({ id, index, title, children }: SectionProps) {
   return (
     <section id={id} className="mx-auto w-full max-w-5xl scroll-mt-24 px-4 py-16 sm:px-6 sm:py-20">
       <div className="mb-10 flex items-end gap-3 sm:gap-4">
-        <span className="font-display text-4xl leading-none font-extrabold text-accent sm:text-5xl">{`>${number}`}</span>
+        <span className="font-display text-4xl leading-none font-extrabold text-accent sm:text-5xl">{`Nº${number}`}</span>
         <h2 className="font-display text-3xl leading-none font-extrabold tracking-tight sm:text-4xl">{title}</h2>
         <span className="mb-1.5 h-0.5 flex-1 bg-border" aria-hidden />
       </div>
