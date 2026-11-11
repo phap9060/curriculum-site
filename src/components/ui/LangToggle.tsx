@@ -20,19 +20,14 @@ export function LangToggle({ variant = 'pill' }: { variant?: 'pill' | 'text' }) 
   const { lang, setLang, profile } = useLang()
   const { mode } = useMode()
 
-  // Texto puro (modo recruiter): "PT / EN", o idioma ativo em tinta cheia.
+  // Texto puro (modo recruiter): "[PT] EN", o idioma ativo entre colchetes.
   if (variant === 'text') {
     return (
-      <div role="group" aria-label={profile.ui.langToggle} className="flex items-center gap-1.5 text-[13px]">
-        {options.map(({ value, label, name }, index) => {
+      <div role="group" aria-label={profile.ui.langToggle} className="flex items-center gap-2 font-type text-[13px]">
+        {options.map(({ value, label, name }) => {
           const isActive = lang === value
           return (
-            <span key={value} className="flex items-center gap-1.5">
-              {index > 0 && (
-                <span aria-hidden className="text-border">
-                  /
-                </span>
-              )}
+            <span key={value}>
               <a
                 href={buildHref({ lang: value, mode })}
                 hrefLang={value === 'pt' ? 'pt-BR' : 'en'}
@@ -47,10 +42,10 @@ export function LangToggle({ variant = 'pill' }: { variant?: 'pill' | 'text' }) 
                 }}
                 className={cn(
                   'cursor-pointer transition-colors',
-                  isActive ? 'font-medium text-ink' : 'text-ink-muted hover:text-ink',
+                  isActive ? 'text-ink' : 'text-ink-muted hover:text-ink',
                 )}
               >
-                {label}
+                {isActive ? `[${label}]` : label}
               </a>
             </span>
           )

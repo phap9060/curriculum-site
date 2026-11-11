@@ -1,5 +1,5 @@
 import type { MouseEvent } from 'react'
-import { ArrowUpRight, Briefcase, Gamepad2 } from 'lucide-react'
+import { Briefcase, Gamepad2 } from 'lucide-react'
 import { useMode } from '../../hooks/useMode'
 import { useLang } from '../../hooks/useLang'
 import { cn } from '../../lib/cn'
@@ -29,14 +29,9 @@ export function ModeToggle({ variant = 'pill' }: { variant?: 'pill' | 'text' }) 
           event.preventDefault()
           setMode('dev')
         }}
-        className="group flex cursor-pointer items-center gap-0.5 text-[13px] text-ink-muted transition-colors hover:text-ink"
+        className="cursor-pointer font-type text-[13px] text-ink-muted underline decoration-border underline-offset-4 transition-colors hover:text-ink hover:decoration-ink"
       >
-        <span className="font-serif text-[15px] italic">fun mode</span>
-        <ArrowUpRight
-          size={13}
-          aria-hidden
-          className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-        />
+        fun mode
       </a>
     )
   }
