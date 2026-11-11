@@ -10,9 +10,9 @@ export const profilePt: Profile = {
   meta: {
     title: 'Pedro Henrique — Engenheiro de Software Sênior',
     description:
-      'Portfólio de Pedro Henrique Assunção Pereira — Engenheiro de Software Sênior especialista em React e TypeScript, com foco em performance, arquitetura, visualização de dados e automação de testes.',
+      'Portfólio de Pedro Henrique Assunção Pereira — Engenheiro de Software Sênior que atua no front-end e no back-end: React, Node.js, sistemas distribuídos, mensageria, performance e visualização de dados.',
   },
-  role: 'Engenheiro de Software Sênior | React | TypeScript | Performance, Arquitetura e Visualização de Dados',
+  role: 'Engenheiro de Software Sênior | Front-end e back-end | React | Node.js | Sistemas distribuídos',
   location: 'Teresina, PI — Brasil · Remoto',
   cvUrl: `${import.meta.env.BASE_URL}cv-pt.pdf`,
   cvFileName: 'Pedro-Henrique-Assuncao-Curriculo.pdf',
@@ -47,7 +47,7 @@ export const profilePt: Profile = {
     hide: 'Esconder de novo',
     answer: 'É o Pedro Henrique!',
     species: 'Engenheiro de Software Sênior',
-    types: ['Front-end', 'Dados', 'Back-end', 'IA', 'RAG', 'LLM', 'MCP'],
+    types: ['Front-end', 'Back-end', 'Dados', 'IA', 'RAG', 'LLM', 'MCP'],
     fields: [
       { label: 'Região', value: 'Teresina, BR' },
       { label: 'Em produção desde', value: '2021' },
@@ -60,22 +60,23 @@ export const profilePt: Profile = {
 
   hero: {
     recruiter: {
-      headline: 'Engenheiro de Software Sênior, especialista em React, performance e visualização de dados.',
+      headline: 'Engenheiro de Software Sênior que entrega de ponta a ponta — das interfaces em React aos sistemas distribuídos no back-end.',
       pitch:
-        'Experiência contínua desde 2021 com React e TypeScript em produção, em aplicações de alta complexidade e alto volume de dados e acessos. Atuo entre a estratégia e a execução: defino arquitetura front-end, otimizo performance (Core Web Vitals), construo interfaces ricas em gráficos e garanto qualidade com testes automatizados, junto a design, produto e backend.',
+        'Engenheiro de software desde 2021, construindo de ponta a ponta produtos de alta complexidade e alto volume de dados e acessos. No back-end, trabalho com sistemas distribuídos: microsserviços em Node.js, APIs REST, mensageria (SQS, Kafka, RabbitMQ), serverless na AWS e observabilidade com logs, métricas e alertas (Datadog, New Relic). No front-end, defino arquitetura, otimizo performance (Core Web Vitals) e construo interfaces ricas em gráficos com React e TypeScript. Atuo entre a estratégia e a execução, garanto qualidade com testes automatizados e colaboro de perto com produto, design e engenharia.',
       stats: [
-        { value: '5+', label: 'anos com React em produção' },
+        { value: '5+', label: 'anos construindo software em produção' },
         { value: '1M+', label: 'pontos de dados renderizados simultaneamente' },
         { value: '3', label: 'empresas, de e-commerce à indústria' },
       ],
     },
     dev: {
       pitch:
-        'Engenheiro de software sênior com React e TypeScript em produção desde 2021. Gráficos com milhões de pontos, Core Web Vitals, micro frontends, Next.js (CSR/SSR/SSG) e testes de ponta a ponta com Cypress e Playwright no CI/CD.',
+        'Engenheiro de software sênior em produção desde 2021, nos dois lados da stack. Back: microsserviços em Node.js, APIs REST, mensageria com SQS, Kafka e RabbitMQ, AWS Lambda/EC2 e observabilidade. Front: React, TypeScript, gráficos com milhões de pontos, Core Web Vitals, micro frontends e Next.js (CSR/SSR/SSG). Tudo coberto por testes no CI/CD.',
       terminalLines: [
-        { command: 'whoami', output: 'pedro — senior software engineer · react · typescript' },
-        { command: 'cat stack.txt', output: 'react · next.js · typescript · react native · node · aws' },
-        { command: 'cat focus.txt', output: 'performance · arquitetura · dataviz · segurança' },
+        { command: 'whoami', output: 'pedro — engenheiro de software sênior · front-end + back-end' },
+        { command: 'cat backend.txt', output: 'node.js · microsserviços · apis rest · sqs · kafka · rabbitmq · aws' },
+        { command: 'cat frontend.txt', output: 'react · next.js · typescript · react native · dataviz' },
+        { command: 'cat focus.txt', output: 'performance · arquitetura · sistemas distribuídos · dataviz · segurança' },
         { command: 'cat testing.txt', output: 'jest · vitest · testing library · cypress · playwright' },
         { command: 'cat languages.txt', output: 'pt-BR nativo · inglês avançado' },
         { command: 'uptime', output: '5+ anos em produção, de Teresina a produto internacional' },
@@ -85,50 +86,51 @@ export const profilePt: Profile = {
 
   expertise: [
     {
+      icon: 'server',
+      title: 'Back-end e sistemas distribuídos',
+      stat: 88,
+      recruiter:
+        'Serviços confiáveis e escaláveis: microsserviços, APIs e mensageria assíncrona, monitorados em produção.',
+      dev: 'Microsserviços em Node.js, APIs REST, mensageria com SQS, Kafka e RabbitMQ, serverless na AWS (Lambda, EC2) e observabilidade com logs, métricas e alertas.',
+    },
+    {
       icon: 'chart',
-      title: 'Visualização de dados',
+      title: 'Front-end e visualização de dados',
       stat: 95,
       recruiter:
-        'Gráficos interativos que tornam conjuntos de dados complexos legíveis e utilizáveis, mesmo com milhões de pontos na tela.',
-      dev: 'Charts interativos renderizando milhões de pontos simultâneos, com atenção a performance de renderização, responsividade e legibilidade.',
+        'Interfaces responsivas e acessíveis e gráficos interativos que deixam dados complexos legíveis, mesmo com milhões de pontos na tela.',
+      dev: 'React, TypeScript e Next.js; bibliotecas de componentes reutilizáveis e gráficos interativos renderizando milhões de pontos simultâneos.',
+    },
+    {
+      icon: 'layers',
+      title: 'Arquitetura',
+      stat: 88,
+      recruiter:
+        'Defino a arquitetura e os planos de evolução de sistemas de alta complexidade, no front-end e no back-end.',
+      dev: 'Micro frontends, microsserviços, system design, integração entre camadas, ADRs e SDD.',
     },
     {
       icon: 'gauge',
       title: 'Performance',
       stat: 92,
       recruiter:
-        'Aplicações rápidas e escaláveis: acompanho Core Web Vitals e ataco gargalos de carregamento e renderização.',
-      dev: 'Code splitting, lazy loading, memoization, Core Web Vitals e a estratégia certa entre CSR, SSR e SSG com Next.js.',
-    },
-    {
-      icon: 'layers',
-      title: 'Arquitetura front-end',
-      stat: 88,
-      recruiter:
-        'Defino a arquitetura e os planos de evolução de aplicações de alta complexidade, com componentes reutilizáveis.',
-      dev: 'Micro frontends, system design, bibliotecas de componentes em React + TypeScript, ADRs e SDD.',
-    },
-    {
-      icon: 'flask',
-      title: 'Testes e qualidade',
-      stat: 90,
-      recruiter:
-        'Responsável pela automação de testes, integrada ao CI/CD para manter a qualidade consistente a cada entrega.',
-      dev: 'Jest, Vitest e React Testing Library para unidade/componente; Cypress e Playwright para E2E; tudo rodando em pipelines de CI/CD.',
+        'Produtos rápidos e escaláveis: acompanho Core Web Vitals e ataco gargalos em toda a stack, junto a backend e infra.',
+      dev: 'Code splitting, lazy loading, memoization, CSR/SSR/SSG com Next.js e diagnóstico de gargalos full stack com Datadog e New Relic.',
     },
     {
       icon: 'shield',
-      title: 'Segurança',
-      stat: 80,
-      recruiter: 'Proteção de fluxos sensíveis e dados de usuários, em conformidade com a LGPD.',
-      dev: 'OWASP Top 10 (XSS, CSRF, CSP), autenticação e autorização, gestão de segredos e LGPD.',
+      title: 'Qualidade e segurança',
+      stat: 88,
+      recruiter:
+        'Testes automatizados integrados ao CI/CD e proteção de fluxos sensíveis e dados de usuários, em conformidade com a LGPD.',
+      dev: 'Jest, Vitest, React Testing Library, Cypress e Playwright no CI/CD; OWASP Top 10 (XSS, CSRF, CSP), autenticação/autorização e gestão de segredos.',
     },
     {
       icon: 'users',
       title: 'Liderança técnica',
       stat: 85,
       recruiter:
-        'Conduzo diagnósticos e refatorações, influencio decisões com backend, produto e negócio e oriento devs mais juniores.',
+        'Conduzo diagnósticos e refatorações, influencio decisões com produto e negócio e oriento devs mais juniores.',
       dev: 'Diagnósticos técnicos, refatorações relevantes, code reviews, padrões de código e mentoria de devs juniores.',
     },
   ],
@@ -143,8 +145,9 @@ export const profilePt: Profile = {
           title: 'Full Stack Engineer (JavaScript)',
           recruiter: {
             summary:
-              'Front-end de produto internacional da indústria siderúrgica que processa milhões de pontos de dados simultaneamente.',
+              'Engenharia full stack em produto internacional da indústria siderúrgica que processa milhões de pontos de dados simultaneamente.',
             highlights: [
+              'Atuo na integração com o back-end via APIs REST, microsserviços e mensageria (SQS, Kafka, RabbitMQ), diagnosticando gargalos com observabilidade de logs, métricas e alertas',
               'Construo e mantenho gráficos e visualizações de dados interativas, com foco em performance de renderização, legibilidade e usabilidade de conjuntos de dados complexos',
               'Desenvolvo componentes e bibliotecas reutilizáveis em React e TypeScript, traduzindo os designs de UI/UX em interfaces responsivas e acessíveis',
               'Otimizo velocidade e escalabilidade acompanhando Core Web Vitals e diagnostico gargalos junto ao time de backend',
@@ -329,23 +332,23 @@ export const profilePt: Profile = {
 
   skills: {
     recruiter: [
-      { category: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'React Native', 'Visualização de dados'] },
-      { category: 'Performance & Arquitetura', items: ['Core Web Vitals', 'Micro Frontends', 'System Design', 'PWAs', 'Acessibilidade'] },
+      { category: 'Back-end', items: ['Node.js', 'Microsserviços', 'APIs REST', 'Mensageria', 'AWS', 'Serverless'] },
+      { category: 'Front-end', items: ['React', 'Next.js', 'TypeScript', 'React Native', 'Visualização de dados'] },
+      { category: 'Arquitetura & Performance', items: ['Sistemas distribuídos', 'Micro Frontends', 'System Design', 'Core Web Vitals', 'Observabilidade'] },
       { category: 'Qualidade', items: ['Automação de testes', 'Cypress', 'Playwright', 'Jest', 'CI/CD'] },
-      { category: 'Backend & Cloud', items: ['Node.js', 'AWS', 'APIs REST', 'Observabilidade'] },
       { category: 'Liderança', items: ['Code reviews', 'Mentoria', 'Diagnósticos técnicos', 'Instrutor de React'] },
       { category: 'Idiomas', items: ['Português nativo', 'Inglês avançado'] },
     ],
     dev: [
-      { category: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'React Native', 'HTML5', 'CSS3', 'SASS', 'Styled Components'] },
+      { category: 'Back-end', items: ['Node.js', 'APIs REST', 'Microsserviços', 'AWS Lambda', 'EC2'] },
+      { category: 'Mensageria', items: ['SQS', 'Kafka', 'RabbitMQ'] },
+      { category: 'Front-end', items: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'React Native', 'HTML5', 'CSS3', 'SASS', 'Styled Components'] },
       { category: 'Estado', items: ['TanStack Query', 'Redux', 'Zustand'] },
+      { category: 'Arquitetura', items: ['Sistemas distribuídos', 'Micro Frontends', 'System Design', 'ADRs', 'SDD', 'PWAs'] },
       { category: 'Performance', items: ['Core Web Vitals', 'Code splitting', 'Lazy loading', 'Memoization', 'CSR / SSR / SSG'] },
       { category: 'Testes', items: ['Jest', 'Vitest', 'React Testing Library', 'Cypress', 'Playwright'] },
-      { category: 'Arquitetura', items: ['Micro Frontends', 'Microsserviços', 'System Design', 'ADRs', 'SDD', 'PWAs'] },
       { category: 'Segurança', items: ['OWASP Top 10', 'XSS', 'CSRF', 'CSP', 'LGPD'] },
-      { category: 'Backend & Cloud', items: ['Node.js', 'APIs REST', 'AWS Lambda', 'EC2', 'SQS', 'Kafka', 'RabbitMQ'] },
-      { category: 'Observabilidade & CI/CD', items: ['Datadog', 'New Relic', 'CI/CD'] },
-      { category: 'Idiomas', items: ['pt-BR nativo', 'inglês avançado'] },
+      { category: 'Observabilidade & CI/CD', items: ['Datadog', 'New Relic', 'Logs, métricas e alertas', 'CI/CD'] },
     ],
   },
 

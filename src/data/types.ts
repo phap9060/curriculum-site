@@ -17,7 +17,7 @@ export interface TerminalLine {
   output: string
 }
 
-export type ExpertiseIcon = 'chart' | 'gauge' | 'layers' | 'shield' | 'flask' | 'users'
+export type ExpertiseIcon = 'server' | 'chart' | 'gauge' | 'layers' | 'shield' | 'flask' | 'users'
 
 export interface ExpertiseItem {
   icon: ExpertiseIcon

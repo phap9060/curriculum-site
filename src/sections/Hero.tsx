@@ -87,7 +87,7 @@ function RecruiterHero() {
         </div>
       </div>
 
-      <p className="mt-8 max-w-3xl leading-relaxed text-ink-muted">{hero.recruiter.pitch}</p>
+      <p className="mt-8 leading-relaxed text-ink-muted">{hero.recruiter.pitch}</p>
 
       <div className="mt-5 flex flex-wrap gap-1.5">
         {card.types.map((type) => (
@@ -95,7 +95,7 @@ function RecruiterHero() {
         ))}
       </div>
 
-      <dl className="mt-8 grid max-w-2xl grid-cols-3 divide-x divide-border border-y border-border py-4">
+      <dl className="mt-8 grid grid-cols-3 divide-x divide-border border-y border-border py-4">
         {hero.recruiter.stats.map((stat) => (
           <div key={stat.label} className="flex flex-col-reverse px-3 first:pl-0">
             <dt className="mt-0.5 text-xs leading-snug text-ink-muted">{stat.label}</dt>

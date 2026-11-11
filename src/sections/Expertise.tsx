@@ -1,4 +1,4 @@
-import { ChartLine, FlaskConical, Gauge, Layers, ShieldCheck, Users } from 'lucide-react'
+import { ChartLine, FlaskConical, Gauge, Layers, Server, ShieldCheck, Users } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { useMode } from '../hooks/useMode'
 import { useLang } from '../hooks/useLang'
@@ -7,6 +7,7 @@ import { Section } from '../components/ui/Section'
 import { Card } from '../components/ui/Card'
 
 const icons: Record<ExpertiseIcon, LucideIcon> = {
+  server: Server,
   chart: ChartLine,
   gauge: Gauge,
   layers: Layers,
