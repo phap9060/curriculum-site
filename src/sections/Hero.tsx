@@ -1,30 +1,25 @@
 import { useEffect, useRef, useState } from 'react'
-import type { KeyboardEvent } from 'react'
-import { ChevronLeft, ChevronRight, Eye, EyeOff } from 'lucide-react'
+import type { ComponentType, KeyboardEvent } from 'react'
+import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Eye, EyeOff } from 'lucide-react'
 import { useLang } from '../hooks/useLang'
 import { identity } from '../data/profile'
+import type { DexTab } from '../data/types'
 import { cn } from '../lib/cn'
 import { Badge } from '../components/ui/Badge'
 import { toneCycle } from '../components/ui/badge-tones'
 import { Mascot } from '../components/ui/Mascot'
 import photo from '../assets/pedro.webp'
+import { EvolutionPanel, InfoPanel, ItemsPanel, LogPanel, MovesPanel, StatsPanel, TrainingPanel } from './dex/DexPanels'
 
 /** Tempo até a revelação automática, para quem não clicar. */
 const AUTO_REVEAL_MS = 1800
 
 /**
- * Hero do modo dev: "Quem é esse dev?" — a foto começa em silhueta e é
- * revelada, ao lado do aparelho DEV-DEX. (O modo recruiter usa RecruiterPage.)
+ * Modo dev: "Quem é esse dev?" — a foto começa em silhueta e é revelada; ao
+ * lado, o aparelho DEV-DEX concentra todas as informações do perfil, como a
+ * ficha de uma criatura. (O modo recruiter usa RecruiterPage.)
  */
 export function Hero() {
-  return <DevHero />
-}
-
-/* ------------------------------------------------------------------------ */
-/* Dev                                                                       */
-/* ------------------------------------------------------------------------ */
-
-function DevHero() {
   const { profile } = useLang()
   const { card } = profile
   const [revealed, setRevealed] = useState(false)
@@ -45,12 +40,10 @@ function DevHero() {
   return (
     <section
       id="top"
-      className="mx-auto grid w-full max-w-5xl items-center gap-12 px-4 py-14 sm:px-6 sm:py-20 md:grid-cols-[0.9fr_1.1fr]"
+      className="mx-auto grid w-full max-w-6xl grid-cols-[minmax(0,1fr)] items-start gap-10 px-4 py-10 sm:px-6 sm:py-14 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-12"
     >
-      <div className="flex flex-col items-center text-center">
-        <p className="font-display text-4xl leading-none font-extrabold tracking-tight sm:text-5xl">
-          {card.question}
-        </p>
+      <div className="flex flex-col items-center text-center lg:sticky lg:top-24">
+        <p className="font-display text-4xl leading-none font-extrabold tracking-tight sm:text-5xl">{card.question}</p>
 
         <button
           type="button"
@@ -69,7 +62,7 @@ function DevHero() {
             draggable={false}
             className={cn(
               'absolute bottom-0 left-1/2 w-[88%] origin-bottom -translate-x-1/2 transition-[filter,scale] duration-700 ease-out select-none',
-              revealed ? 'photo-revealed scale-100' : 'mascot-hidden scale-95',
+              revealed ? 'scale-100' : 'mascot-hidden scale-95',
             )}
           />
         </button>
@@ -100,24 +93,47 @@ function DevHero() {
   )
 }
 
-type Tab = 'info' | 'stats' | 'log'
-const TABS: Tab[] = ['info', 'stats', 'log']
+const TABS: DexTab[] = ['info', 'stats', 'evolution', 'moves', 'items', 'training', 'log']
+
+const PANELS: Record<DexTab, ComponentType> = {
+  info: InfoPanel,
+  stats: StatsPanel,
+  evolution: EvolutionPanel,
+  moves: MovesPanel,
+  items: ItemsPanel,
+  training: TrainingPanel,
+  log: LogPanel,
+}
+
+/** Quanto o direcional ▲ ▼ rola a tela por clique. */
+const SCROLL_STEP = 120
 
 /**
  * Aparelho de enciclopédia portátil (design original): carcaça vermelha com
- * janela do mascote e LEDs, tela com abas INFO / STATS / LOG, direcional que troca de aba e
- * botões A (baixar CV) e B (GitHub). As setas do teclado também navegam.
+ * janela do mascote e LEDs, tela com abas e rolagem interna, direcional
+ * (◀ ▶ troca de aba, ▲ ▼ rola a tela) e botões A (baixar CV) e B (GitHub).
  */
 function DexDevice({ revealed }: { revealed: boolean }) {
   const { profile } = useLang()
-  const { card, hero } = profile
-  const [tab, setTab] = useState<Tab>('info')
-  const tabRefs = useRef<Record<Tab, HTMLButtonElement | null>>({ info: null, stats: null, log: null })
+  const { card } = profile
+  const [tab, setTab] = useState<DexTab>('info')
+  const tabRefs = useRef<Partial<Record<DexTab, HTMLButtonElement | null>>>({})
+  const screenRef = useRef<HTMLDivElement>(null)
+
+  const select = (next: DexTab, focus = false) => {
+    setTab(next)
+    screenRef.current?.scrollTo({ top: 0 })
+    const button = tabRefs.current[next]
+    button?.scrollIntoView({ block: 'nearest', inline: 'nearest' })
+    if (focus) button?.focus()
+  }
 
   const move = (step: number, focus = false) => {
-    const next = TABS[(TABS.indexOf(tab) + step + TABS.length) % TABS.length]
-    setTab(next)
-    if (focus) tabRefs.current[next]?.focus()
+    select(TABS[(TABS.indexOf(tab) + step + TABS.length) % TABS.length], focus)
+  }
+
+  const scroll = (direction: 1 | -1) => {
+    screenRef.current?.scrollBy({ top: direction * SCROLL_STEP, behavior: 'smooth' })
   }
 
   const onTabKey = (event: KeyboardEvent) => {
@@ -125,8 +141,12 @@ function DexDevice({ revealed }: { revealed: boolean }) {
     if (event.key === 'ArrowLeft') move(-1, true)
   }
 
+  const Panel = PANELS[tab]
+  const dpad =
+    'grid size-8 cursor-pointer place-items-center border-2 border-border bg-surface-raised text-ink-muted hover:text-accent active:bg-surface'
+
   return (
-    <article className="dex-shell animate-fade-up rounded-[28px] border-2 border-border p-4 shadow-card sm:p-5">
+    <article className="dex-shell min-w-0 animate-fade-up rounded-[28px] border-2 border-border p-4 shadow-card sm:p-5">
       {/* topo: janela com o mascote, LEDs e modelo */}
       <div className="mb-4 flex items-center gap-3">
         <span
@@ -162,7 +182,11 @@ function DexDevice({ revealed }: { revealed: boolean }) {
         </h1>
         <p className="mt-1 text-sm font-semibold text-accent italic">{card.species}</p>
 
-        <div role="tablist" aria-label="DEV-DEX" className="mt-4 flex gap-1 border-b-2 border-border">
+        <div
+          role="tablist"
+          aria-label="DEV-DEX"
+          className="mt-4 flex gap-1 overflow-x-auto border-b-2 border-border [scrollbar-width:none]"
+        >
           {TABS.map((value) => {
             const active = tab === value
             return (
@@ -177,10 +201,10 @@ function DexDevice({ revealed }: { revealed: boolean }) {
                 aria-selected={active}
                 aria-controls="dex-panel"
                 tabIndex={active ? 0 : -1}
-                onClick={() => setTab(value)}
+                onClick={() => select(value)}
                 onKeyDown={onTabKey}
                 className={cn(
-                  '-mb-0.5 cursor-pointer rounded-t-lg border-2 px-3 py-1 font-mono text-xs font-bold tracking-widest uppercase',
+                  '-mb-0.5 shrink-0 cursor-pointer rounded-t-lg border-2 px-2.5 py-1 font-mono text-[11px] font-bold tracking-widest uppercase',
                   active
                     ? 'border-border border-b-surface bg-surface text-accent'
                     : 'border-transparent text-ink-muted hover:text-ink',
@@ -192,91 +216,56 @@ function DexDevice({ revealed }: { revealed: boolean }) {
           })}
         </div>
 
-        <div role="tabpanel" id="dex-panel" aria-labelledby={`dex-tab-${tab}`} className="min-h-72 pt-4">
-          {tab === 'info' && (
-            <div key="info" className="animate-fade-up">
-              <p className="text-sm leading-relaxed text-ink-muted">{hero.dev.pitch}</p>
-              <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 border-t-2 border-dashed border-border pt-3 text-sm">
-                {card.fields.map((field) => (
-                  <div key={field.label}>
-                    <dt className="text-[11px] font-bold tracking-wider text-ink-muted uppercase">{field.label}</dt>
-                    <dd className="font-semibold">{field.value}</dd>
-                  </div>
-                ))}
-              </dl>
-              <dl className="mt-4 grid grid-cols-3 gap-2">
-                {hero.recruiter.stats.map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="flex flex-col-reverse rounded-xl border-2 border-border bg-surface-raised p-2 text-center"
-                  >
-                    <dt className="mt-1 text-[11px] leading-tight break-words hyphens-auto text-ink-muted">
-                      {stat.label}
-                    </dt>
-                    <dd className="font-display text-2xl font-extrabold text-accent">{stat.value}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-          )}
-
-          {tab === 'stats' && (
-            <ul key="stats" className="animate-fade-up space-y-3">
-              {profile.expertise.map((item) => (
-                <li key={item.icon}>
-                  <div className="flex justify-between gap-2 font-mono text-xs font-bold">
-                    <span>{item.title}</span>
-                    <span className="text-accent">{item.stat}</span>
-                  </div>
-                  <div className="mt-1 h-3 overflow-hidden rounded-full border-2 border-border bg-surface-raised">
-                    <div className="stat-fill h-full" style={{ width: `${item.stat}%` }} />
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
-
-          {tab === 'log' && (
-            <div key="log" className="animate-fade-up space-y-2 font-mono text-xs sm:text-sm">
-              {hero.dev.terminalLines.map((line) => (
-                <div key={line.command}>
-                  <p>
-                    <span className="text-accent">$</span> {line.command}
-                  </p>
-                  <p className="text-ink-muted">{line.output}</p>
-                </div>
-              ))}
-              <p>
-                <span className="text-accent">$</span>{' '}
-                <span className="inline-block h-4 w-2 animate-pulse bg-accent align-middle" aria-hidden />
-              </p>
-            </div>
-          )}
+        <div
+          ref={screenRef}
+          role="tabpanel"
+          id="dex-panel"
+          aria-labelledby={`dex-tab-${tab}`}
+          tabIndex={0}
+          className="dex-screen h-[26rem] overflow-y-auto overscroll-contain pt-4 pr-1 sm:h-[30rem]"
+        >
+          <div key={tab} className="animate-fade-up">
+            <Panel />
+          </div>
         </div>
       </div>
 
       {/* controles: direcional, alto-falante e botões A/B */}
       <div className="mt-5 flex items-center justify-between gap-4">
         <div className="grid grid-cols-3 grid-rows-3">
-          <span className="col-start-2 row-start-1 size-7 rounded-t-md border-2 border-b-0 border-border bg-surface-raised" aria-hidden />
+          <button
+            type="button"
+            onClick={() => scroll(-1)}
+            aria-label="▲"
+            className={cn(dpad, 'col-start-2 row-start-1 rounded-t-md border-b-0')}
+          >
+            <ChevronUp size={14} strokeWidth={3} aria-hidden />
+          </button>
           <button
             type="button"
             onClick={() => move(-1)}
-            aria-label={`${card.tabs.info} / ${card.tabs.stats} / ${card.tabs.log}: ◀`}
-            className="col-start-1 row-start-2 grid size-7 cursor-pointer place-items-center rounded-l-md border-2 border-r-0 border-border bg-surface-raised text-ink-muted hover:text-accent active:bg-surface"
+            aria-label="◀"
+            className={cn(dpad, 'col-start-1 row-start-2 rounded-l-md border-r-0')}
           >
             <ChevronLeft size={14} strokeWidth={3} aria-hidden />
           </button>
-          <span className="col-start-2 row-start-2 size-7 bg-surface-raised" aria-hidden />
+          <span className="col-start-2 row-start-2 size-8 bg-surface-raised" aria-hidden />
           <button
             type="button"
             onClick={() => move(1)}
-            aria-label={`${card.tabs.info} / ${card.tabs.stats} / ${card.tabs.log}: ▶`}
-            className="col-start-3 row-start-2 grid size-7 cursor-pointer place-items-center rounded-r-md border-2 border-l-0 border-border bg-surface-raised text-ink-muted hover:text-accent active:bg-surface"
+            aria-label="▶"
+            className={cn(dpad, 'col-start-3 row-start-2 rounded-r-md border-l-0')}
           >
             <ChevronRight size={14} strokeWidth={3} aria-hidden />
           </button>
-          <span className="col-start-2 row-start-3 size-7 rounded-b-md border-2 border-t-0 border-border bg-surface-raised" aria-hidden />
+          <button
+            type="button"
+            onClick={() => scroll(1)}
+            aria-label="▼"
+            className={cn(dpad, 'col-start-2 row-start-3 rounded-b-md border-t-0')}
+          >
+            <ChevronDown size={14} strokeWidth={3} aria-hidden />
+          </button>
         </div>
 
         <div className="flex flex-col items-center gap-2">
@@ -285,7 +274,9 @@ function DexDevice({ revealed }: { revealed: boolean }) {
               <span key={i} className="h-5 w-1 rounded-full bg-[rgb(0_0_0_/_0.35)]" />
             ))}
           </span>
-          <span className="hidden text-center font-mono text-[10px] text-[var(--dex-shell-ink)] sm:block">{card.navHint}</span>
+          <span className="hidden text-center font-mono text-[10px] text-[var(--dex-shell-ink)] sm:block">
+            {card.navHint}
+          </span>
         </div>
 
         <div className="flex items-end gap-3 pb-2">

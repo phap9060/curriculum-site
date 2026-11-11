@@ -117,7 +117,7 @@ idioma ativo. Para atualizar o CV, basta substituir esses arquivos.
 └── src/
     ├── components/
     │   ├── layout/               # Header, Footer
-    │   └── ui/                   # Section, Card, Badge, ButtonLink, ModeToggle, LangToggle, icons
+    │   └── ui/                   # Badge, Mascot, ModeToggle, LangToggle, icons
     ├── context/
     │   ├── mode-context.ts       # createContext + tipo Mode
     │   ├── ModeProvider.tsx      # modo vindo da URL (?mode=dev), classe .dark
@@ -131,7 +131,10 @@ idioma ativo. Para atualizar o CV, basta substituir esses arquivos.
     │   ├── profile.en.ts         # ★ conteúdo em inglês
     │   ├── profile.ts            # identidade + mapa de idiomas
     │   └── types.ts              # tipos do conteúdo
-    ├── sections/                 # Hero, Expertise, Experience, Education, Projects, Skills, Contact
+    ├── sections/
+    │   ├── RecruiterPage.tsx     # modo recruiter: página minimalista de texto
+    │   ├── Hero.tsx              # modo dev: silhueta + aparelho DEV-DEX
+    │   └── dex/DexPanels.tsx     # abas do DEV-DEX (info, stats, evolução, golpes...)
     ├── lib/
     │   ├── cn.ts                 # helper de classes condicionais
     │   └── route.ts              # idioma/modo na query string (?lg, ?mode)

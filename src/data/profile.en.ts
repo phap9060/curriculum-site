@@ -63,8 +63,23 @@ export const profileEn: Profile = {
       { label: 'Languages', value: 'PT · EN' },
       { label: 'Work mode', value: 'Remote' },
     ],
-    tabs: { info: 'Info', stats: 'Stats', log: 'Log' },
-    navHint: '◀ ▶ navigate · A résumé · B GitHub',
+    tabs: {
+      info: 'Info',
+      stats: 'Stats',
+      evolution: 'Evolution',
+      moves: 'Moves',
+      items: 'Items',
+      training: 'Training',
+      log: 'Log',
+    },
+    labels: {
+      baseStats: 'Base stats',
+      total: 'Total',
+      pickStage: 'Tap a stage to see the details',
+      stack: 'Stack',
+      links: 'Connect',
+    },
+    navHint: '◀ ▶ tabs · ▲ ▼ scroll · A résumé · B GitHub',
   },
 
   hero: {
@@ -368,7 +383,7 @@ export const profileEn: Profile = {
     },
     dev: {
       title: '$ ping pedro',
-      subtitle: 'Open to projects, code reviews and good conversations about front end.',
+      subtitle: 'Open to projects, code reviews and good conversations about software.',
     },
   },
 }

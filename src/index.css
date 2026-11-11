@@ -167,6 +167,12 @@
       var(--dex-shell);
   }
 
+  /* Rolagem interna da tela do DEV-DEX: barra fina, no tom da carcaça */
+  .dex-screen {
+    scrollbar-width: thin;
+    scrollbar-color: var(--dex-shell) transparent;
+  }
+
   /* Raios atrás do mascote no hero */
   .rays {
     background: repeating-conic-gradient(from 0deg, var(--ray-a) 0deg 10deg, var(--ray-b) 10deg 20deg);

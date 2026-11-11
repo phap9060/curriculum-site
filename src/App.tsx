@@ -5,14 +5,8 @@ import { Header } from './components/layout/Header'
 import { Footer } from './components/layout/Footer'
 import { RecruiterPage } from './sections/RecruiterPage'
 import { Hero } from './sections/Hero'
-import { Expertise } from './sections/Expertise'
-import { Experience } from './sections/Experience'
-import { Education } from './sections/Education'
-import { Projects } from './sections/Projects'
-import { Skills } from './sections/Skills'
-import { Contact } from './sections/Contact'
 
-/** Recruiter: página minimalista de texto. Dev: o site lúdico completo. */
+/** Recruiter: página minimalista de texto. Dev: silhueta + aparelho DEV-DEX com tudo dentro. */
 function Page() {
   const { isDev } = useMode()
 
@@ -21,12 +15,6 @@ function Page() {
   return (
     <main>
       <Hero />
-      <Expertise />
-      <Experience />
-      <Education />
-      <Projects />
-      <Skills />
-      <Contact />
     </main>
   )
 }

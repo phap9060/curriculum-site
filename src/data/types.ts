@@ -87,6 +87,9 @@ export interface EducationItem {
   period: string
 }
 
+/** Abas do aparelho DEV-DEX (modo dev). */
+export type DexTab = 'info' | 'stats' | 'evolution' | 'moves' | 'items' | 'training' | 'log'
+
 /** Carta do hero ("Quem é esse dev?"). */
 export interface CardInfo {
   question: string
@@ -97,7 +100,15 @@ export interface CardInfo {
   types: string[]
   fields: { label: string; value: string }[]
   /** Abas do aparelho (modo dev) */
-  tabs: { info: string; stats: string; log: string }
+  tabs: Record<DexTab, string>
+  /** Rótulos internos da tela */
+  labels: {
+    baseStats: string
+    total: string
+    pickStage: string
+    stack: string
+    links: string
+  }
   /** Dica de navegação exibida abaixo da tela */
   navHint: string
 }
