@@ -9,16 +9,25 @@ modos de exibição (recruiter e dev) e devem ser seguidas em qualquer component
 
 O site tem duas personalidades visuais, controladas pelo `ModeProvider`:
 
-Tema geral: **"Quem é esse dev?"** — o hero mostra um mascote original em silhueta
-que é revelado, ao lado de uma carta de perfil (tipos, campos, stats). A carreira
-aparece como "linha evolutiva". Não use nomes, personagens ou arte de franquias reais.
+Os dois modos agora têm públicos bem diferentes:
+
+- **Recruiter** (padrão): enxuto, quase um currículo. Cabeçalho de CV (foto, nome,
+  cargo, contatos, resumo), títulos de seção discretos, bordas finas de 1px, sem
+  sombras chapadas, sem barras de stat e sem "linha evolutiva".
+- **Dev**: o tema lúdico **"Quem é esse dev?"** — a foto aparece em silhueta sobre
+  raios e é revelada; ao lado fica o aparelho **DEV-DEX** (design original, inspirado
+  em enciclopédias de criaturas), com abas INFO / STATS / LOG, direcional e botões A/B.
+  Não use nomes, personagens ou arte de franquias reais.
 
 | | **Recruiter** (padrão) | **Dev** |
 |---|---|---|
-| Tema | Carta colecionável: papel creme, bordas grossas, sombra chapada | Tela LCD verde de console portátil, com scanlines |
-| Fonte display | Bricolage Grotesque | VT323 |
-| Accent | Coral `#d9361f` (+ azul `accent-2`, amarelo `accent-3`) | Lima `#d4ff5c` (+ ciano, amarelo) |
-| Títulos de seção | `Nº01` + título + régua | `>01` + título + régua |
+| Tema | Branco, bordas finas, sóbrio | Tela LCD verde, scanlines, bordas grossas e sombra chapada |
+| Fonte display | Inter | VT323 |
+| Accent | Azul `#1d4ed8` | Lima `#d4ff5c` (+ ciano, amarelo) |
+| Títulos de seção | Caixa alta pequena + linha fina | `>01` + título + régua |
+
+As bordas `border-2` dos componentes viram 1px no recruiter por uma regra em
+`index.css` (fora de `@layer`), então use `border-2` normalmente.
 
 Nunca crie um componente que exista só para um modo sem motivo. O padrão é:
 **mesma estrutura, conteúdo e tema diferentes por modo.**

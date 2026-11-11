@@ -34,17 +34,21 @@ export function Expertise() {
                 <span className="flex size-10 shrink-0 items-center justify-center rounded-xl border-2 border-border bg-accent-3 text-accent-3-contrast">
                   <Icon size={18} aria-hidden />
                 </span>
-                <h3 className="font-display text-xl leading-tight font-bold">{item.title}</h3>
+                <h3 className={isDev ? 'font-display text-xl leading-tight font-bold' : 'font-semibold'}>
+                  {item.title}
+                </h3>
               </div>
 
-              <div className="mt-4 flex items-center gap-3" aria-label={`${item.title}: ${item.stat}/100`}>
-                <div className="h-3 flex-1 overflow-hidden rounded-full border-2 border-border bg-surface">
-                  <div className="stat-fill h-full" style={{ width: `${item.stat}%` }} />
+              {isDev && (
+                <div className="mt-4 flex items-center gap-3" aria-label={`${item.title}: ${item.stat}/100`}>
+                  <div className="h-3 flex-1 overflow-hidden rounded-full border-2 border-border bg-surface">
+                    <div className="stat-fill h-full" style={{ width: `${item.stat}%` }} />
+                  </div>
+                  <span className="w-7 text-right font-mono text-xs font-bold">{item.stat}</span>
                 </div>
-                <span className="w-7 text-right font-mono text-xs font-bold">{item.stat}</span>
-              </div>
+              )}
 
-              <p className="mt-4 text-sm leading-relaxed text-ink-muted">{isDev ? item.dev : item.recruiter}</p>
+              <p className="mt-3 text-sm leading-relaxed text-ink-muted">{isDev ? item.dev : item.recruiter}</p>
             </Card>
           )
         })}

@@ -96,6 +96,10 @@ export interface CardInfo {
   species: string
   types: string[]
   fields: { label: string; value: string }[]
+  /** Abas do aparelho (modo dev) */
+  tabs: { info: string; stats: string; log: string }
+  /** Dica de navegação exibida abaixo da tela */
+  navHint: string
 }
 
 /** Textos fixos da interface (navegação, botões, rótulos de acessibilidade). */

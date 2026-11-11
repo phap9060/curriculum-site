@@ -54,6 +54,8 @@ export const profilePt: Profile = {
       { label: 'Idiomas', value: 'PT · EN' },
       { label: 'Modelo', value: 'Remoto' },
     ],
+    tabs: { info: 'Info', stats: 'Stats', log: 'Log' },
+    navHint: '◀ ▶ navegar · A baixar CV · B GitHub',
   },
 
   hero: {

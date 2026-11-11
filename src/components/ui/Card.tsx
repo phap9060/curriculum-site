@@ -7,13 +7,13 @@ interface CardProps {
   id?: string
 }
 
-/** Carta com borda grossa e sombra chapada; levanta levemente no hover. */
+/** Card: fino e sóbrio no recruiter; borda grossa, sombra chapada e hover no dev. */
 export function Card({ children, className, id }: CardProps) {
   return (
     <div
       id={id}
       className={cn(
-        'rounded-2xl border-2 border-border bg-surface-raised p-6 shadow-card transition-transform duration-200 hover:-translate-y-1',
+        'rounded-2xl border-2 border-border bg-surface-raised p-6 shadow-card transition-transform duration-200 dark:hover:-translate-y-1',
         className,
       )}
     >

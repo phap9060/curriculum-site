@@ -1,4 +1,5 @@
 import { useLang } from '../../hooks/useLang'
+import { useMode } from '../../hooks/useMode'
 import { identity } from '../../data/profile'
 import { ModeToggle } from '../ui/ModeToggle'
 import { LangToggle } from '../ui/LangToggle'
@@ -6,6 +7,7 @@ import { Mascot } from '../ui/Mascot'
 
 export function Header() {
   const { profile } = useLang()
+  const { isDev } = useMode()
   const { sections } = profile.ui
 
   const navLinks = [
@@ -18,10 +20,10 @@ export function Header() {
   ]
 
   return (
-    <header className="sticky top-0 z-50 border-b-2 border-border bg-surface/85 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b-2 border-border bg-surface/90 backdrop-blur-md">
       <div className="mx-auto flex h-16 w-full max-w-5xl items-center justify-between gap-3 px-4 sm:px-6">
         <a href="#top" className="flex min-w-0 items-center gap-2 font-display text-lg font-extrabold tracking-tight">
-          <Mascot className="w-8 shrink-0" />
+          {isDev && <Mascot className="w-8 shrink-0" />}
           <span className="hidden truncate min-[480px]:inline">
             {identity.name}
             <span className="text-accent">.</span>

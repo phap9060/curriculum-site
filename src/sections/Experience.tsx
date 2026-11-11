@@ -22,45 +22,49 @@ export function Experience() {
 
   return (
     <Section id="experiencia" index={2} title={ui.sections.experience}>
-      <p className="mb-3 text-xs font-bold tracking-widest text-ink-muted uppercase">{ui.evolution}</p>
-      <ol className="mb-12 flex flex-col items-start gap-1 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
-        {stages.map((item, index) => {
-          const isCurrent = index === stages.length - 1
-          return (
-            <Fragment key={item.company}>
-              <li>
-                <a
-                  href={`#exp-${slug(item.company)}`}
-                  className={`block rounded-xl border-2 border-border px-3 py-2 shadow-card-sm transition-transform hover:-translate-y-0.5 ${
-                    isCurrent ? 'bg-accent text-accent-contrast' : 'bg-surface-raised'
-                  }`}
-                >
-                  <span className="flex items-center gap-1 font-mono text-[10px] font-bold tracking-wider uppercase opacity-80">
-                    {isCurrent && <Star size={10} aria-hidden />}
-                    {isCurrent ? ui.current : `${ui.stage} ${index + 1}`} · Lv.{startYear(item.period)}
-                  </span>
-                  <span className="font-display text-lg leading-tight font-bold">{item.company}</span>
-                </a>
-              </li>
-              {!isCurrent && (
-                <li aria-hidden className="pl-4 text-accent sm:pl-0">
-                  <ChevronRight size={22} strokeWidth={3} className="rotate-90 sm:rotate-0" />
-                </li>
-              )}
-            </Fragment>
-          )
-        })}
-      </ol>
+      {isDev && (
+        <>
+          <p className="mb-3 text-xs font-bold tracking-widest text-ink-muted uppercase">{ui.evolution}</p>
+          <ol className="mb-12 flex flex-col items-start gap-1 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
+            {stages.map((item, index) => {
+              const isCurrent = index === stages.length - 1
+              return (
+                <Fragment key={item.company}>
+                  <li>
+                    <a
+                      href={`#exp-${slug(item.company)}`}
+                      className={`block rounded-xl border-2 border-border px-3 py-2 shadow-card-sm transition-transform hover:-translate-y-0.5 ${
+                        isCurrent ? 'bg-accent text-accent-contrast' : 'bg-surface-raised'
+                      }`}
+                    >
+                      <span className="flex items-center gap-1 font-mono text-[10px] font-bold tracking-wider uppercase opacity-80">
+                        {isCurrent && <Star size={10} aria-hidden />}
+                        {isCurrent ? ui.current : `${ui.stage} ${index + 1}`} · Lv.{startYear(item.period)}
+                      </span>
+                      <span className="font-display text-lg leading-tight font-bold">{item.company}</span>
+                    </a>
+                  </li>
+                  {!isCurrent && (
+                    <li aria-hidden className="pl-4 text-accent sm:pl-0">
+                      <ChevronRight size={22} strokeWidth={3} className="rotate-90 sm:rotate-0" />
+                    </li>
+                  )}
+                </Fragment>
+              )
+            })}
+          </ol>
+        </>
+      )}
 
-      <div className="space-y-8">
+      <div className={isDev ? 'space-y-8' : 'space-y-5'}>
         {profile.experience.map((item) => {
           const isGroup = item.roles.length > 1
 
           return (
             <Card key={item.company} id={`exp-${slug(item.company)}`} className="animate-fade-up scroll-mt-24">
               <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <h3 className="font-display text-2xl font-extrabold">{item.company}</h3>
-                <Badge mono tone="accent3" className="shrink-0">
+                <h3 className={isDev ? 'font-display text-2xl font-extrabold' : 'text-xl font-bold'}>{item.company}</h3>
+                <Badge mono tone={isDev ? 'accent3' : 'neutral'} className="shrink-0">
                   {item.period}
                 </Badge>
               </div>

@@ -54,6 +54,8 @@ export const profileEn: Profile = {
       { label: 'Languages', value: 'PT · EN' },
       { label: 'Work mode', value: 'Remote' },
     ],
+    tabs: { info: 'Info', stats: 'Stats', log: 'Log' },
+    navHint: '◀ ▶ navigate · A résumé · B GitHub',
   },
 
   hero: {
