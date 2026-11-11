@@ -8,11 +8,11 @@ import type { Profile } from './types'
  */
 export const profileEn: Profile = {
   meta: {
-    title: 'Pedro Henrique — Senior Front-end Developer (React)',
+    title: 'Pedro Henrique — Senior Software Engineer',
     description:
-      'Portfolio of Pedro Henrique Assunção Pereira — Senior Front-end Developer specialized in React and TypeScript, focused on performance, architecture, data visualization and test automation.',
+      'Portfolio of Pedro Henrique Assunção Pereira — Senior Software Engineer specialized in React and TypeScript, focused on performance, architecture, data visualization and test automation.',
   },
-  role: 'Senior Front-end Developer | React | TypeScript | Performance, Architecture & Data Visualization',
+  role: 'Senior Software Engineer | React | TypeScript | Performance, Architecture & Data Visualization',
   location: 'Teresina, PI — Brazil · Remote',
   cvUrl: `${import.meta.env.BASE_URL}cv-en.pdf`,
   cvFileName: 'Pedro-Henrique-Assuncao-Resume.pdf',
@@ -46,7 +46,7 @@ export const profileEn: Profile = {
     reveal: 'Reveal',
     hide: 'Hide again',
     answer: "It's Pedro Henrique!",
-    species: 'The Senior Front-end Developer',
+    species: 'The Senior Software Engineer',
     types: ['Front-end', 'Data'],
     fields: [
       { label: 'Region', value: 'Teresina, BR' },
@@ -58,7 +58,7 @@ export const profileEn: Profile = {
 
   hero: {
     recruiter: {
-      headline: 'Senior Front-end Developer specialized in React, performance and data visualization.',
+      headline: 'Senior Software Engineer specialized in React, performance and data visualization.',
       pitch:
         'Continuous hands-on experience since 2021 with React and TypeScript in production, on highly complex applications with heavy data and traffic. I work between strategy and execution: I define front-end architecture, optimize performance (Core Web Vitals), build chart-heavy interfaces and keep quality high with automated tests, working closely with design, product and backend teams.',
       stats: [
@@ -69,9 +69,9 @@ export const profileEn: Profile = {
     },
     dev: {
       pitch:
-        'Senior front-end engineer shipping React and TypeScript to production since 2021. Charts with millions of points, Core Web Vitals, micro frontends, Next.js (CSR/SSR/SSG) and end-to-end tests with Cypress and Playwright in CI/CD.',
+        'Senior software engineer shipping React and TypeScript to production since 2021. Charts with millions of points, Core Web Vitals, micro frontends, Next.js (CSR/SSR/SSG) and end-to-end tests with Cypress and Playwright in CI/CD.',
       terminalLines: [
-        { command: 'whoami', output: 'pedro — senior front-end engineer · react · typescript' },
+        { command: 'whoami', output: 'pedro — senior software engineer · react · typescript' },
         { command: 'cat stack.txt', output: 'react · next.js · typescript · react native · node · aws' },
         { command: 'cat focus.txt', output: 'performance · architecture · dataviz · security' },
         { command: 'cat testing.txt', output: 'jest · vitest · testing library · cypress · playwright' },

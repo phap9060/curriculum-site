@@ -8,11 +8,11 @@ import type { Profile } from './types'
  */
 export const profilePt: Profile = {
   meta: {
-    title: 'Pedro Henrique — Desenvolvedor Front-end Sênior React',
+    title: 'Pedro Henrique — Engenheiro de Software Sênior',
     description:
-      'Portfólio de Pedro Henrique Assunção Pereira — Desenvolvedor Front-end Sênior especialista em React e TypeScript, com foco em performance, arquitetura, visualização de dados e automação de testes.',
+      'Portfólio de Pedro Henrique Assunção Pereira — Engenheiro de Software Sênior especialista em React e TypeScript, com foco em performance, arquitetura, visualização de dados e automação de testes.',
   },
-  role: 'Desenvolvedor Front-end Sênior | React | TypeScript | Performance, Arquitetura e Visualização de Dados',
+  role: 'Engenheiro de Software Sênior | React | TypeScript | Performance, Arquitetura e Visualização de Dados',
   location: 'Teresina, PI — Brasil · Remoto',
   cvUrl: `${import.meta.env.BASE_URL}cv-pt.pdf`,
   cvFileName: 'Pedro-Henrique-Assuncao-Curriculo.pdf',
@@ -46,7 +46,7 @@ export const profilePt: Profile = {
     reveal: 'Revelar',
     hide: 'Esconder de novo',
     answer: 'É o Pedro Henrique!',
-    species: 'O Desenvolvedor Front-end Sênior',
+    species: 'O Engenheiro de Software Sênior',
     types: ['Front-end', 'Dados'],
     fields: [
       { label: 'Região', value: 'Teresina, BR' },
@@ -58,7 +58,7 @@ export const profilePt: Profile = {
 
   hero: {
     recruiter: {
-      headline: 'Desenvolvedor Front-end Sênior, especialista em React, performance e visualização de dados.',
+      headline: 'Engenheiro de Software Sênior, especialista em React, performance e visualização de dados.',
       pitch:
         'Experiência contínua desde 2021 com React e TypeScript em produção, em aplicações de alta complexidade e alto volume de dados e acessos. Atuo entre a estratégia e a execução: defino arquitetura front-end, otimizo performance (Core Web Vitals), construo interfaces ricas em gráficos e garanto qualidade com testes automatizados, junto a design, produto e backend.',
       stats: [
@@ -69,9 +69,9 @@ export const profilePt: Profile = {
     },
     dev: {
       pitch:
-        'Front-end sênior com React e TypeScript em produção desde 2021. Gráficos com milhões de pontos, Core Web Vitals, micro frontends, Next.js (CSR/SSR/SSG) e testes de ponta a ponta com Cypress e Playwright no CI/CD.',
+        'Engenheiro de software sênior com React e TypeScript em produção desde 2021. Gráficos com milhões de pontos, Core Web Vitals, micro frontends, Next.js (CSR/SSR/SSG) e testes de ponta a ponta com Cypress e Playwright no CI/CD.',
       terminalLines: [
-        { command: 'whoami', output: 'pedro — senior front-end engineer · react · typescript' },
+        { command: 'whoami', output: 'pedro — senior software engineer · react · typescript' },
         { command: 'cat stack.txt', output: 'react · next.js · typescript · react native · node · aws' },
         { command: 'cat focus.txt', output: 'performance · arquitetura · dataviz · segurança' },
         { command: 'cat testing.txt', output: 'jest · vitest · testing library · cypress · playwright' },

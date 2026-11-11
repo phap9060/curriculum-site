@@ -1,4 +1,3 @@
-import { useMode } from '../../hooks/useMode'
 import { useLang } from '../../hooks/useLang'
 import { identity } from '../../data/profile'
 import { ModeToggle } from '../ui/ModeToggle'
@@ -6,7 +5,6 @@ import { LangToggle } from '../ui/LangToggle'
 import { Mascot } from '../ui/Mascot'
 
 export function Header() {
-  const { isDev } = useMode()
   const { profile } = useLang()
   const { sections } = profile.ui
 
@@ -25,7 +23,6 @@ export function Header() {
         <a href="#top" className="flex min-w-0 items-center gap-2 font-display text-lg font-extrabold tracking-tight">
           <Mascot className="w-8 shrink-0" />
           <span className="hidden truncate min-[480px]:inline">
-            {isDev && <span className="text-accent">~/</span>}
             {identity.name}
             <span className="text-accent">.</span>
           </span>

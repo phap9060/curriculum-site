@@ -176,7 +176,19 @@
     animation: spin 60s linear infinite;
   }
 
-  .mascot-hidden {
+  /* Raios sem a máscara radial, para preencher um círculo inteiro */
+  .rays-full {
+    -webkit-mask: none;
+    mask: none;
+  }
+
+  /* No modo dev, a foto revelada ganha o tom verde da tela LCD */
+  .dark .photo-revealed {
+    filter: grayscale(1) sepia(1) hue-rotate(45deg) saturate(1.8) brightness(0.95);
+  }
+
+  .mascot-hidden,
+  .dark .mascot-hidden {
     filter: var(--silhouette);
   }
 

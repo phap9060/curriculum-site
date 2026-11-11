@@ -7,15 +7,16 @@ import { cn } from '../lib/cn'
 import { ButtonLink } from '../components/ui/ButtonLink'
 import { Badge } from '../components/ui/Badge'
 import { toneCycle } from '../components/ui/badge-tones'
-import { Mascot } from '../components/ui/Mascot'
+import photo from '../assets/pedro.webp'
 import { GithubIcon, LinkedinIcon } from '../components/ui/icons'
 
 /** Tempo até a revelação automática, para quem não clicar. */
 const AUTO_REVEAL_MS = 1800
 
 /**
- * Hero "Quem é esse dev?": o mascote começa como silhueta sobre raios e é
- * revelado (automaticamente ou com clique). Ao lado, a carta de perfil.
+ * Hero "Quem é esse dev?": a foto (recortada, com fundo transparente) começa
+ * como silhueta sobre raios e é revelada automaticamente ou com clique.
+ * Ao lado, a carta de perfil.
  */
 export function Hero() {
   const { profile } = useLang()
@@ -50,13 +51,19 @@ export function Hero() {
           tabIndex={-1}
           aria-hidden
           onClick={toggle}
-          className="relative mt-6 grid size-64 cursor-pointer place-items-center sm:size-80"
+          className="relative mt-6 size-64 cursor-pointer overflow-hidden rounded-full border-2 border-border bg-accent-3 shadow-card sm:size-80"
         >
-          <span className="rays absolute inset-0 rounded-full" />
-          <Mascot
+          <span className="rays rays-full absolute -inset-1/4" />
+          <img
+            src={photo}
+            alt={identity.fullName}
+            width={640}
+            height={640}
+            fetchPriority="high"
+            draggable={false}
             className={cn(
-              'relative w-3/4 drop-shadow-[0_6px_0_rgb(0_0_0_/_0.18)] transition-[filter,transform] duration-700 ease-out',
-              revealed ? 'scale-105' : 'mascot-hidden scale-95',
+              'absolute bottom-0 left-1/2 w-[88%] origin-bottom -translate-x-1/2 transition-[filter,scale] duration-700 ease-out select-none',
+              revealed ? 'photo-revealed scale-100' : 'mascot-hidden scale-95',
             )}
           />
         </button>
