@@ -7,7 +7,7 @@ import { Mascot } from '../ui/Mascot'
 export function Header() {
   const { isDev } = useMode()
 
-  // Recruiter: nada de barra — só os seletores de idioma/modo, discretos no canto.
+  // Recruiter: nada de barra, só os seletores de idioma/modo, discretos no canto.
   if (!isDev) {
     return (
       <div className="absolute top-4 right-4 z-50 flex items-center gap-2 sm:top-5 sm:right-6">

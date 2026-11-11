@@ -3,7 +3,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /*
- * Design tokens — tema "Quem é esse dev?"
+ * Design tokens: tema "Quem é esse dev?"
  * As cores semânticas apontam para variáveis CSS que mudam conforme o modo:
  *   :root  -> modo recruiter: carta colecionável (papel creme, bordas grossas, sombra chapada)
  *   .dark  -> modo dev: colorido, carta colecionável + aparelho DEV-DEX vermelho

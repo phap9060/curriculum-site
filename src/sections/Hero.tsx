@@ -23,7 +23,7 @@ import {
 const AUTO_REVEAL_MS = 1800
 
 /**
- * Modo dev: "Quem é esse dev?" — a foto começa em silhueta e é revelada; ao
+ * Modo dev: "Quem é esse dev?": a foto começa em silhueta e é revelada; ao
  * lado, o aparelho DEV-DEX concentra todas as informações do perfil, como a
  * ficha de uma criatura. (O modo recruiter usa RecruiterPage.)
  */

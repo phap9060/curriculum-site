@@ -12,15 +12,15 @@ O site tem duas personalidades visuais, controladas pelo `ModeProvider`:
 Os dois modos agora têm públicos bem diferentes:
 
 - **Recruiter** (padrão): página minimalista própria (`sections/RecruiterPage.tsx`),
-  uma coluna estreita só de texto — foto, nome, intro, o que estou fazendo agora e
+  uma coluna estreita só de texto: foto, nome, intro, o que estou fazendo agora e
   listas de uma linha (experiência, projetos, formação, stack), com rodapé de links.
   Sem cabeçalho/menu (só os seletores no canto), cards, ícones ou números.
-- **Dev**: o tema lúdico **"Quem é esse dev?"** — a foto aparece em silhueta sobre
+- **Dev**: o tema lúdico **"Quem é esse dev?"**: a foto aparece em silhueta sobre
   raios e é revelada; ao lado, o aparelho **DEV-DEX** vermelho (design original,
   inspirado em enciclopédias de criaturas, com uma janela do mascote no lugar de lente)
   concentra **todas** as informações, como a ficha de uma criatura, em abas: INFO,
   EVOLUÇÃO (experiência, com realizações e notas técnicas por cargo), HABILIDADES
-  (especialidades, só texto — sem barras), ITENS (projetos), TREINO
+  (especialidades, só texto, sem barras), ITENS (projetos), TREINO
   (formação), HABITAT ("onde encontrar esse dev": região e redes) e LOG (terminal). A tela tem altura fixa e rolagem
   interna; o direcional troca de aba (◀ ▶) e rola (▲ ▼). Painéis em
   `sections/dex/DexPanels.tsx`. Não use nomes, personagens ou arte de franquias reais.
@@ -62,7 +62,7 @@ paleta, edite apenas os valores em `:root` (recruiter) e `.dark` (dev).
 ### Accent por modo
 
 A cor de destaque é parte da identidade do modo. Não force uma accent diferente
-da do tema ativo — se precisar de uma terceira cor semântica (ex.: sucesso,
+da do tema ativo. Se precisar de uma terceira cor semântica (ex.: sucesso,
 erro), crie um token novo seguindo o mesmo padrão.
 
 ---
@@ -77,7 +77,7 @@ erro), crie um token novo seguindo o mesmo padrão.
 Escala de títulos:
 
 - `h1` (hero): `text-4xl sm:text-5xl font-extrabold tracking-tight`
-- `h2` (seções): `text-3xl font-bold tracking-tight` — sempre via componente `Section`
+- `h2` (seções): `text-3xl font-bold tracking-tight`, sempre via componente `Section`
 - `h3` (itens): `text-lg` a `text-xl font-semibold`
 
 Texto de apoio: `text-sm` ou `text-base` com `text-ink-muted` e `leading-relaxed`.
@@ -98,7 +98,7 @@ Texto de apoio: `text-sm` ou `text-base` com `text-ink-muted` e `leading-relaxed
 
 - Botões e elementos pequenos: `rounded-lg` / `rounded-full` (pills)
 - Cards e janelas: `rounded-xl`
-- Sombras: discretas — `shadow-sm` em cards, `shadow-lg` apenas na janela de terminal
+- Sombras: discretas: `shadow-sm` em cards, `shadow-lg` apenas na janela de terminal
 - Borda é preferida a sombra para separar superfícies (`border border-border`)
 
 ---
@@ -152,5 +152,5 @@ As regras de conteúdo são tão importantes quanto as visuais:
 - **Dev**: detalhes de implementação, stack exata, decisões de arquitetura e
   trade-offs. Pode usar jargão técnico à vontade.
 
-Todo o conteúdo vive em `src/data/profile.ts` — nunca hardcode texto de perfil
+Todo o conteúdo vive em `src/data/profile.ts`. Nunca hardcode texto de perfil
 nos componentes.

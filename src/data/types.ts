@@ -156,7 +156,7 @@ export interface Profile {
   ui: UiStrings
   /** Página minimalista do modo recruiter */
   minimal: {
-    /** Apresentação curta (1–2 frases) */
+    /** Apresentação curta (1 a 2 frases) */
     intro: string
     /** O que estou fazendo agora */
     now: string

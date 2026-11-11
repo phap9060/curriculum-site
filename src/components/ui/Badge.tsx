@@ -11,7 +11,7 @@ const tones: Record<BadgeTone, string> = {
 
 interface BadgeProps {
   children: ReactNode
-  /** Usa fonte mono — padrão no modo dev */
+  /** Usa fonte mono, padrão no modo dev */
   mono?: boolean
   tone?: BadgeTone
   className?: string

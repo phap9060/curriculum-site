@@ -1,6 +1,6 @@
 <div align="center">
 
-# Pedro Henrique — Site Currículo
+# Pedro Henrique | Site Currículo
 
 **Currículo interativo com dois modos de leitura: um para recrutadores, outro para devs.**
 
@@ -20,7 +20,7 @@
 
 ## Sobre o projeto
 
-Um site pessoal que funciona como currículo — mas com uma proposta diferente: em vez
+Um site pessoal que funciona como currículo, mas com uma proposta diferente: em vez
 de uma única página genérica, ele oferece **duas experiências de leitura** para o
 mesmo perfil, alternáveis por um toggle no topo.
 
@@ -40,7 +40,7 @@ compartilhada por link (sem parâmetros vale o padrão, inglês + recruiter):
 | `/?lg=pt&mode=dev` | PT | Dev |
 
  A troca não muda só as cores: **o conteúdo, a organização e a linguagem de
-cada seção também mudam** — cada bloco de dados tem uma versão `recruiter` e uma
+cada seção também mudam**: cada bloco de dados tem uma versão `recruiter` e uma
 versão `dev`.
 
 ## Preview
@@ -79,7 +79,7 @@ npm run lint     # roda o ESLint
 ```
 
 > **Nota:** o TypeScript está fixado em `~5.9` de propósito. O template original
-> vinha com TS 7, que o `typescript-eslint` ainda não suporta — isso quebrava o
+> vinha com TS 7, que o `typescript-eslint` ainda não suporta, e isso quebrava o
 > `npm install` e o `npm run lint`.
 
 ## Editando o conteúdo
@@ -92,7 +92,7 @@ src/data/profile.en.ts   # inglês
 src/data/profile.ts      # nome e links (independem do idioma)
 ```
 
-Nome, contatos, headline, experiências, formação, projetos e skills — cada bloco tem
+Nome, contatos, headline, experiências, formação, projetos e skills: cada bloco tem
 uma versão `recruiter` e uma versão `dev`. Os dois arquivos seguem a mesma estrutura
 (`Profile`, em `types.ts`); ao editar um, replique a mudança no outro. O visitante troca
 o idioma pelo seletor **PT / EN** no cabeçalho (o idioma vai para a URL como `?lg=pt`;
@@ -158,7 +158,7 @@ idioma ativo. Para atualizar o CV, basta substituir esses arquivos.
 `.dark` (modo dev, escuro). O `ModeProvider` alterna a classe `.dark` no `<html>`
 conforme o modo ativo, e os tokens semânticos do Tailwind (`bg-surface`, `text-ink`,
 `bg-accent`...) reagem automaticamente. Nenhum componente precisa saber qual tema está
-ativo — só qual modo (`useMode()`).
+ativo, só qual modo (`useMode()`).
 
 ## Build e deploy
 

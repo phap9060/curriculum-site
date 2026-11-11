@@ -8,12 +8,12 @@ import type { Profile } from './types'
  */
 export const profilePt: Profile = {
   meta: {
-    title: 'Pedro Henrique — Engenheiro de Software Sênior',
+    title: 'Pedro Henrique | Engenheiro de Software Sênior',
     description:
-      'Portfólio de Pedro Henrique Assunção Pereira — Engenheiro de Software Sênior que atua no front-end e no back-end: React, Node.js, sistemas distribuídos, mensageria, performance e visualização de dados.',
+      'Portfólio de Pedro Henrique Assunção Pereira, Engenheiro de Software Sênior que atua no front-end e no back-end: React, Node.js, sistemas distribuídos, mensageria, performance e visualização de dados.',
   },
   role: 'Engenheiro de Software Sênior | Front-end e back-end | React | Node.js | Sistemas distribuídos',
-  location: 'Teresina, PI — Brasil · Remoto',
+  location: 'Teresina, PI, Brasil · Remoto',
   cvUrl: `${import.meta.env.BASE_URL}cv-pt.pdf`,
   cvFileName: 'Pedro-Henrique-Assuncao-Curriculo.pdf',
 
@@ -51,7 +51,7 @@ export const profilePt: Profile = {
     done: {
       title: 'O que já fiz',
       intro:
-        'Em mais de 5 anos, entreguei software para produtos com muito dado e muito acesso — uma plataforma industrial internacional, um e-commerce de grande porte e um aplicativo mobile — atuando na stack inteira, das interfaces aos serviços.',
+        'Em mais de 5 anos, entreguei software para produtos com muito dado e muito acesso (uma plataforma industrial internacional, um e-commerce de grande porte e um aplicativo mobile), atuando na stack inteira, das interfaces aos serviços.',
       items: [
         {
           title: 'Transformei dados pesados em informação utilizável.',
@@ -63,7 +63,7 @@ export const profilePt: Profile = {
         },
         {
           title: 'Conectei o front-end ao back-end.',
-          text: 'Integração via APIs REST, microsserviços e mensageria (SQS, Kafka, RabbitMQ), com logs, métricas e alertas — diagnosticando gargalos junto aos times de backend em vez de adivinhar.',
+          text: 'Integração via APIs REST, microsserviços e mensageria (SQS, Kafka, RabbitMQ), com logs, métricas e alertas, diagnosticando gargalos junto aos times de backend em vez de adivinhar.',
         },
         {
           title: 'Elevei a régua de qualidade.',
@@ -74,7 +74,7 @@ export const profilePt: Profile = {
           text: 'Orientei devs mais juniores em code reviews e ensinei React em um curso técnico, adaptando as explicações a cada nível.',
         },
       ],
-      how: 'Como trabalho: diagnostico antes de mudar, documento decisões (ADRs), entrego em passos pequenos e meço o resultado em produção — Core Web Vitals, métricas e alertas — junto a produto, design e engenharia.',
+      how: 'Como trabalho: diagnostico antes de mudar, documento decisões (ADRs), entrego em passos pequenos e meço o resultado em produção (Core Web Vitals, métricas e alertas), junto a produto, design e engenharia.',
       companies: 'No caminho: Vetta, Raro Labs (Tele Sena, DUcash, Raro Academy) e ConsuTI.',
     },
   },
@@ -110,7 +110,7 @@ export const profilePt: Profile = {
     navHint: '◀ ▶ abas · ▲ ▼ rolar · A CV · B GitHub',
     habitat: {
       title: 'Onde encontrar esse dev',
-      region: { label: 'Região nativa', value: 'Teresina, PI — Brasil · trabalha remoto' },
+      region: { label: 'Região nativa', value: 'Teresina, PI, Brasil · trabalha remoto' },
       spots: [
         { id: 'email', area: 'E-mail', note: 'Aparece com frequência · responde em até 24h' },
         { id: 'linkedin', area: 'LinkedIn', note: 'Habitat principal · aceita conexões' },
@@ -122,7 +122,7 @@ export const profilePt: Profile = {
 
   hero: {
     recruiter: {
-      headline: 'Engenheiro de Software Sênior que entrega de ponta a ponta — das interfaces em React aos sistemas distribuídos no back-end.',
+      headline: 'Engenheiro de Software Sênior que entrega de ponta a ponta, das interfaces em React aos sistemas distribuídos no back-end.',
       pitch:
         'Engenheiro de software desde 2021, construindo de ponta a ponta produtos de alta complexidade e alto volume de dados e acessos. No back-end, trabalho com sistemas distribuídos: microsserviços em Node.js, APIs REST, mensageria (SQS, Kafka, RabbitMQ), serverless na AWS e observabilidade com logs, métricas e alertas (Datadog, New Relic). No front-end, defino arquitetura, otimizo performance (Core Web Vitals) e construo interfaces ricas em gráficos com React e TypeScript. Atuo entre a estratégia e a execução, garanto qualidade com testes automatizados e colaboro de perto com produto, design e engenharia.',
       stats: [
@@ -135,7 +135,7 @@ export const profilePt: Profile = {
       pitch:
         'Engenheiro de software sênior em produção desde 2021, nos dois lados da stack. Back: microsserviços em Node.js, APIs REST, mensageria com SQS, Kafka e RabbitMQ, AWS Lambda/EC2 e observabilidade. Front: React, TypeScript, gráficos com milhões de pontos, Core Web Vitals, micro frontends e Next.js (CSR/SSR/SSG). Tudo coberto por testes no CI/CD.',
       terminalLines: [
-        { command: 'whoami', output: 'pedro — engenheiro de software sênior · front-end + back-end' },
+        { command: 'whoami', output: 'pedro · engenheiro de software sênior · front-end + back-end' },
         { command: 'cat backend.txt', output: 'node.js · microsserviços · apis rest · sqs · kafka · rabbitmq · aws' },
         { command: 'cat frontend.txt', output: 'react · next.js · typescript · react native · dataviz' },
         { command: 'cat focus.txt', output: 'performance · arquitetura · sistemas distribuídos · dataviz · segurança' },
@@ -194,7 +194,7 @@ export const profilePt: Profile = {
   experience: [
     {
       company: 'Vetta',
-      period: 'Fev 2025 — atual',
+      period: 'Fev 2025 até o momento',
       location: 'Belo Horizonte, Brasil · Remoto',
       roles: [
         {
@@ -242,18 +242,18 @@ export const profilePt: Profile = {
     },
     {
       company: 'Raro Labs',
-      period: 'Mai 2022 — Jan 2025',
+      period: 'Mai 2022 a Jan 2025',
       location: 'Brasil · Remoto',
       summary: {
         recruiter:
-          'Quase 3 anos em dois projetos: um e-commerce de grande porte e alto volume de acessos e um aplicativo mobile — além de atuar como instrutor de React.',
+          'Quase 3 anos em dois projetos: um e-commerce de grande porte e alto volume de acessos e um aplicativo mobile, além de atuar como instrutor de React.',
         dev: 'Quase 3 anos na Raro Labs, em dois projetos: Tele Sena (React/Next.js, AWS) e DUcash (React Native).',
       },
       roles: [
         {
           title: 'Desenvolvedor Full-Stack',
           client: 'Tele Sena',
-          period: 'Set 2023 — Jan 2025',
+          period: 'Set 2023 a Jan 2025',
           recruiter: {
             summary: 'Plataforma de vendas online de grande porte e alto volume de acessos (e-commerce).',
             highlights: [
@@ -275,7 +275,7 @@ export const profilePt: Profile = {
         {
           title: 'Desenvolvedor Mobile',
           client: 'DUcash',
-          period: 'Mai 2022 — Ago 2023',
+          period: 'Mai 2022 a Ago 2023',
           recruiter: {
             summary: 'Aplicativo mobile eficiente e responsivo em React Native.',
             highlights: [
@@ -296,7 +296,7 @@ export const profilePt: Profile = {
         {
           title: 'Instrutor Frontend',
           client: 'Raro Academy',
-          period: 'Jun 2023 — Set 2023',
+          period: 'Jun 2023 a Set 2023',
           recruiter: {
             summary: 'Instrutor de React em curso técnico de desenvolvimento web.',
             highlights: ['Ensinei React em curso técnico, com explicações adaptadas a diferentes níveis de conhecimento'],
@@ -310,7 +310,7 @@ export const profilePt: Profile = {
     },
     {
       company: 'ConsuTI',
-      period: 'Jan 2021 — Mar 2022',
+      period: 'Jan 2021 a Mar 2022',
       location: 'Teresina, Brasil',
       roles: [
         {
@@ -335,7 +335,7 @@ export const profilePt: Profile = {
     {
       title: 'Pós-graduação em Engenharia de Software',
       institution: 'Descomplica Faculdade Digital',
-      period: '2023 — 2024',
+      period: '2023 a 2024',
     },
     {
       title: 'Curso Técnico Integrado em Desenvolvimento Web e Mobile',
@@ -345,13 +345,13 @@ export const profilePt: Profile = {
     {
       title: 'Bacharelado em Engenharia Civil',
       institution: 'UNINOVAFAPI',
-      period: '2015 — 2019',
+      period: '2015 a 2019',
     },
   ],
 
   projects: [
     {
-      name: 'Site Currículo — este site',
+      name: 'Site Currículo (este site)',
       repoUrl: 'https://github.com/phap9060/curriculum-site',
       recruiter: {
         tagline: 'Portfólio pessoal com experiência adaptada para recruiters e devs.',
@@ -368,7 +368,7 @@ export const profilePt: Profile = {
       },
     },
     {
-      name: 'Sua Pelada — gerenciador de peladas',
+      name: 'Sua Pelada: gerenciador de peladas',
       repoUrl: 'https://github.com/phap9060/sua-pelada',
       recruiter: {
         tagline: 'Aplicação para organizar peladas entre amigos, do convite ao campeão.',
