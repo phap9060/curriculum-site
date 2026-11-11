@@ -46,8 +46,8 @@ export const profilePt: Profile = {
     reveal: 'Revelar',
     hide: 'Esconder de novo',
     answer: 'É o Pedro Henrique!',
-    species: 'O Engenheiro de Software Sênior',
-    types: ['Front-end', 'Dados'],
+    species: 'Engenheiro de Software Sênior',
+    types: ['Front-end', 'Dados', 'Back-end', 'IA', 'RAG', 'LLM', 'MCP'],
     fields: [
       { label: 'Região', value: 'Teresina, BR' },
       { label: 'Em produção desde', value: '2021' },

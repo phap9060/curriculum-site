@@ -102,11 +102,11 @@ function ProfileCard({ revealed }: { revealed: boolean }) {
   return (
     <article className="animate-fade-up rounded-3xl border-2 border-border bg-accent-3 p-2.5 shadow-card">
       <div className="rounded-2xl border-2 border-border bg-surface-raised p-5 sm:p-6">
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <span className="font-mono text-xs font-bold text-ink-muted">Nº 2021</span>
-          <div className="flex gap-1.5">
+        <div className="flex items-start justify-between gap-3">
+          <span className="shrink-0 pt-0.5 font-mono text-xs font-bold text-ink-muted">Nº 2021</span>
+          <div className="flex flex-wrap justify-end gap-1.5">
             {card.types.map((type, index) => (
-              <Badge key={type} tone={toneCycle[index]} className="tracking-wide uppercase">
+              <Badge key={type} tone={toneCycle[index % toneCycle.length]} className="tracking-wide uppercase">
                 {type}
               </Badge>
             ))}
