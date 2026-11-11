@@ -49,19 +49,15 @@ export function RecruiterPage() {
       </header>
 
       <Block id="o-que-ja-fiz" title={minimal.done.title}>
-        <p>{minimal.done.intro}</p>
-        <ol className="mt-6 space-y-5">
+        <ol className="space-y-3">
           {minimal.done.items.map((item, index) => (
-            <li key={item.title} className="grid grid-cols-[3ch_1fr] gap-x-2">
+            <li key={item} className="grid grid-cols-[3ch_1fr] gap-x-2">
               <span className="text-ink">{String(index + 1).padStart(2, '0')}</span>
-              <div>
-                <span className="text-ink">{item.title}</span> {item.text}
-              </div>
+              <span>{item}</span>
             </li>
           ))}
         </ol>
-        <p className="mt-6">{minimal.done.how}</p>
-        <p className="mt-4 text-[13px]">{minimal.done.companies}</p>
+        <p className="mt-6 text-[13px]">{minimal.done.companies}</p>
       </Block>
 
       <Block id="projetos" title={ui.sections.projects}>

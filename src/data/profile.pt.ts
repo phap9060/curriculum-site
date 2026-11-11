@@ -49,31 +49,13 @@ export const profilePt: Profile = {
     now: 'Atualmente Full Stack Engineer na Vetta, em um produto internacional da indústria siderúrgica que lida com milhões de pontos de dados.',
     done: {
       title: 'O que já fiz',
-      intro:
-        'Em mais de 5 anos, entreguei software para produtos com muito dado e muito acesso (uma plataforma industrial internacional, um e-commerce de grande porte e um aplicativo mobile), atuando na stack inteira, das interfaces aos serviços.',
       items: [
-        {
-          title: 'Transformei dados pesados em informação utilizável.',
-          text: 'Gráficos interativos que renderizam milhões de pontos de dados simultaneamente, mantendo conjuntos de dados industriais complexos rápidos e legíveis para quem toma decisões com eles.',
-        },
-        {
-          title: 'Mantive produtos de alto tráfego rápidos e estáveis.',
-          text: 'Em um e-commerce de grande porte, React e Next.js com SSR, SSG e PWAs sobre Node.js e AWS, monitorados em produção com Datadog e New Relic para encontrar e corrigir gargalos de performance.',
-        },
-        {
-          title: 'Conectei o front-end ao back-end.',
-          text: 'Integração via APIs REST, microsserviços e mensageria (SQS, Kafka, RabbitMQ), com logs, métricas e alertas, diagnosticando gargalos junto aos times de backend em vez de adivinhar.',
-        },
-        {
-          title: 'Elevei a régua de qualidade.',
-          text: 'Assumi a automação de testes com Jest, Testing Library, Cypress e Playwright no CI/CD, apliquei boas práticas de OWASP e LGPD em fluxos sensíveis e conduzi refatorações e code reviews.',
-        },
-        {
-          title: 'Ajudei pessoas a crescer.',
-          text: 'Orientei devs mais juniores em code reviews e ensinei React em um curso técnico, adaptando as explicações a cada nível.',
-        },
+        'Gráficos que renderizam milhões de pontos de dados, rápidos e legíveis, para a indústria siderúrgica.',
+        'E-commerce de alto tráfego em React e Next.js (SSR, SSG, PWA), monitorado com Datadog e New Relic.',
+        'Integração entre front e back com APIs REST, microsserviços e mensageria (SQS, Kafka, RabbitMQ).',
+        'Testes automatizados no CI/CD com Jest, Cypress e Playwright.',
+        'Mentoria de devs juniores e aulas de React em curso técnico.',
       ],
-      how: 'Como trabalho: diagnostico antes de mudar, documento decisões (ADRs), entrego em passos pequenos e meço o resultado em produção (Core Web Vitals, métricas e alertas), junto a produto, design e engenharia.',
       companies: 'No caminho: Vetta, Raro Labs (Tele Sena, DUcash, Raro Academy) e ConsuTI.',
     },
     contact: {

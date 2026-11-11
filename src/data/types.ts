@@ -159,12 +159,10 @@ export interface Profile {
     intro: string
     /** O que estou fazendo agora */
     now: string
-    /** "O que já fiz": visão geral das entregas e de como gerei valor */
+    /** "O que já fiz": uma linha por contribuição, mais as empresas */
     done: {
       title: string
-      intro: string
-      items: { title: string; text: string }[]
-      how: string
+      items: string[]
       companies: string
     }
     /** Fechamento da página: chamada para contato */
