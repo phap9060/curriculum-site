@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react'
 import { useLang } from '../hooks/useLang'
 import { identity } from '../data/profile'
-import photo from '../assets/pedro.webp'
 
 /*
  * Modo recruiter: folha datilografada. Uma coluna estreita, tudo em fonte
@@ -21,28 +20,14 @@ export function RecruiterPage() {
   return (
     <main className="mx-auto w-full max-w-[680px] px-5 pt-24 pb-20 font-type text-[14px] leading-7 text-ink-muted sm:pt-28">
       <header id="top" className="animate-fade-up">
-        <div className="flex items-start gap-5">
-          <div className="size-[72px] shrink-0 overflow-hidden border border-ink bg-[#e9e9e9] sm:size-20">
-            <img
-              src={photo}
-              alt={identity.fullName}
-              width={640}
-              height={640}
-              fetchPriority="high"
-              className="size-full origin-[47%_6%] scale-[1.9] object-cover object-top grayscale contrast-125"
-            />
-          </div>
-          <div className="min-w-0 pt-1">
-            <h1 className="text-[22px] leading-tight font-medium text-ink sm:text-[26px]">
-              {identity.name}
-              <span aria-hidden className="ml-1 inline-block h-[0.95em] w-[0.5em] translate-y-[0.12em] animate-blink bg-ink" />
-            </h1>
-            <p className="mt-1.5">{profile.card.species}</p>
-            <p className="text-[13px]">
-              {city} · {ui.available.toLowerCase()}
-            </p>
-          </div>
-        </div>
+        <h1 className="text-[22px] leading-tight font-medium text-ink sm:text-[26px]">
+          {identity.name}
+          <span aria-hidden className="ml-1 inline-block h-[0.95em] w-[0.5em] translate-y-[0.12em] animate-blink bg-ink" />
+        </h1>
+        <p className="mt-1.5">{profile.card.species}</p>
+        <p className="text-[13px]">
+          {city} · {ui.available.toLowerCase()}
+        </p>
 
         <p className="mt-10 text-ink">{minimal.intro}</p>
         <p className="mt-4">{minimal.now}</p>
