@@ -20,7 +20,7 @@ Os dois modos agora têm públicos bem diferentes:
   inspirado em enciclopédias de criaturas, com uma janela do mascote no lugar de lente)
   concentra **todas** as informações, como a ficha de uma criatura, em abas: INFO,
   EVOLUÇÃO (experiência, com realizações e notas técnicas por cargo), HABILIDADES
-  (especialidades, só texto — sem barras), GOLPES (skills), ITENS (projetos), TREINO
+  (especialidades, só texto — sem barras), ITENS (projetos), TREINO
   (formação), HABITAT ("onde encontrar esse dev": região e redes) e LOG (terminal). A tela tem altura fixa e rolagem
   interna; o direcional troca de aba (◀ ▶) e rola (▲ ▼). Painéis em
   `sections/dex/DexPanels.tsx`. Não use nomes, personagens ou arte de franquias reais.

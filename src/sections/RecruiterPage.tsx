@@ -5,9 +5,9 @@ import photo from '../assets/pedro.webp'
 
 /*
  * Modo recruiter: página minimalista de uma coluna estreita, só texto.
- * Foto, nome, duas frases, o que estou fazendo agora e listas de uma linha
- * (experiência, projetos, formação). Detalhes ficam no CV em PDF; o lado
- * lúdico fica no modo dev.
+ * Foto e nome, duas frases, o que estou fazendo agora, "o que já fiz" (entregas
+ * e como gerei valor, sem linha do tempo) e listas de uma linha (projetos,
+ * formação, stack). Detalhes ficam no CV em PDF; o lado lúdico, no modo dev.
  */
 
 const link = 'text-ink underline decoration-border decoration-1 underline-offset-[5px] transition-colors hover:decoration-ink'
@@ -17,18 +17,6 @@ const mutedLink =
 export function RecruiterPage() {
   const { profile } = useLang()
   const { ui, minimal } = profile
-
-  // Experiência "achatada": um item por cargo (Raro Labs vira Raro Labs · Tele Sena etc.)
-  const roles = profile.experience.flatMap((item) =>
-    item.roles.map((role) => ({
-      key: `${item.company}-${role.title}-${role.client ?? ''}`,
-      place: role.client ? `${role.client}` : item.company,
-      group: role.client ? item.company : undefined,
-      title: role.title,
-      summary: role.recruiter.summary,
-      period: role.period ?? item.period,
-    })),
-  )
 
   const stack = profile.skills.recruiter.slice(0, 2).flatMap((group) => group.items)
 
@@ -55,17 +43,17 @@ export function RecruiterPage() {
         <p className="mt-4 text-[15px] leading-7 text-ink-muted">{minimal.now}</p>
       </header>
 
-      <Block id="experiencia" title={ui.sections.experience}>
-        <ul className="space-y-4">
-          {roles.map((role) => (
-            <Line key={role.key} aside={role.period}>
-              <span className="text-ink">{role.place}</span>
-              {role.group && <span className="text-ink-muted"> · {role.group}</span>}{' '}
-              <span className="text-ink-muted">— {role.title}</span>
-              <span className="mt-0.5 block text-[13px] leading-6 text-ink-muted">{role.summary}</span>
-            </Line>
+      <Block id="o-que-ja-fiz" title={minimal.done.title}>
+        <p className="text-[15px] leading-7 text-ink-muted">{minimal.done.intro}</p>
+        <ul className="mt-6 space-y-5">
+          {minimal.done.items.map((item) => (
+            <li key={item.title} className="text-[15px] leading-7 text-ink-muted">
+              <span className="text-ink">{item.title}</span> {item.text}
+            </li>
           ))}
         </ul>
+        <p className="mt-6 text-[15px] leading-7 text-ink-muted">{minimal.done.how}</p>
+        <p className="mt-4 text-[13px] leading-6 text-ink-muted">{minimal.done.companies}</p>
       </Block>
 
       <Block id="projetos" title={ui.sections.projects}>

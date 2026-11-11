@@ -28,7 +28,7 @@ import { GithubIcon, LinkedinIcon, WhatsappIcon } from '../../components/ui/icon
 /*
  * Conteúdo de cada aba da tela do DEV-DEX. Todas as informações do perfil são
  * apresentadas como a ficha de uma criatura: info, evolução (experiência),
- * habilidades (especialidades), golpes (skills), itens (projetos), treino (formação),
+ * habilidades (especialidades), itens (projetos), treino (formação),
  * habitat (onde encontrar esse dev) e log (terminal).
  */
 
@@ -211,34 +211,6 @@ export function EvolutionPanel() {
         </div>
       </div>
     </div>
-  )
-}
-
-/* -------------------------------- GOLPES -------------------------------- */
-
-export function MovesPanel() {
-  const { profile } = useLang()
-
-  return (
-    <ul className="space-y-4">
-      {profile.skills.dev.map((group, index) => (
-        <li key={group.category}>
-          <Badge tone={toneCycle[index % toneCycle.length]} className="text-[10px] tracking-wider uppercase">
-            {group.category}
-          </Badge>
-          <div className="mt-2 flex flex-wrap gap-1.5">
-            {group.items.map((item) => (
-              <span
-                key={item}
-                className="rounded-lg border-2 border-border bg-surface-raised px-2 py-0.5 font-mono text-[11px] font-semibold"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
-        </li>
-      ))}
-    </ul>
   )
 }
 

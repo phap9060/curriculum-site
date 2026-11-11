@@ -86,7 +86,7 @@ export interface EducationItem {
 }
 
 /** Abas do aparelho DEV-DEX (modo dev). */
-export type DexTab = 'info' | 'evolution' | 'abilities' | 'moves' | 'items' | 'training' | 'habitat' | 'log'
+export type DexTab = 'info' | 'evolution' | 'abilities' | 'items' | 'training' | 'habitat' | 'log'
 
 export type HabitatSpot = 'email' | 'linkedin' | 'github' | 'whatsapp'
 
@@ -160,6 +160,14 @@ export interface Profile {
     intro: string
     /** O que estou fazendo agora */
     now: string
+    /** "O que já fiz": visão geral das entregas e de como gerei valor */
+    done: {
+      title: string
+      intro: string
+      items: { title: string; text: string }[]
+      how: string
+      companies: string
+    }
   }
   card: CardInfo
   hero: {

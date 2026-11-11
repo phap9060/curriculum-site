@@ -48,6 +48,35 @@ export const profileEn: Profile = {
     intro:
       'I build products end to end: distributed back-end systems with Node.js and messaging, and fast, data-heavy interfaces with React and TypeScript.',
     now: 'Currently a Full Stack Engineer at Vetta, on an international steel industry product that handles millions of data points.',
+    done: {
+      title: "What I've done",
+      intro:
+        'Over 5+ years I have shipped software for products with heavy data and heavy traffic — an international industrial platform, a large-scale e-commerce and a mobile app — working across the whole stack, from interfaces to services.',
+      items: [
+        {
+          title: 'Made heavy data usable.',
+          text: 'Interactive charts that render millions of data points simultaneously, keeping complex industrial datasets fast and readable for the people who make decisions with them.',
+        },
+        {
+          title: 'Kept high-traffic products fast and reliable.',
+          text: 'On a large e-commerce platform, React and Next.js with SSR, SSG and PWAs on Node.js and AWS, monitored in production with Datadog and New Relic to find and fix performance bottlenecks.',
+        },
+        {
+          title: 'Connected the front end to the back end.',
+          text: 'Integration through REST APIs, microservices and messaging (SQS, Kafka, RabbitMQ), with logs, metrics and alerts — diagnosing bottlenecks together with backend teams instead of guessing.',
+        },
+        {
+          title: 'Raised the quality bar.',
+          text: 'Owned test automation with Jest, Testing Library, Cypress and Playwright in CI/CD, applied OWASP and LGPD practices to sensitive flows, and led refactorings and code reviews.',
+        },
+        {
+          title: 'Helped people grow.',
+          text: 'Mentored junior developers through code reviews and taught React in a technical course, adapting explanations to each level.',
+        },
+      ],
+      how: 'How I work: I diagnose before changing anything, document decisions (ADRs), ship in small steps and measure the result in production — Core Web Vitals, metrics and alerts — working closely with product, design and engineering.',
+      companies: 'Along the way: Vetta, Raro Labs (Tele Sena, DUcash, Raro Academy) and ConsuTI.',
+    },
   },
 
   card: {
@@ -67,7 +96,6 @@ export const profileEn: Profile = {
       info: 'Info',
       evolution: 'Evolution',
       abilities: 'Abilities',
-      moves: 'Moves',
       items: 'Items',
       training: 'Training',
       habitat: 'Habitat',

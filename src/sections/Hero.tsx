@@ -16,7 +16,6 @@ import {
   InfoPanel,
   ItemsPanel,
   LogPanel,
-  MovesPanel,
   TrainingPanel,
 } from './dex/DexPanels'
 
@@ -102,13 +101,12 @@ export function Hero() {
   )
 }
 
-const TABS: DexTab[] = ['info', 'evolution', 'abilities', 'moves', 'items', 'training', 'habitat', 'log']
+const TABS: DexTab[] = ['info', 'evolution', 'abilities', 'items', 'training', 'habitat', 'log']
 
 const PANELS: Record<DexTab, ComponentType> = {
   info: InfoPanel,
   evolution: EvolutionPanel,
   abilities: AbilitiesPanel,
-  moves: MovesPanel,
   items: ItemsPanel,
   training: TrainingPanel,
   habitat: HabitatPanel,
