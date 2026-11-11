@@ -26,11 +26,20 @@ mesmo perfil, alternáveis por um toggle no topo.
 
 | Modo | Tema | O que mostra |
 |---|---|---|
-| **Recruiter** (padrão) | Claro, accent índigo | Impacto, resultados, métricas e download do CV em PDF |
-| **Dev** | Escuro, accent esmeralda | Stack, arquitetura, decisões técnicas e um terminal no hero |
+| **Recruiter** (padrão) | Sóbrio, estilo currículo (branco, bordas finas) | Impacto, resultados, métricas e download do CV em PDF |
+| **Dev** | Colorido: "Quem é esse dev?" + aparelho DEV-DEX | Stack, arquitetura, decisões técnicas, stats e terminal |
 
-O modo escolhido fica salvo em `localStorage`, então a preferência persiste entre
-visitas. A troca não muda só as cores: **o conteúdo, a organização e a linguagem de
+Idioma e modo ficam na **query string**, então qualquer combinação pode ser
+compartilhada por link (sem parâmetros vale o padrão, inglês + recruiter):
+
+| URL | Idioma | Modo |
+|---|---|---|
+| `/` | EN | Recruiter |
+| `/?lg=pt` | PT | Recruiter |
+| `/?mode=dev` | EN | Dev |
+| `/?lg=pt&mode=dev` | PT | Dev |
+
+ A troca não muda só as cores: **o conteúdo, a organização e a linguagem de
 cada seção também mudam** — cada bloco de dados tem uma versão `recruiter` e uma
 versão `dev`.
 
@@ -86,8 +95,8 @@ src/data/profile.ts      # nome e links (independem do idioma)
 Nome, contatos, headline, experiências, formação, projetos e skills — cada bloco tem
 uma versão `recruiter` e uma versão `dev`. Os dois arquivos seguem a mesma estrutura
 (`Profile`, em `types.ts`); ao editar um, replique a mudança no outro. O visitante troca
-o idioma pelo seletor **PT / EN** no cabeçalho (a escolha fica salva no navegador; o
-padrão é inglês). Não há texto de perfil hardcoded nos componentes.
+o idioma pelo seletor **PT / EN** no cabeçalho (o idioma vai para a URL como `?lg=pt`;
+o padrão é inglês). Não há texto de perfil hardcoded nos componentes.
 
 ### Currículo em PDF
 
@@ -111,9 +120,9 @@ idioma ativo. Para atualizar o CV, basta substituir esses arquivos.
     │   └── ui/                   # Section, Card, Badge, ButtonLink, ModeToggle, LangToggle, icons
     ├── context/
     │   ├── mode-context.ts       # createContext + tipo Mode
-    │   ├── ModeProvider.tsx      # estado do modo, tema dark, localStorage
+    │   ├── ModeProvider.tsx      # modo vindo da URL (?mode=dev), classe .dark
     │   ├── lang-context.ts       # createContext do idioma
-    │   └── LangProvider.tsx      # idioma ativo (pt/en), localStorage
+    │   └── LangProvider.tsx      # idioma vindo da URL (?lg=pt)
     ├── hooks/
     │   ├── useMode.ts            # acesso ao contexto de modo
     │   └── useLang.ts            # idioma ativo + conteúdo traduzido
@@ -124,7 +133,8 @@ idioma ativo. Para atualizar o CV, basta substituir esses arquivos.
     │   └── types.ts              # tipos do conteúdo
     ├── sections/                 # Hero, Expertise, Experience, Education, Projects, Skills, Contact
     ├── lib/
-    │   └── cn.ts                 # helper de classes condicionais
+    │   ├── cn.ts                 # helper de classes condicionais
+    │   └── route.ts              # idioma/modo na query string (?lg, ?mode)
     ├── App.tsx                   # composição das seções
     ├── main.tsx
     └── index.css                 # Tailwind + design tokens (temas dos modos)

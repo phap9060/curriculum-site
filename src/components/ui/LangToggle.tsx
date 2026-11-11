@@ -1,15 +1,24 @@
+import type { MouseEvent } from 'react'
 import { useLang } from '../../hooks/useLang'
+import { useMode } from '../../hooks/useMode'
+import { buildHref } from '../../lib/route'
 import { cn } from '../../lib/cn'
 import type { Lang } from '../../data/types'
+
+/** Clique normal troca sem recarregar; Ctrl/Cmd/clique do meio abre o link normalmente. */
+function isPlainClick(event: MouseEvent<HTMLAnchorElement>) {
+  return event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey
+}
 
 const options: { value: Lang; label: string; name: string }[] = [
   { value: 'pt', label: 'PT', name: 'Português' },
   { value: 'en', label: 'EN', name: 'English' },
 ]
 
-/** Controle segmentado que alterna o idioma do site (português/inglês). */
+/** Controle segmentado que alterna o idioma (português/inglês). Cada opção é um link (`?lg=pt`). */
 export function LangToggle() {
   const { lang, setLang, profile } = useLang()
+  const { mode } = useMode()
 
   return (
     <div
@@ -20,21 +29,26 @@ export function LangToggle() {
       {options.map(({ value, label, name }) => {
         const isActive = lang === value
         return (
-          <button
+          <a
             key={value}
-            type="button"
+            href={buildHref({ lang: value, mode })}
+            hrefLang={value === 'pt' ? 'pt-BR' : 'en'}
             lang={value}
             title={name}
             aria-label={name}
-            aria-pressed={isActive}
-            onClick={() => setLang(value)}
+            aria-current={isActive ? 'page' : undefined}
+            onClick={(event) => {
+              if (!isPlainClick(event)) return
+              event.preventDefault()
+              setLang(value)
+            }}
             className={cn(
               'cursor-pointer rounded-full px-2.5 py-1.5 text-xs font-semibold transition-colors',
               isActive ? 'bg-accent text-accent-contrast' : 'text-ink-muted hover:text-ink',
             )}
           >
             {label}
-          </button>
+          </a>
         )
       })}
     </div>

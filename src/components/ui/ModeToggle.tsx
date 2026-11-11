@@ -1,15 +1,22 @@
+import type { MouseEvent } from 'react'
 import { Briefcase, Terminal } from 'lucide-react'
 import { useMode } from '../../hooks/useMode'
 import { useLang } from '../../hooks/useLang'
 import { cn } from '../../lib/cn'
+import { buildHref } from '../../lib/route'
+
+/** Clique normal troca sem recarregar; Ctrl/Cmd/clique do meio abre o link normalmente. */
+function isPlainClick(event: MouseEvent<HTMLAnchorElement>) {
+  return event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey
+}
 
 /**
  * Controle segmentado que alterna entre o modo recruiter e o modo dev.
- * Cada botão expõe `aria-pressed` para acessibilidade.
+ * Cada opção é um link (`?mode=dev`), então pode ser copiada e compartilhada.
  */
 export function ModeToggle() {
   const { mode, setMode } = useMode()
-  const { profile } = useLang()
+  const { lang, profile } = useLang()
 
   const options = [
     { value: 'recruiter' as const, label: 'Recruiter', icon: Briefcase },
@@ -25,12 +32,16 @@ export function ModeToggle() {
       {options.map(({ value, label, icon: Icon }) => {
         const isActive = mode === value
         return (
-          <button
+          <a
             key={value}
-            type="button"
-            aria-pressed={isActive}
+            href={buildHref({ lang, mode: value })}
+            aria-current={isActive ? 'page' : undefined}
             aria-label={label}
-            onClick={() => setMode(value)}
+            onClick={(event) => {
+              if (!isPlainClick(event)) return
+              event.preventDefault()
+              setMode(value)
+            }}
             className={cn(
               'flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors',
               isActive ? 'bg-accent text-accent-contrast' : 'text-ink-muted hover:text-ink',
@@ -38,7 +49,7 @@ export function ModeToggle() {
           >
             <Icon size={14} aria-hidden />
             <span className="hidden sm:inline">{label}</span>
-          </button>
+          </a>
         )
       })}
     </div>

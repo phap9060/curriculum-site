@@ -305,7 +305,7 @@ export const profilePt: Profile = {
       dev: {
         stack: ['React 19', 'TypeScript', 'Tailwind CSS 4', 'Vite'],
         architecture:
-          'SPA em React com design tokens semânticos em CSS custom properties. Contextos de modo e de idioma alternam tema, conteúdo e textos de cada seção, com persistência em localStorage.',
+          'SPA em React com design tokens semânticos em CSS custom properties. Contextos de modo e de idioma alternam tema, conteúdo e textos de cada seção, controlados pela query string da URL (?lg=pt&mode=dev), para que cada visão possa ser compartilhada.',
       },
     },
     {

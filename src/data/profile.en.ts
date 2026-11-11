@@ -302,7 +302,7 @@ export const profileEn: Profile = {
       dev: {
         stack: ['React 19', 'TypeScript', 'Tailwind CSS 4', 'Vite'],
         architecture:
-          'React SPA with semantic design tokens in CSS custom properties. Mode and language contexts switch the theme, content and copy of each section, persisted in localStorage.',
+          'React SPA with semantic design tokens in CSS custom properties. Mode and language contexts switch the theme, content and copy of each section, driven by the URL query string (?lg=pt&mode=dev) so every view can be shared.',
       },
     },
     {

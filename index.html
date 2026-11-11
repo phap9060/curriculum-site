@@ -7,15 +7,16 @@
     <script>
       ;(() => {
         try {
-          const stored = localStorage.getItem('portfolio-mode')
-          const mode = stored === 'dev' ? 'dev' : 'recruiter'
+          // idioma e modo vêm da query string (?lg=pt&mode=dev); padrão: en + recruiter
+          const params = new URLSearchParams(location.search)
+          const mode = params.get('mode') === 'dev' ? 'dev' : 'recruiter'
           document.documentElement.classList.toggle('dark', mode === 'dev')
           document.documentElement.dataset.mode = mode
         } catch {
           document.documentElement.classList.remove('dark')
         }
         try {
-          const isPt = localStorage.getItem('portfolio-lang') === 'pt'
+          const isPt = new URLSearchParams(location.search).get('lg') === 'pt'
           document.documentElement.lang = isPt ? 'pt-BR' : 'en'
         } catch {
           /* mantém en */

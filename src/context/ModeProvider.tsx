@@ -1,33 +1,24 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo } from 'react'
 import type { ReactNode } from 'react'
 import { ModeContext } from './mode-context'
 import type { Mode } from './mode-context'
+import { navigate, useRoute } from '../lib/route'
 
-const STORAGE_KEY = 'portfolio-mode'
-
-function getInitialMode(): Mode {
-  const stored = localStorage.getItem(STORAGE_KEY)
-  return stored === 'dev' ? 'dev' : 'recruiter'
-}
-
+/** Modo vem da URL (`?mode=dev`); sem parâmetro, recruiter (padrão). */
 export function ModeProvider({ children }: { children: ReactNode }) {
-  const [mode, setMode] = useState<Mode>(getInitialMode)
+  const route = useRoute()
+  const { mode } = route
 
   useEffect(() => {
-    // Modo recruiter usa o tema light (padrão); modo dev usa o tema dark.
+    // A classe `.dark` marca o modo dev (veja index.css e docs/UI.md).
     document.documentElement.classList.toggle('dark', mode === 'dev')
     document.documentElement.dataset.mode = mode
-    localStorage.setItem(STORAGE_KEY, mode)
   }, [mode])
 
-  const toggleMode = useCallback(() => {
-    setMode((current) => (current === 'dev' ? 'recruiter' : 'dev'))
-  }, [])
+  const setMode = useCallback((next: Mode) => navigate({ ...route, mode: next }), [route])
+  const toggleMode = useCallback(() => setMode(mode === 'dev' ? 'recruiter' : 'dev'), [mode, setMode])
 
-  const value = useMemo(
-    () => ({ mode, isDev: mode === 'dev', setMode, toggleMode }),
-    [mode, toggleMode],
-  )
+  const value = useMemo(() => ({ mode, isDev: mode === 'dev', setMode, toggleMode }), [mode, setMode, toggleMode])
 
   return <ModeContext.Provider value={value}>{children}</ModeContext.Provider>
 }
