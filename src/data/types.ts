@@ -22,8 +22,6 @@ export type ExpertiseIcon = 'server' | 'chart' | 'gauge' | 'layers' | 'shield' |
 export interface ExpertiseItem {
   icon: ExpertiseIcon
   title: string
-  /** Nível de 0 a 100 exibido como barra de stat */
-  stat: number
   /** Texto focado em resultado (modo recruiter) */
   recruiter: string
   /** Texto focado em técnica (modo dev) */
@@ -88,7 +86,9 @@ export interface EducationItem {
 }
 
 /** Abas do aparelho DEV-DEX (modo dev). */
-export type DexTab = 'info' | 'stats' | 'evolution' | 'moves' | 'items' | 'training' | 'log'
+export type DexTab = 'info' | 'evolution' | 'abilities' | 'moves' | 'items' | 'training' | 'habitat' | 'log'
+
+export type HabitatSpot = 'email' | 'linkedin' | 'github' | 'whatsapp'
 
 /** Carta do hero ("Quem é esse dev?"). */
 export interface CardInfo {
@@ -103,14 +103,19 @@ export interface CardInfo {
   tabs: Record<DexTab, string>
   /** Rótulos internos da tela */
   labels: {
-    baseStats: string
-    total: string
+    highlights: string
+    techNotes: string
     pickStage: string
     stack: string
-    links: string
   }
   /** Dica de navegação exibida abaixo da tela */
   navHint: string
+  /** Aba Habitat: "onde encontrar esse dev" */
+  habitat: {
+    title: string
+    region: { label: string; value: string }
+    spots: { id: HabitatSpot; area: string; note: string }[]
+  }
 }
 
 /** Textos fixos da interface (navegação, botões, rótulos de acessibilidade). */
@@ -166,8 +171,4 @@ export interface Profile {
   education: EducationItem[]
   projects: Project[]
   skills: { recruiter: SkillGroup[]; dev: SkillGroup[] }
-  contact: {
-    recruiter: { title: string; subtitle: string }
-    dev: { title: string; subtitle: string }
-  }
 }

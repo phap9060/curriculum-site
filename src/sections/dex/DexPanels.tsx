@@ -1,8 +1,25 @@
 import { useState } from 'react'
 import type { ReactNode } from 'react'
-import { ChevronRight, ExternalLink, Mail, Star } from 'lucide-react'
+import {
+  ArrowUpRight,
+  ChartLine,
+  ChevronRight,
+  ExternalLink,
+  FlaskConical,
+  Gauge,
+  Layers,
+  Mail,
+  MapPin,
+  Server,
+  ShieldCheck,
+  Sparkles,
+  Star,
+  Users,
+} from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 import { useLang } from '../../hooks/useLang'
 import { identity } from '../../data/profile'
+import type { ExpertiseIcon, HabitatSpot } from '../../data/types'
 import { cn } from '../../lib/cn'
 import { Badge } from '../../components/ui/Badge'
 import { toneCycle } from '../../components/ui/badge-tones'
@@ -10,8 +27,9 @@ import { GithubIcon, LinkedinIcon, WhatsappIcon } from '../../components/ui/icon
 
 /*
  * Conteúdo de cada aba da tela do DEV-DEX. Todas as informações do perfil são
- * apresentadas como a ficha de uma criatura: info, status base, evolução,
- * golpes (skills), itens (projetos), treino (formação) e log (terminal + contato).
+ * apresentadas como a ficha de uma criatura: info, evolução (experiência),
+ * habilidades (especialidades), golpes (skills), itens (projetos), treino (formação),
+ * habitat (onde encontrar esse dev) e log (terminal).
  */
 
 const startYear = (period: string) => period.match(/\d{4}/)?.[0] ?? ''
@@ -30,6 +48,9 @@ export function InfoPanel() {
   return (
     <div className="space-y-4">
       <p className="text-sm leading-relaxed">{hero.dev.pitch}</p>
+      <div className="rounded-xl border-2 border-border bg-accent-3 p-3 text-accent-3-contrast">
+        <p className="text-sm leading-relaxed font-medium">{profile.minimal.now}</p>
+      </div>
       <dl className="grid grid-cols-2 gap-x-4 gap-y-2 border-t-2 border-dashed border-border pt-3 text-sm">
         {card.fields.map((field) => (
           <div key={field.label}>
@@ -53,41 +74,39 @@ export function InfoPanel() {
   )
 }
 
-/* --------------------------------- STATS -------------------------------- */
+/* ------------------------------ HABILIDADES ----------------------------- */
 
-export function StatsPanel() {
+const abilityIcons: Record<ExpertiseIcon, LucideIcon> = {
+  server: Server,
+  chart: ChartLine,
+  gauge: Gauge,
+  layers: Layers,
+  shield: ShieldCheck,
+  flask: FlaskConical,
+  users: Users,
+}
+
+export function AbilitiesPanel() {
   const { profile } = useLang()
-  const total = profile.expertise.reduce((sum, item) => sum + item.stat, 0)
 
   return (
-    <div>
-      <Label>{profile.card.labels.baseStats}</Label>
-      <ul className="space-y-4">
-        {profile.expertise.map((item) => (
-          <li key={item.icon}>
-            <div className="flex items-baseline justify-between gap-2">
-              <span className="text-sm font-bold">{item.title}</span>
-              <span className="font-mono text-xs font-bold text-accent">{item.stat}</span>
+    <ul className="space-y-3">
+      {profile.expertise.map((item) => {
+        const Icon = abilityIcons[item.icon]
+        return (
+          <li key={item.icon} className="flex gap-3 rounded-xl border-2 border-border bg-surface-raised p-3">
+            <span className="grid size-9 shrink-0 place-items-center rounded-lg border-2 border-border bg-accent-3 text-accent-3-contrast">
+              <Icon size={16} aria-hidden />
+            </span>
+            <div className="min-w-0">
+              <h3 className="text-sm font-bold">{item.title}</h3>
+              <p className="mt-1 text-xs leading-relaxed">{item.recruiter}</p>
+              <p className="mt-1 text-xs leading-relaxed text-ink-muted">{item.dev}</p>
             </div>
-            <div
-              className="mt-1 h-3 overflow-hidden rounded-full border-2 border-border bg-surface-raised"
-              role="meter"
-              aria-label={item.title}
-              aria-valuenow={item.stat}
-              aria-valuemin={0}
-              aria-valuemax={100}
-            >
-              <div className="stat-fill h-full" style={{ width: `${item.stat}%` }} />
-            </div>
-            <p className="mt-1.5 text-xs leading-relaxed text-ink-muted">{item.dev}</p>
           </li>
-        ))}
-      </ul>
-      <p className="mt-4 flex justify-between border-t-2 border-dashed border-border pt-2 font-mono text-xs font-bold">
-        <span>{profile.card.labels.total}</span>
-        <span className="text-accent">{total}</span>
-      </p>
-    </div>
+        )
+      })}
+    </ul>
   )
 }
 
@@ -141,9 +160,12 @@ export function EvolutionPanel() {
         <p className="text-xs text-ink-muted">{stage.location}</p>
         {stage.summary && <p className="mt-2 text-sm text-ink-muted">{stage.summary.dev}</p>}
 
-        <div className="mt-4 space-y-5">
+        <div className="mt-5 space-y-6">
           {stage.roles.map((role) => (
-            <div key={`${role.title}-${role.client ?? stage.company}`}>
+            <article
+              key={`${role.title}-${role.client ?? stage.company}`}
+              className="rounded-xl border-2 border-border bg-surface-raised p-3"
+            >
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <h4 className="text-sm font-bold">
                   {role.title}
@@ -151,14 +173,32 @@ export function EvolutionPanel() {
                 </h4>
                 {role.period && <span className="font-mono text-[11px] text-ink-muted">{role.period}</span>}
               </div>
-              <div className="mt-2 flex flex-wrap gap-1">
+              <p className="mt-1.5 text-sm leading-relaxed font-medium">{role.recruiter.summary}</p>
+
+              <p className="mt-3 mb-1.5 font-mono text-[10px] font-bold tracking-[0.18em] text-ink-muted uppercase">
+                {card.labels.highlights}
+              </p>
+              <ul className="space-y-1.5">
+                {role.recruiter.highlights.map((highlight) => (
+                  <li key={highlight} className="flex gap-2 text-xs leading-relaxed">
+                    <Sparkles size={12} className="mt-0.5 shrink-0 text-accent" aria-hidden />
+                    {highlight}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-3 flex flex-wrap gap-1">
                 {role.dev.stack.map((tech) => (
                   <Badge key={tech} mono className="text-[10px]">
                     {tech}
                   </Badge>
                 ))}
               </div>
-              <ul className="mt-2 space-y-1">
+
+              <p className="mt-3 mb-1.5 font-mono text-[10px] font-bold tracking-[0.18em] text-ink-muted uppercase">
+                {card.labels.techNotes}
+              </p>
+              <ul className="space-y-1">
                 {role.dev.details.map((detail) => (
                   <li key={detail} className="flex gap-2 text-xs leading-relaxed text-ink-muted">
                     <span className="font-mono text-accent">→</span>
@@ -166,7 +206,7 @@ export function EvolutionPanel() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </article>
           ))}
         </div>
       </div>
@@ -277,58 +317,97 @@ export function TrainingPanel() {
   )
 }
 
+/* -------------------------------- HABITAT ------------------------------- */
+
+const spotIcons: Record<HabitatSpot, ReactNode> = {
+  email: <Mail size={16} aria-hidden />,
+  linkedin: <LinkedinIcon size={16} />,
+  github: <GithubIcon size={16} />,
+  whatsapp: <WhatsappIcon size={16} />,
+}
+
+const spotHref: Record<HabitatSpot, string> = {
+  email: `mailto:${identity.social.email}`,
+  linkedin: identity.social.linkedin,
+  github: identity.social.github,
+  whatsapp: identity.social.whatsapp,
+}
+
+/** Endereço exibido de cada local (sem o protocolo). */
+const spotAddress = (id: HabitatSpot) =>
+  id === 'email' ? identity.social.email : spotHref[id].replace(/^https?:\/\//, '')
+
+/** "Onde encontrar esse dev": região nativa e as redes como locais de encontro. */
+export function HabitatPanel() {
+  const { profile } = useLang()
+  const { habitat } = profile.card
+
+  return (
+    <div>
+      <h3 className="font-display text-2xl leading-tight font-extrabold">{habitat.title}</h3>
+
+      <div className="mt-3 flex items-center gap-3 rounded-xl border-2 border-border bg-accent-3 p-3 text-accent-3-contrast">
+        <MapPin size={18} className="shrink-0" aria-hidden />
+        <div>
+          <p className="font-mono text-[10px] font-bold tracking-[0.18em] uppercase">{habitat.region.label}</p>
+          <p className="text-sm font-semibold">{habitat.region.value}</p>
+        </div>
+      </div>
+
+      <ul className="mt-4 space-y-2.5">
+        {habitat.spots.map((spot, index) => (
+          <li key={spot.id}>
+            <a
+              href={spotHref[spot.id]}
+              target={spot.id === 'email' ? undefined : '_blank'}
+              rel="noopener noreferrer"
+              className="group flex items-center gap-3 rounded-xl border-2 border-border bg-surface-raised p-3 shadow-card-sm transition-transform hover:-translate-y-0.5"
+            >
+              <span className="grid size-9 shrink-0 place-items-center rounded-lg border-2 border-border bg-surface text-ink">
+                {spotIcons[spot.id]}
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="flex items-center gap-2">
+                  <span className="text-sm font-bold">{spot.area}</span>
+                  <Badge tone={toneCycle[index % toneCycle.length]} mono className="text-[9px]">
+                    {`Nº ${String(index + 1).padStart(2, '0')}`}
+                  </Badge>
+                </span>
+                <span className="block truncate font-mono text-[11px] text-accent">{spotAddress(spot.id)}</span>
+                <span className="block text-xs text-ink-muted">{spot.note}</span>
+              </span>
+              <ArrowUpRight
+                size={16}
+                className="shrink-0 text-ink-muted transition-colors group-hover:text-accent"
+                aria-hidden
+              />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
 /* ---------------------------------- LOG --------------------------------- */
 
 export function LogPanel() {
   const { profile } = useLang()
-  const { hero, contact, card } = profile
-
-  const links = [
-    { href: `mailto:${identity.social.email}`, label: identity.social.email, icon: <Mail size={14} aria-hidden /> },
-    { href: identity.social.linkedin, label: 'LinkedIn', icon: <LinkedinIcon size={14} /> },
-    { href: identity.social.github, label: 'GitHub', icon: <GithubIcon size={14} /> },
-    { href: identity.social.whatsapp, label: 'WhatsApp', icon: <WhatsappIcon size={14} /> },
-  ]
 
   return (
-    <div className="space-y-5">
-      <div className="space-y-2 rounded-xl border-2 border-border bg-[#1b1830] p-3 font-mono text-xs text-[#e8e6f5]">
-        {hero.dev.terminalLines.map((line) => (
-          <div key={line.command}>
-            <p>
-              <span className="text-accent-3">$</span> {line.command}
-            </p>
-            <p className="text-[#a9a5c4]">{line.output}</p>
-          </div>
-        ))}
-        <p>
-          <span className="text-accent-3">{contact.dev.title}</span>
-        </p>
-        <p className="text-[#a9a5c4]">{contact.dev.subtitle}</p>
-        <p>
-          <span className="text-accent-3">$</span>{' '}
-          <span className="inline-block h-3.5 w-2 animate-pulse bg-accent-3 align-middle" aria-hidden />
-        </p>
-      </div>
-
-      <div>
-        <Label>{card.labels.links}</Label>
-        <ul className="grid gap-2 sm:grid-cols-2">
-          {links.map((item) => (
-            <li key={item.label}>
-              <a
-                href={item.href}
-                target={item.href.startsWith('mailto:') ? undefined : '_blank'}
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 truncate rounded-xl border-2 border-border bg-surface-raised px-3 py-2 text-xs font-semibold shadow-card-sm transition-transform hover:-translate-y-0.5"
-              >
-                {item.icon}
-                <span className="truncate">{item.label}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
+    <div className="space-y-2 rounded-xl border-2 border-border bg-[#1b1830] p-3 font-mono text-xs text-[#e8e6f5]">
+      {profile.hero.dev.terminalLines.map((line) => (
+        <div key={line.command}>
+          <p>
+            <span className="text-accent-3">$</span> {line.command}
+          </p>
+          <p className="text-[#a9a5c4]">{line.output}</p>
+        </div>
+      ))}
+      <p>
+        <span className="text-accent-3">$</span>{' '}
+        <span className="inline-block h-3.5 w-2 animate-pulse bg-accent-3 align-middle" aria-hidden />
+      </p>
     </div>
   )
 }

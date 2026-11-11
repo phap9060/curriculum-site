@@ -65,21 +65,31 @@ export const profileEn: Profile = {
     ],
     tabs: {
       info: 'Info',
-      stats: 'Stats',
       evolution: 'Evolution',
+      abilities: 'Abilities',
       moves: 'Moves',
       items: 'Items',
       training: 'Training',
+      habitat: 'Habitat',
       log: 'Log',
     },
     labels: {
-      baseStats: 'Base stats',
-      total: 'Total',
+      highlights: 'Highlights',
+      techNotes: 'Under the hood',
       pickStage: 'Tap a stage to see the details',
       stack: 'Stack',
-      links: 'Connect',
     },
     navHint: '◀ ▶ tabs · ▲ ▼ scroll · A résumé · B GitHub',
+    habitat: {
+      title: 'Where to find this dev',
+      region: { label: 'Native region', value: 'Teresina, PI — Brazil · works remotely' },
+      spots: [
+        { id: 'email', area: 'E-mail', note: 'Appears often · replies within 24 hours' },
+        { id: 'linkedin', area: 'LinkedIn', note: 'Main habitat · accepts connections' },
+        { id: 'github', area: 'GitHub', note: 'Spotted committing to side projects' },
+        { id: 'whatsapp', area: 'WhatsApp', note: 'Quick encounter via direct message' },
+      ],
+    },
   },
 
   hero: {
@@ -112,7 +122,6 @@ export const profileEn: Profile = {
     {
       icon: 'server',
       title: 'Back end & distributed systems',
-      stat: 88,
       recruiter:
         'Reliable services that scale: microservices, APIs and asynchronous messaging, monitored in production.',
       dev: 'Node.js microservices, REST APIs, messaging with SQS, Kafka and RabbitMQ, serverless on AWS (Lambda, EC2) and observability with logs, metrics and alerts.',
@@ -120,7 +129,6 @@ export const profileEn: Profile = {
     {
       icon: 'chart',
       title: 'Front end & data visualization',
-      stat: 95,
       recruiter:
         'Responsive, accessible interfaces and interactive charts that keep complex datasets readable, even with millions of points on screen.',
       dev: 'React, TypeScript and Next.js; reusable component libraries and interactive charts rendering millions of data points simultaneously.',
@@ -130,13 +138,11 @@ export const profileEn: Profile = {
       title: 'Architecture',
       recruiter:
         'I define the architecture and evolution plans of highly complex systems, on both the front end and the back end.',
-      stat: 88,
       dev: 'Micro frontends, microservices, system design, integration between layers, ADRs and SDD.',
     },
     {
       icon: 'gauge',
       title: 'Performance',
-      stat: 92,
       recruiter:
         'Fast, scalable products: I track Core Web Vitals and go after bottlenecks across the whole stack, together with backend and infra.',
       dev: 'Code splitting, lazy loading, memoization, CSR/SSR/SSG with Next.js and full-stack bottleneck diagnosis with Datadog and New Relic.',
@@ -144,7 +150,6 @@ export const profileEn: Profile = {
     {
       icon: 'shield',
       title: 'Quality & security',
-      stat: 88,
       recruiter:
         'Automated tests integrated into CI/CD and protection of sensitive flows and user data, compliant with LGPD.',
       dev: 'Jest, Vitest, React Testing Library, Cypress and Playwright in CI/CD; OWASP Top 10 (XSS, CSRF, CSP), authentication/authorization and secrets management.',
@@ -152,7 +157,6 @@ export const profileEn: Profile = {
     {
       icon: 'users',
       title: 'Technical leadership',
-      stat: 85,
       recruiter:
         'I lead technical assessments and refactorings, influence decisions with product and business, and mentor junior developers.',
       dev: 'Technical assessments, major refactorings, code reviews, coding standards and mentoring of junior developers.',
@@ -374,16 +378,5 @@ export const profileEn: Profile = {
       { category: 'Security', items: ['OWASP Top 10', 'XSS', 'CSRF', 'CSP', 'LGPD'] },
       { category: 'Observability & CI/CD', items: ['Datadog', 'New Relic', 'Logs, metrics & alerts', 'CI/CD'] },
     ],
-  },
-
-  contact: {
-    recruiter: {
-      title: "Let's talk?",
-      subtitle: "I'm open to new opportunities. I reply within 24 hours.",
-    },
-    dev: {
-      title: '$ ping pedro',
-      subtitle: 'Open to projects, code reviews and good conversations about software.',
-    },
   },
 }

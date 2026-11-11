@@ -19,8 +19,9 @@ Os dois modos agora têm públicos bem diferentes:
   raios e é revelada; ao lado, o aparelho **DEV-DEX** vermelho (design original,
   inspirado em enciclopédias de criaturas, com uma janela do mascote no lugar de lente)
   concentra **todas** as informações, como a ficha de uma criatura, em abas: INFO,
-  STATS (status base), EVOLUÇÃO (experiência), GOLPES (skills), ITENS (projetos),
-  TREINO (formação) e LOG (terminal + contato). A tela tem altura fixa e rolagem
+  EVOLUÇÃO (experiência, com realizações e notas técnicas por cargo), HABILIDADES
+  (especialidades, só texto — sem barras), GOLPES (skills), ITENS (projetos), TREINO
+  (formação), HABITAT ("onde encontrar esse dev": região e redes) e LOG (terminal). A tela tem altura fixa e rolagem
   interna; o direcional troca de aba (◀ ▶) e rola (▲ ▼). Painéis em
   `sections/dex/DexPanels.tsx`. Não use nomes, personagens ou arte de franquias reais.
 

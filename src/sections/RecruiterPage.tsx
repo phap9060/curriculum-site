@@ -35,19 +35,23 @@ export function RecruiterPage() {
   return (
     <main className="mx-auto w-full max-w-[640px] px-5 pt-16 pb-16 sm:pt-20">
       <header id="top" className="animate-fade-up">
-        <div className="size-24 overflow-hidden rounded-full bg-[#e9e9e9]">
-          <img
-            src={photo}
-            alt={identity.fullName}
-            width={640}
-            height={640}
-            fetchPriority="high"
-            className="size-full origin-[47%_6%] scale-[1.9] object-cover object-top grayscale"
-          />
+        <div className="flex items-center gap-5">
+          <div className="size-20 shrink-0 overflow-hidden rounded-full bg-[#e9e9e9] sm:size-24">
+            <img
+              src={photo}
+              alt={identity.fullName}
+              width={640}
+              height={640}
+              fetchPriority="high"
+              className="size-full origin-[47%_6%] scale-[1.9] object-cover object-top grayscale"
+            />
+          </div>
+          <div className="min-w-0">
+            <h1 className="text-xl font-semibold tracking-tight sm:text-2xl">{identity.fullName}</h1>
+            <p className="mt-1 text-[15px] text-ink-muted">{profile.card.species}</p>
+          </div>
         </div>
-        <h1 className="mt-8 text-2xl font-semibold tracking-tight">{identity.fullName}</h1>
-        <p className="mt-1 text-[15px] text-ink-muted">{profile.card.species}</p>
-        <p className="mt-6 text-[15px] leading-7 text-ink-muted">{minimal.intro}</p>
+        <p className="mt-8 text-[15px] leading-7 text-ink-muted">{minimal.intro}</p>
         <p className="mt-4 text-[15px] leading-7 text-ink-muted">{minimal.now}</p>
       </header>
 

@@ -191,13 +191,6 @@
     filter: var(--silhouette);
   }
 
-  /* Barra de stat: lisa no recruiter, segmentada no modo dev */
-  .stat-fill {
-    background: var(--accent);
-  }
-  .dark .stat-fill {
-    background: repeating-linear-gradient(to right, var(--accent) 0 8px, transparent 8px 10px);
-  }
 }
 
 /*

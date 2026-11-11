@@ -9,7 +9,16 @@ import { Badge } from '../components/ui/Badge'
 import { toneCycle } from '../components/ui/badge-tones'
 import { Mascot } from '../components/ui/Mascot'
 import photo from '../assets/pedro.webp'
-import { EvolutionPanel, InfoPanel, ItemsPanel, LogPanel, MovesPanel, StatsPanel, TrainingPanel } from './dex/DexPanels'
+import {
+  AbilitiesPanel,
+  EvolutionPanel,
+  HabitatPanel,
+  InfoPanel,
+  ItemsPanel,
+  LogPanel,
+  MovesPanel,
+  TrainingPanel,
+} from './dex/DexPanels'
 
 /** Tempo até a revelação automática, para quem não clicar. */
 const AUTO_REVEAL_MS = 1800
@@ -93,15 +102,16 @@ export function Hero() {
   )
 }
 
-const TABS: DexTab[] = ['info', 'stats', 'evolution', 'moves', 'items', 'training', 'log']
+const TABS: DexTab[] = ['info', 'evolution', 'abilities', 'moves', 'items', 'training', 'habitat', 'log']
 
 const PANELS: Record<DexTab, ComponentType> = {
   info: InfoPanel,
-  stats: StatsPanel,
   evolution: EvolutionPanel,
+  abilities: AbilitiesPanel,
   moves: MovesPanel,
   items: ItemsPanel,
   training: TrainingPanel,
+  habitat: HabitatPanel,
   log: LogPanel,
 }
 

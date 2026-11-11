@@ -65,21 +65,31 @@ export const profilePt: Profile = {
     ],
     tabs: {
       info: 'Info',
-      stats: 'Stats',
       evolution: 'Evolução',
+      abilities: 'Habilidades',
       moves: 'Golpes',
       items: 'Itens',
       training: 'Treino',
+      habitat: 'Habitat',
       log: 'Log',
     },
     labels: {
-      baseStats: 'Status base',
-      total: 'Total',
+      highlights: 'Realizações',
+      techNotes: 'Por baixo do capô',
       pickStage: 'Toque num estágio para ver os detalhes',
       stack: 'Stack',
-      links: 'Conectar',
     },
     navHint: '◀ ▶ abas · ▲ ▼ rolar · A CV · B GitHub',
+    habitat: {
+      title: 'Onde encontrar esse dev',
+      region: { label: 'Região nativa', value: 'Teresina, PI — Brasil · trabalha remoto' },
+      spots: [
+        { id: 'email', area: 'E-mail', note: 'Aparece com frequência · responde em até 24h' },
+        { id: 'linkedin', area: 'LinkedIn', note: 'Habitat principal · aceita conexões' },
+        { id: 'github', area: 'GitHub', note: 'Visto fazendo commits em projetos pessoais' },
+        { id: 'whatsapp', area: 'WhatsApp', note: 'Encontro rápido por mensagem direta' },
+      ],
+    },
   },
 
   hero: {
@@ -112,7 +122,6 @@ export const profilePt: Profile = {
     {
       icon: 'server',
       title: 'Back-end e sistemas distribuídos',
-      stat: 88,
       recruiter:
         'Serviços confiáveis e escaláveis: microsserviços, APIs e mensageria assíncrona, monitorados em produção.',
       dev: 'Microsserviços em Node.js, APIs REST, mensageria com SQS, Kafka e RabbitMQ, serverless na AWS (Lambda, EC2) e observabilidade com logs, métricas e alertas.',
@@ -120,7 +129,6 @@ export const profilePt: Profile = {
     {
       icon: 'chart',
       title: 'Front-end e visualização de dados',
-      stat: 95,
       recruiter:
         'Interfaces responsivas e acessíveis e gráficos interativos que deixam dados complexos legíveis, mesmo com milhões de pontos na tela.',
       dev: 'React, TypeScript e Next.js; bibliotecas de componentes reutilizáveis e gráficos interativos renderizando milhões de pontos simultâneos.',
@@ -128,7 +136,6 @@ export const profilePt: Profile = {
     {
       icon: 'layers',
       title: 'Arquitetura',
-      stat: 88,
       recruiter:
         'Defino a arquitetura e os planos de evolução de sistemas de alta complexidade, no front-end e no back-end.',
       dev: 'Micro frontends, microsserviços, system design, integração entre camadas, ADRs e SDD.',
@@ -136,7 +143,6 @@ export const profilePt: Profile = {
     {
       icon: 'gauge',
       title: 'Performance',
-      stat: 92,
       recruiter:
         'Produtos rápidos e escaláveis: acompanho Core Web Vitals e ataco gargalos em toda a stack, junto a backend e infra.',
       dev: 'Code splitting, lazy loading, memoization, CSR/SSR/SSG com Next.js e diagnóstico de gargalos full stack com Datadog e New Relic.',
@@ -144,7 +150,6 @@ export const profilePt: Profile = {
     {
       icon: 'shield',
       title: 'Qualidade e segurança',
-      stat: 88,
       recruiter:
         'Testes automatizados integrados ao CI/CD e proteção de fluxos sensíveis e dados de usuários, em conformidade com a LGPD.',
       dev: 'Jest, Vitest, React Testing Library, Cypress e Playwright no CI/CD; OWASP Top 10 (XSS, CSRF, CSP), autenticação/autorização e gestão de segredos.',
@@ -152,7 +157,6 @@ export const profilePt: Profile = {
     {
       icon: 'users',
       title: 'Liderança técnica',
-      stat: 85,
       recruiter:
         'Conduzo diagnósticos e refatorações, influencio decisões com produto e negócio e oriento devs mais juniores.',
       dev: 'Diagnósticos técnicos, refatorações relevantes, code reviews, padrões de código e mentoria de devs juniores.',
@@ -374,16 +378,5 @@ export const profilePt: Profile = {
       { category: 'Segurança', items: ['OWASP Top 10', 'XSS', 'CSRF', 'CSP', 'LGPD'] },
       { category: 'Observabilidade & CI/CD', items: ['Datadog', 'New Relic', 'Logs, métricas e alertas', 'CI/CD'] },
     ],
-  },
-
-  contact: {
-    recruiter: {
-      title: 'Vamos conversar?',
-      subtitle: 'Estou aberto a novas oportunidades. Respondo em até 24h.',
-    },
-    dev: {
-      title: '$ ping pedro',
-      subtitle: 'Aberto a projetos, code reviews e boas conversas sobre software.',
-    },
   },
 }
