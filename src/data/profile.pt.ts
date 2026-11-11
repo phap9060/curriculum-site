@@ -29,7 +29,6 @@ export const profilePt: Profile = {
     },
     available: 'Disponível para oportunidades',
     sayHi: 'diga oi',
-    stack: 'Stack',
     downloadCv: 'Baixar CV (PDF)',
     viewProjects: 'ver projetos',
     madeWith: 'Feito com React, TypeScript e Tailwind CSS',
@@ -76,6 +75,10 @@ export const profilePt: Profile = {
       ],
       how: 'Como trabalho: diagnostico antes de mudar, documento decisões (ADRs), entrego em passos pequenos e meço o resultado em produção (Core Web Vitals, métricas e alertas), junto a produto, design e engenharia.',
       companies: 'No caminho: Vetta, Raro Labs (Tele Sena, DUcash, Raro Academy) e ConsuTI.',
+    },
+    contact: {
+      title: 'Vamos conversar?',
+      text: 'Estou aberto a novas oportunidades. O jeito mais rápido de falar comigo é por e-mail.',
     },
   },
 

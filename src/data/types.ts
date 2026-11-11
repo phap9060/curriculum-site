@@ -132,7 +132,6 @@ export interface UiStrings {
   available: string
   /** Link de e-mail no rodapé minimalista ("say hi") */
   sayHi: string
-  stack: string
   downloadCv: string
   viewProjects: string
   madeWith: string
@@ -168,6 +167,8 @@ export interface Profile {
       how: string
       companies: string
     }
+    /** Fechamento da página: chamada para contato */
+    contact: { title: string; text: string }
   }
   card: CardInfo
   hero: {

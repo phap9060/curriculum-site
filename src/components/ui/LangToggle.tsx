@@ -16,9 +16,48 @@ const options: { value: Lang; label: string; name: string }[] = [
 ]
 
 /** Controle segmentado que alterna o idioma (português/inglês). Cada opção é um link (`?lg=pt`). */
-export function LangToggle() {
+export function LangToggle({ variant = 'pill' }: { variant?: 'pill' | 'text' }) {
   const { lang, setLang, profile } = useLang()
   const { mode } = useMode()
+
+  // Texto puro (modo recruiter): "PT / EN", o idioma ativo em tinta cheia.
+  if (variant === 'text') {
+    return (
+      <div role="group" aria-label={profile.ui.langToggle} className="flex items-center gap-1.5 text-[13px]">
+        {options.map(({ value, label, name }, index) => {
+          const isActive = lang === value
+          return (
+            <span key={value} className="flex items-center gap-1.5">
+              {index > 0 && (
+                <span aria-hidden className="text-border">
+                  /
+                </span>
+              )}
+              <a
+                href={buildHref({ lang: value, mode })}
+                hrefLang={value === 'pt' ? 'pt-BR' : 'en'}
+                lang={value}
+                title={name}
+                aria-label={name}
+                aria-current={isActive ? 'page' : undefined}
+                onClick={(event) => {
+                  if (!isPlainClick(event)) return
+                  event.preventDefault()
+                  setLang(value)
+                }}
+                className={cn(
+                  'cursor-pointer transition-colors',
+                  isActive ? 'font-medium text-ink' : 'text-ink-muted hover:text-ink',
+                )}
+              >
+                {label}
+              </a>
+            </span>
+          )
+        })}
+      </div>
+    )
+  }
 
   return (
     <div

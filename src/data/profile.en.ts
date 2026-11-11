@@ -29,7 +29,6 @@ export const profileEn: Profile = {
     },
     available: 'Open to opportunities',
     sayHi: 'say hi',
-    stack: 'Stack',
     downloadCv: 'Download résumé (PDF)',
     viewProjects: 'view projects',
     madeWith: 'Built with React, TypeScript and Tailwind CSS',
@@ -76,6 +75,10 @@ export const profileEn: Profile = {
       ],
       how: 'How I work: I diagnose before changing anything, document decisions (ADRs), ship in small steps and measure the result in production (Core Web Vitals, metrics and alerts), working closely with product, design and engineering.',
       companies: 'Along the way: Vetta, Raro Labs (Tele Sena, DUcash, Raro Academy) and ConsuTI.',
+    },
+    contact: {
+      title: "Let's talk.",
+      text: "I'm open to new opportunities. Email is the fastest way to reach me.",
     },
   },
 

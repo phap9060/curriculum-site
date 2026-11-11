@@ -10,9 +10,9 @@ export function Header() {
   // Recruiter: nada de barra, só os seletores de idioma/modo, discretos no canto.
   if (!isDev) {
     return (
-      <div className="absolute top-4 right-4 z-50 flex items-center gap-2 sm:top-5 sm:right-6">
-        <LangToggle />
-        <ModeToggle />
+      <div className="absolute top-5 right-5 z-50 flex items-center gap-5 sm:top-6 sm:right-8">
+        <LangToggle variant="text" />
+        <ModeToggle variant="text" />
       </div>
     )
   }
